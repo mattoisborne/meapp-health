@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service — Me.</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0E;
+    --bg-surface: #111116;
+    --border: rgba(255,255,255,0.07);
+    --text-primary: #F0F0F2;
+    --text-secondary: #B8B8C8;
+    --text-tertiary: #5A5A70;
+    --accent: #00C896;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: var(--bg);
+  }
+
+  ::selection { background: rgba(0,200,150,0.2); }
+
+  body { min-height: 100vh; }
+
+  header {
+    padding: 40px 0 32px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .wordmark span { color: var(--accent); }
+
+  .doc-meta {
+    margin-top: 48px;
+    padding-bottom: 32px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .doc-meta h1 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .doc-meta p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .doc-meta p + p { margin-top: 2px; }
+
+  .doc-body {
+    padding: 40px 0 80px;
+  }
+
+  .doc-body h2 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin: 48px 0 16px;
+  }
+
+  .doc-body h2:first-child { margin-top: 0; }
+
+  .doc-body p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .doc-body p strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .doc-body ul {
+    margin: 0 0 14px 0;
+    padding-left: 20px;
+    list-style: none;
+  }
+
+  .doc-body ul li {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .doc-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+  }
+
+  .doc-body hr {
+    border: none;
+    border-top: 0.5px solid var(--border);
+    margin: 8px 0;
+  }
+
+  .doc-body em {
+    font-style: normal;
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .doc-body a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .doc-body a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 32px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-inner p {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .footer-inner a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .footer-inner a:hover { color: var(--text-primary); }
+
+  @media (max-width: 600px) {
+    .doc-meta h1 { font-size: 24px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="https://meapp.health" class="wordmark">Me<span>.</span></a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="doc-meta">
+    <h1>Terms of Service</h1>
+    <p>Effective date: 1 June 2026</p>
+    <p>Last updated: 20 May 2026</p>
+  </div>
+
+  <div class="doc-body">
+
+    <p>These Terms of Service ("Terms") govern your use of Me. ("the app"), developed by Osborne Images Pty Ltd ("we", "us", "our"), based in Tasmania, Australia.</p>
+    <p>By downloading, accessing, or using Me., you agree to these Terms.</p>
+
+    <hr>
+
+    <h2>What Me. does</h2>
+    <p>Me. is a personal health data app that reads data from Apple Health, allows you to add context through check-ins, annotations, voice notes, and a Health Profile, and compiles structured outputs for use with healthcare providers, coaches, and AI tools.</p>
+    <p>Me. organises and presents information provided by you and Apple Health. Me. does not interpret, diagnose, monitor, score, or provide medical advice.</p>
+
+    <hr>
+
+    <h2>Eligibility</h2>
+    <p>You must be at least 18 years old, or otherwise legally capable of consenting to the collection and handling of health-related information in your jurisdiction, to use Me.</p>
+
+    <hr>
+
+    <h2>Not medical advice</h2>
+    <p>Me. is not a medical device, diagnostic tool, or clinical decision support system.</p>
+    <p>Nothing within Me., including compilations, summaries, exports, or structured outputs, constitutes medical advice, diagnosis, treatment, or healthcare recommendations.</p>
+    <p>The app is intended to support conversations with qualified healthcare professionals, not replace them.</p>
+    <p>If you have a medical concern, consult a qualified healthcare provider. Do not make health decisions based solely on information from Me. or from third-party AI analysis of Me. compilations.</p>
+
+    <hr>
+
+    <h2>Your data and privacy</h2>
+    <p>Me. is designed to store your health data and personal entries locally on your device unless you choose to export, share, sync, or back up that information using Apple or third-party services.</p>
+    <p>We do not access or view your health data unless you explicitly provide it to us for support purposes.</p>
+    <p>Certain limited technical information, such as crash diagnostics, subscription status, or anonymous analytics, may be collected to maintain and improve the app. Any such collection is described in our <a href="https://meapp.health/privacy">Privacy Policy</a>.</p>
+    <p>When you share a compilation, export a backup, or copy data from the app, you are choosing to send that data outside Me. You are responsible for how shared data is used, stored, and protected after it leaves the app.</p>
+    <p>When you paste a compilation into a third-party AI tool (such as ChatGPT, Claude, or Gemini), that data becomes subject to the third party's terms, privacy practices, and data handling policies, not ours. We recommend reviewing the privacy practices of any service you share your health data with.</p>
+
+    <hr>
+
+    <h2>Accuracy</h2>
+    <p>Me. reads data from Apple Health and displays it as provided. We do not modify or intentionally alter your health data.</p>
+    <p>The accuracy, completeness, and availability of your data depend on the devices, services, and applications connected to Apple Health.</p>
+    <p>Annotations, check-ins, voice notes, and Health Profile entries are created by you and remain your responsibility.</p>
+    <p>Compilations generated by Me. aim to present your data faithfully, but we do not guarantee that compilations, exports, or summaries are complete, accurate, or free from error. Important health information should always be verified with source devices or qualified healthcare professionals.</p>
+
+    <hr>
+
+    <h2>AI-generated outputs</h2>
+    <p>Me. may be used alongside third-party AI systems to organise or analyse exported health information.</p>
+    <p>Any responses, summaries, interpretations, or recommendations generated by third-party AI systems are created by those systems, not by Me.</p>
+    <p>We do not verify, endorse, or guarantee the accuracy, safety, or suitability of AI-generated outputs. AI systems can produce incorrect, incomplete, misleading, or inappropriate information.</p>
+    <p>You should not rely on AI-generated outputs for medical decisions without review by a qualified healthcare professional.</p>
+
+    <hr>
+
+    <h2>Subscriptions</h2>
+    <p>Me. offers optional paid subscriptions through Apple's App Store.</p>
+    <p>Available subscription tiers, features, and pricing are displayed within the app at the time of purchase and may change over time.</p>
+    <p>Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current billing period.</p>
+    <p>You can manage or cancel subscriptions through your Apple Account subscription settings.</p>
+    <p>We aim to maintain a useful free tier and will communicate significant changes to subscription features clearly within the app where practical.</p>
+    <p>Billing, payment processing, refunds, and subscription management are handled by Apple and subject to Apple's terms and policies.</p>
+
+    <hr>
+
+    <h2>Acceptable use</h2>
+    <p>You agree not to:</p>
+    <ul>
+      <li>Use Me. for any unlawful purpose or in violation of applicable laws or regulations</li>
+      <li>Attempt to reverse engineer, decompile, exploit vulnerabilities in, or extract source code from the app except where permitted by law</li>
+      <li>Use the app to create fraudulent, misleading, or intentionally deceptive health records or reports</li>
+      <li>Redistribute, resell, sublicense, or commercially exploit the app without permission</li>
+      <li>Use bots, scraping systems, or automated methods to abuse, overload, interfere with, or disrupt the operation of the app</li>
+    </ul>
+
+    <hr>
+
+    <h2>Intellectual property</h2>
+    <p>Me., including its software, design, branding, interface elements, text, graphics, and related assets, is the intellectual property of Osborne Images Pty Ltd or its licensors.</p>
+    <p>Your health data remains yours.</p>
+    <p>Any compilations, exports, notes, or outputs you generate using Me. remain yours to use and share as you choose.</p>
+
+    <hr>
+
+    <h2>Availability</h2>
+    <p>We aim to keep Me. available and functional, but we do not guarantee uninterrupted or error-free operation.</p>
+    <p>The app may be updated, modified, suspended, or temporarily unavailable for maintenance, technical reasons, or platform-related issues.</p>
+    <p>Because Me. primarily operates on-device, many features may continue functioning without an internet connection.</p>
+
+    <hr>
+
+    <h2>Limitation of liability</h2>
+    <p>To the maximum extent permitted by law, Me. is provided "as is" and "as available" without warranties of any kind, whether express or implied, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+    <p>We are not liable for any direct, indirect, incidental, consequential, special, exemplary, or punitive damages arising from or related to your use of Me., including but not limited to:</p>
+    <ul>
+      <li>Health decisions made using information, compilations, or exports generated by the app</li>
+      <li>Inaccuracies in Apple Health data or data supplied by third-party devices or services</li>
+      <li>Loss of data resulting from device failure, app deletion, iOS updates, backups, or sync issues</li>
+      <li>Actions, recommendations, or outputs generated by third-party AI systems</li>
+      <li>Reliance on information shared with healthcare providers, coaches, or external services</li>
+    </ul>
+    <p>Our total liability for any claim relating to Me. will not exceed the total amount paid by you for Me. subscriptions during the 12 months preceding the claim.</p>
+    <p>Nothing in these Terms excludes, restricts, or modifies any rights or remedies you may have under Australian Consumer Law or other applicable laws that cannot legally be excluded.</p>
+
+    <hr>
+
+    <h2>Termination</h2>
+    <p>You may stop using Me. at any time by deleting the app.</p>
+    <p>Locally stored Me. app data is generally removed from your device when the app is deleted, subject to Apple Health retention behaviour, iCloud backups, and any exports or copies created outside the app.</p>
+    <p>We reserve the right to update, suspend, or discontinue the app or parts of the app at any time.</p>
+    <p>If we discontinue Me., we will attempt to provide reasonable notice where practical.</p>
+
+    <hr>
+
+    <h2>Changes to these Terms</h2>
+    <p>We may update these Terms from time to time.</p>
+    <p>Updated versions will be published at meapp.health/terms with a revised effective date.</p>
+    <p>Continued use of Me. after updated Terms become effective constitutes acceptance of the revised Terms.</p>
+    <p>Where practical, material changes may also be noted within the app or release notes.</p>
+
+    <hr>
+
+    <h2>Governing law</h2>
+    <p>These Terms are governed by the laws of Tasmania, Australia.</p>
+    <p>Any disputes arising from or relating to these Terms or your use of Me. are subject to the exclusive jurisdiction of the courts of Tasmania, Australia.</p>
+
+    <hr>
+
+    <h2>Contact</h2>
+    <p>If you have questions about these Terms, contact <a href="mailto:hello@oistudios.com.au">hello@oistudios.com.au</a></p>
+
+    <hr>
+
+    <p><em>Me. is a product of Osborne Images Pty Ltd, Tasmania, Australia.</em></p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <p>© 2026 Osborne Images Pty Ltd</p>
+      <a href="https://meapp.health/privacy">Privacy Policy</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

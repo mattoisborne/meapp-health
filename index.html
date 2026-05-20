@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Me. — Your health data, set free.</title>
+  <meta name="description" content="Apple Health collects everything. Me. sets it free. Your data, your questions, your terms.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap" rel="stylesheet">
+  <script async src="https://tally.so/widgets/embed.js"></script>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #08080C;
+      --surface: #0f0f14;
+      --surface-2: #16161e;
+      --border: rgba(255,255,255,0.07);
+      --border-mid: rgba(255,255,255,0.05);
+      --text-primary: #F0F0F2;
+      --text-secondary: #A0A0A0;
+      --text-tertiary: #666680;
+      --accent: #00C896;
+      --accent-dim: rgba(0,200,150,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text-primary);
+      font-family: 'Inter', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 22px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(8,8,12,0.75);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 0.5px solid rgba(255,255,255,0.04);
+    }
+
+    .nav-wordmark {
+      font-size: 19px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 22px;
+      background: var(--accent);
+      color: #001a12;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 100px;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: opacity 0.15s, transform 0.15s;
+      border: none;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
+
+    /* PANELS */
+    .panel {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 140px 48px 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel-inner {
+      max-width: 860px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* PANEL 1 */
+    #panel-1 { text-align: center; padding-top: 160px; }
+
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 36px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.1s forwards;
+    }
+
+    .hero-statement {
+      font-size: clamp(40px, 7vw, 88px);
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      line-height: 1.0;
+      color: var(--text-primary);
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s forwards;
+    }
+
+    .hero-statement em {
+      font-style: normal;
+      color: var(--text-primary);
+    }
+
+    .hero-statement em .accent-word {
+      color: var(--accent);
+    }
+
+    .hero-body {
+      font-size: clamp(17px, 2.2vw, 22px);
+      color: var(--text-secondary);
+      max-width: 580px;
+      margin: 0 auto 56px;
+      line-height: 1.65;
+      letter-spacing: -0.02em;
+      font-weight: 400;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.55s forwards;
+    }
+
+    .hero-body strong { color: var(--text-primary); font-weight: 500; }
+
+    /* TICKER */
+    .data-ticker-wrap {
+      overflow: hidden;
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      opacity: 0;
+      animation: fadeUp 1s ease 0.8s forwards;
+      margin-bottom: 64px;
+    }
+
+    .data-ticker {
+      display: flex;
+      gap: 10px;
+      width: max-content;
+      animation: tickerScroll 36s linear infinite;
+    }
+
+    .ticker-pill {
+      padding: 8px 18px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 100px;
+      font-size: 13px;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      letter-spacing: -0.01em;
+      flex-shrink: 0;
+    }
+
+    .ticker-pill span {
+      color: var(--accent);
+      margin-right: 8px;
+      font-size: 9px;
+      opacity: 0.6;
+    }
+
+    /* HERO FORM */
+    .hero-form-wrap {
+      opacity: 0;
+      animation: fadeUp 1s ease 1s forwards;
+    }
+
+    .hero-form {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+    }
+
+    .form-input {
+      padding: 15px 22px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-primary);
+      font-size: 15px;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 280px;
+    }
+
+    .form-input::placeholder { color: var(--text-tertiary); }
+    .form-input:focus { border-color: rgba(0,200,150,0.5); }
+
+    .form-btn {
+      padding: 15px 28px;
+      background: var(--accent);
+      color: #001a12;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 100px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: -0.01em;
+      transition: opacity 0.15s, transform 0.15s;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .form-btn:hover { opacity: 0.85; transform: translateY(-1px); }
+    .form-btn:active { transform: translateY(0); }
+
+    .form-note {
+      font-size: 12px;
+      color: var(--text-tertiary);
+      margin-top: 14px;
+      text-align: center;
+    }
+
+    /* PANEL 2 — DATA UNIVERSE */
+    #panel-2 {
+      background: var(--surface);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      text-align: center;
+    }
+
+    .universe-headline {
+      font-size: clamp(28px, 4.5vw, 54px);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .universe-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 64px;
+      line-height: 1.65;
+      letter-spacing: -0.02em;
+    }
+
+    .source-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      text-align: left;
+      margin-bottom: 48px;
+    }
+
+    .source-category {
+      padding: 28px 24px;
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+    }
+
+    .source-category:first-child { border-radius: 16px 0 0 16px; }
+    .source-category:last-child { border-radius: 0 16px 16px 0; }
+
+    .source-cat-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .source-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+
+    .source-list li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      letter-spacing: -0.01em;
+      line-height: 1.4;
+    }
+
+    .source-list li.more { color: var(--text-tertiary); font-style: italic; }
+
+    .universe-rule {
+      font-size: 15px;
+      color: var(--text-secondary);
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+
+    .universe-rule strong { color: var(--text-secondary); font-weight: 500; }
+
+    /* PANEL 3 — MANIFESTO */
+    #panel-3 { text-align: center; }
+
+    .manifesto-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 56px;
+    }
+
+    .manifesto-lines { display: flex; flex-direction: column; gap: 0; margin-bottom: 0; }
+
+    .manifesto-line {
+      font-size: clamp(18px, 2.4vw, 32px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.25;
+      color: var(--text-tertiary);
+      padding: 22px 0;
+      border-bottom: 0.5px solid var(--border-mid);
+      transition: color 0.5s ease;
+    }
+
+    .manifesto-line:first-child { border-top: 0.5px solid var(--border-mid); }
+    .manifesto-line.lit { color: var(--text-primary); }
+    .manifesto-line.lit em { font-style: normal; color: var(--text-primary); }
+
+    /* PANEL 4 — USE CASES */
+    #panel-4 {
+      background: var(--surface);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .cases-headline {
+      font-size: clamp(28px, 4.5vw, 54px);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+      max-width: 640px;
+    }
+
+    .cases-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+      margin-bottom: 64px;
+    }
+
+    .case-row {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      align-items: start;
+      padding: 30px 0;
+      border-top: 0.5px solid var(--border-mid);
+      gap: 48px;
+    }
+
+    .case-row:last-of-type { border-bottom: 0.5px solid var(--border-mid); }
+
+    .case-who {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-tertiary);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding-top: 4px;
+    }
+
+    .case-what {
+      font-size: clamp(15px, 1.8vw, 19px);
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+      line-height: 1.5;
+      font-weight: 400;
+    }
+
+    .case-what strong { font-weight: 500; }
+
+    .cases-endnote {
+      margin-top: 48px;
+      font-size: 14px;
+      color: var(--text-secondary);
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+
+    /* PANEL 5 — DIFFERENCE */
+    #panel-5 { text-align: center; }
+
+    .diff-headline {
+      font-size: clamp(28px, 4.5vw, 54px);
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .diff-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto 64px;
+      line-height: 1.65;
+      letter-spacing: -0.02em;
+    }
+
+    .diff-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      text-align: left;
+      margin-bottom: 48px;
+    }
+
+    .diff-card {
+      padding: 36px 32px;
+      background: var(--surface);
+      border: 0.5px solid var(--border);
+    }
+
+    .diff-card:first-child { border-radius: 16px 0 0 16px; }
+    .diff-card:last-child { border-radius: 0 16px 16px 0; }
+
+    .diff-tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .diff-tag.them { color: var(--text-tertiary); }
+    .diff-tag.us { color: var(--accent); }
+
+    .diff-items { display: flex; flex-direction: column; gap: 14px; }
+
+    .diff-item {
+      font-size: 15px;
+      letter-spacing: -0.02em;
+      line-height: 1.5;
+    }
+
+    .diff-card:first-child .diff-item { color: var(--text-tertiary); }
+    .diff-card:last-child .diff-item { color: var(--text-primary); }
+
+    .diff-claim {
+      font-size: 15px;
+      color: var(--text-secondary);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+      text-align: center;
+    }
+
+    .diff-claim strong { color: var(--text-secondary); font-weight: 500; }
+
+    /* PANEL 6 — PRIVACY */
+    #panel-6 {
+      background: var(--surface);
+      border-top: 0.5px solid var(--border);
+      border-bottom: 0.5px solid var(--border);
+      text-align: center;
+    }
+
+    .privacy-headline {
+      font-size: clamp(24px, 3.5vw, 44px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--text-primary);
+      margin-bottom: 16px;
+    }
+
+    .privacy-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 440px;
+      margin: 0 auto 56px;
+      line-height: 1.65;
+      letter-spacing: -0.02em;
+    }
+
+    .privacy-row { display: flex; gap: 2px; justify-content: center; }
+
+    .priv-item {
+      flex: 1;
+      max-width: 210px;
+      padding: 28px 20px;
+      background: var(--bg);
+      border: 0.5px solid var(--border);
+      text-align: center;
+    }
+
+    .priv-item:first-child { border-radius: 16px 0 0 16px; }
+    .priv-item:last-child { border-radius: 0 16px 16px 0; }
+
+    .priv-icon { font-size: 22px; margin-bottom: 12px; }
+
+    .priv-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .priv-body { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+
+    /* PANEL 7 — CTA */
+    #panel-7 { text-align: center; min-height: 80svh; }
+
+    .cta-headline {
+      font-size: clamp(36px, 6vw, 76px);
+      font-weight: 600;
+      letter-spacing: -0.05em;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+
+    .cta-sub {
+      font-size: 17px;
+      color: var(--text-secondary);
+      max-width: 380px;
+      margin: 0 auto 52px;
+      line-height: 1.6;
+      letter-spacing: -0.02em;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 36px 48px;
+      border-top: 0.5px solid rgba(255,255,255,0.04);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-left { display: flex; align-items: center; gap: 12px; }
+
+    .footer-wordmark {
+      font-size: 16px;
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      color: var(--accent);
+    }
+
+    .footer-by { font-size: 12px; color: var(--text-secondary); }
+
+    /* REVEAL */
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* SECTION EYEBROW shared */
+    .s-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes tickerScroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 18px 24px; }
+      .panel { padding: 120px 24px 80px; }
+      .source-grid { grid-template-columns: 1fr 1fr; }
+      .source-category:first-child { border-radius: 12px 0 0 0; }
+      .source-category:nth-child(2) { border-radius: 0 12px 0 0; }
+      .source-category:nth-child(3) { border-radius: 0 0 0 12px; }
+      .source-category:last-child { border-radius: 0 0 12px 0; }
+      .case-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .diff-card:first-child { border-radius: 16px 16px 0 0; }
+      .diff-card:last-child { border-radius: 0 0 16px 16px; }
+      .privacy-row { flex-wrap: wrap; }
+      .priv-item { max-width: calc(50% - 1px); min-width: 120px; }
+      .priv-item:first-child { border-radius: 12px 0 0 0; }
+      .priv-item:nth-child(2) { border-radius: 0 12px 0 0; }
+      .priv-item:nth-child(3) { border-radius: 0 0 0 12px; }
+      .priv-item:last-child { border-radius: 0 0 12px 0; }
+      .hero-form, #cta-form { flex-direction: column; align-items: center; }
+      .form-input { width: 100%; max-width: 320px; }
+      footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .source-grid { grid-template-columns: 1fr; }
+      .source-category { border-radius: 0 !important; }
+      .source-category:first-child { border-radius: 12px 12px 0 0 !important; }
+      .source-category:last-child { border-radius: 0 0 12px 12px !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-wordmark">Me.</span>
+    <button class="nav-cta" onclick="openTally()">Request early access</button>
+  </nav>
+
+  <!-- PANEL 1 — PROVOCATION -->
+  <div class="panel" id="panel-1">
+    <div class="panel-inner">
+
+      <p class="eyebrow">A new kind of health app</p>
+
+      <h1 class="hero-statement">
+        Apple Health<br>collects everything.<br><em><span class="accent-word">Me.</span> sets it free.</em>
+      </h1>
+
+      <p class="hero-body">
+        You're generating more health data than any generation before you.<br>
+        <strong>Most of it is sitting there, doing nothing.</strong><br>
+        <span style="color:var(--text-secondary);font-size:clamp(17px,2.2vw,22px);font-weight:400;"><span style="color:var(--accent);font-weight:500;">Me.</span> adds your context, compiles your story, and formats it for the most powerful analytical tools ever built.</span>
+      </p>
+
+      <div class="data-ticker-wrap">
+        <div class="data-ticker" id="ticker"></div>
+      </div>
+
+      <div class="hero-form-wrap" id="hero-form-wrap">
+        <button class="form-btn" onclick="openTally()" style="font-size:16px;padding:18px 40px;">Request early access</button>
+        <p class="form-note" style="margin-top:14px;">iOS only &nbsp;·&nbsp; Launching mid-2026 &nbsp;·&nbsp; No spam, ever.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- PANEL 2 — DATA UNIVERSE -->
+  <div class="panel" id="panel-2">
+    <div class="panel-inner">
+      <p class="s-eyebrow reveal" style="text-align:center;">One permission. Everything.</p>
+      <h2 class="universe-headline reveal" style="text-align:center;">If it talks to Apple Health,<br><span style="color:var(--accent);">Me.</span> reads it.</h2>
+      <p class="universe-sub reveal">Apple Health is the most powerful health data platform ever built. It quietly aggregates everything: every device you wear, every app you use.</p>
+      <p class="universe-sub reveal" style="margin-top:16px;"><span style="color:var(--accent);font-weight:500;">Me.</span> is the first app that actually puts all of that to work.</p>
+
+      <div class="source-grid">
+        <div class="source-category reveal">
+          <p class="source-cat-label">Wearables</p>
+          <ul class="source-list">
+            <li>Apple Watch</li>
+            <li>Oura Ring</li>
+            <li>Whoop</li>
+            <li>Garmin</li>
+            <li>Fitbit</li>
+            <li>Polar</li>
+            <li>Coros</li>
+            <li>Withings ScanWatch</li>
+            <li>Ultrahuman Ring</li>
+            <li>Amazfit</li>
+            <li class="more">+ more</li>
+          </ul>
+        </div>
+        <div class="source-category reveal" style="transition-delay:.08s">
+          <p class="source-cat-label">Health devices</p>
+          <ul class="source-list">
+            <li>Dexcom (CGM)</li>
+            <li>Abbott Libre (CGM)</li>
+            <li>Withings scales</li>
+            <li>Blood pressure monitors</li>
+            <li>Pulse oximeters</li>
+            <li>Smart thermometers</li>
+            <li>ECG monitors</li>
+            <li class="more">+ more</li>
+          </ul>
+        </div>
+        <div class="source-category reveal" style="transition-delay:.16s">
+          <p class="source-cat-label">Fitness &amp; training</p>
+          <ul class="source-list">
+            <li>Strava</li>
+            <li>Nike Run Club</li>
+            <li>TrainingPeaks</li>
+            <li>MyFitnessPal</li>
+            <li>Cronometer</li>
+            <li>Strong</li>
+            <li>Tempo</li>
+            <li class="more">+ more</li>
+          </ul>
+        </div>
+        <div class="source-category reveal" style="transition-delay:.24s">
+          <p class="source-cat-label">Sleep &amp; wellbeing</p>
+          <ul class="source-list">
+            <li>AutoSleep</li>
+            <li>Sleep Cycle</li>
+            <li>Headspace</li>
+            <li>Calm</li>
+            <li>Endel</li>
+            <li>Pillow</li>
+            <li class="more">+ more</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="universe-rule reveal">This isn't an integration story. <strong>Apple Health is already doing the work.</strong> <span style="color:var(--accent);font-weight:500;">Me.</span> is what happens next.</p>
+    </div>
+  </div>
+
+  <!-- PANEL 3 — MANIFESTO -->
+  <div class="panel" id="panel-3">
+    <div class="panel-inner" style="text-align:center;">
+      <p class="manifesto-eyebrow reveal">What we believe</p>
+      <div class="manifesto-lines" id="manifesto-lines">
+        <p class="manifesto-line">Your data was generated by you.</p>
+        <p class="manifesto-line">It belongs to you. Not the platform that collected it.</p>
+        <p class="manifesto-line">Every other health app tells you <span style="font-style:normal;">what your numbers mean.</span></p>
+        <p class="manifesto-line"><span style="color:var(--accent);font-weight:500;">Me.</span> doesn't. That's the point.</p>
+        <p class="manifesto-line">You decide what the data means.</p>
+        <p class="manifesto-line">You add the context that makes it real.</p>
+        <p class="manifesto-line">You decide where it goes.</p>
+        <p class="manifesto-line">We make sure it's ready when you need it.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3B — AI MOMENT -->
+  <div class="panel" id="panel-ai" style="background:var(--surface);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);">
+    <div class="panel-inner">
+      <p class="s-eyebrow reveal">Why now</p>
+      <h2 style="font-size:clamp(28px,4.5vw,54px);font-weight:600;letter-spacing:-0.045em;line-height:1.1;color:var(--text-primary);margin-bottom:56px;max-width:640px;" class="reveal">The most powerful analytical tools ever built are waiting for your data.</h2>
+
+      <div style="display:flex;flex-direction:column;gap:0;" class="reveal">
+        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);">
+          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;">AI systems can now reason across your health data with a depth and speed that simply did not exist before. But they are only as good as what you feed them. Raw numbers produce generic answers. <strong>Your data with your context attached produces something entirely different.</strong></p>
+        </div>
+        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);">
+          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;"><span style="color:var(--accent);font-weight:500;">Me.</span> captures that context through daily check-ins, voice notes, and annotations that take under 90 seconds. How you slept. How you felt. What changed. What you noticed. That layer is what transforms a spreadsheet of numbers into a story an AI, a physician, or a coach can actually reason from.</p>
+        </div>
+        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);">
+          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;">The same output that an AI reasons across, your physician can read before your appointment. Your coach can act on before your next session. Your therapist can reference without you having to reconstruct everything from memory. <strong>The data is the same. The audience is whoever you choose.</strong></p>
+        </div>
+        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);border-bottom:0.5px solid var(--border-mid);">
+          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;margin-bottom:24px;"><span style="color:var(--accent);font-weight:500;">Me.</span> doesn't decide who analyses your data.</p>
+          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;">It produces output that is <strong>formatted for AI, legible for clinicians, and actionable for coaches</strong>. The direction is yours. The quality is consistent.</p>
+        </div>
+      </div>
+
+      <p style="margin-top:40px;font-size:15px;color:var(--text-secondary);letter-spacing:-0.01em;text-align:center;" class="reveal">ChatGPT. Claude. Gemini. Your GP. Your coach. Your therapist. All of them. None of them. Your call.</p>
+    </div>
+  </div>
+
+  <!-- PANEL 4 — USE CASES -->
+  <div class="panel" id="panel-4">
+    <div class="panel-inner">
+      <p class="s-eyebrow reveal">What becomes possible</p>
+      <h2 class="cases-headline reveal">The use cases are<br>as unlimited as the data.</h2>
+      <p class="cases-sub reveal"><span style="color:var(--accent);font-weight:500;">Me.</span> doesn't decide what you do with your health data. It just makes sure you can do anything with it.</p>
+
+      <div class="cases-stream">
+        <div class="case-row reveal">
+          <p class="case-who">The athlete</p>
+          <p class="case-what">You've been tracking every workout, every recovery score, every night of sleep. <span style="color:var(--accent);font-weight:500;">Me.</span> compiles it alongside your annotations — the note that said legs felt dead by kilometre three, the check-in that flagged a poor night before the long run — into <strong>something your coach can actually reason from.</strong></p>
+        </div>
+        <div class="case-row reveal">
+          <p class="case-who">The patient</p>
+          <p class="case-what">You walk into your GP appointment with <strong>90 days of annotated health data</strong>. Sleep, HRV, energy, mood, the week you changed medication, the fortnight you felt off. Not screenshots. A coherent, structured story.</p>
+        </div>
+        <div class="case-row reveal">
+          <p class="case-who">The curious</p>
+          <p class="case-what">What's your biological age? What's actually driving your energy? <span style="color:var(--accent);font-weight:500;">Me.</span> compiles your data — numbers and context together — into a <strong>structured output ready to drop into ChatGPT, Claude, Gemini, or any AI platform</strong> so you can ask the questions no health app will answer for you.</p>
+        </div>
+        <div class="case-row reveal">
+          <p class="case-who">The investigator</p>
+          <p class="case-what">Something has felt off for weeks. You can't explain it. The data alone won't tell you why. But the data plus your daily annotations — energy, mood, stress, sleep quality, what changed — <strong>builds a picture that actually has answers in it.</strong></p>
+        </div>
+        <div class="case-row reveal">
+          <p class="case-who">The optimiser</p>
+          <p class="case-what">Is the new training block working? Did the supplement make a difference? Your biometrics tell part of the story. Your annotations tell the rest. <strong>Compile both. Compare. Find out.</strong></p>
+        </div>
+        <div class="case-row reveal">
+          <p class="case-who">The longevity seeker</p>
+          <p class="case-what">You're not sick. You're paying attention. You want a long-term record that compounds over time: biometrics, annotations, context, all of it <strong>structured and portable</strong> so the picture only gets clearer as the years go on.</p>
+        </div>
+      </div>
+
+      <p class="cases-endnote reveal">These are six. There are thousands more. <span style="color:var(--accent);font-weight:500;">Me.</span> doesn't need to know yours.</p>
+    </div>
+  </div>
+
+  <!-- PANEL 5 — THE DIFFERENCE -->
+  <div class="panel" id="panel-5">
+    <div class="panel-inner" style="text-align:center;">
+      <p class="s-eyebrow reveal" style="text-align:center;">A different kind of app</p>
+      <h2 class="diff-headline reveal">We're not here<br>to tell you what to think.</h2>
+      <p class="diff-sub reveal">Every health platform is a walled garden. They collect your data, interpret it their way, and lock it inside. <span style="color:var(--accent);font-weight:500;">Me.</span> is built on a different premise entirely.</p>
+
+      <div class="diff-grid">
+        <div class="diff-card reveal">
+          <p class="diff-tag them">Every other app</p>
+          <div class="diff-items">
+            <p class="diff-item">Scores and grades your data</p>
+            <p class="diff-item">Tells you what your numbers mean</p>
+            <p class="diff-item">Keeps everything inside their ecosystem</p>
+            <p class="diff-item">Monetises your behaviour</p>
+            <p class="diff-item">Works with their hardware only</p>
+          </div>
+        </div>
+        <div class="diff-card reveal" style="transition-delay:.1s">
+        <p class="diff-tag us">Me.</p>
+          <div class="diff-items">
+            <p class="diff-item">Reports your data. Never interprets it.</p>
+            <p class="diff-item">Captures your context, not just your numbers</p>
+            <p class="diff-item">Lets you decide what it means</p>
+            <p class="diff-item">Structured output ready for ChatGPT, Claude, Gemini, any AI</p>
+            <p class="diff-item">Earns through the app. Not through you.</p>
+            <p class="diff-item">Works with everything in Apple Health</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="diff-claim reveal"><strong><span style="color:var(--accent);">Me.</span> was built for the age of AI.</strong> The only health app designed from the ground up to produce output that works for any system, any specialist, any question you need answered.</p>
+    </div>
+  </div>
+
+  <!-- PANEL 6 — PRIVACY -->
+  <div class="panel" id="panel-6">
+    <div class="panel-inner">
+      <p class="s-eyebrow reveal" style="text-align:center;">Privacy</p>
+      <h2 class="privacy-headline reveal" style="text-align:center;">Built like your health<br>data deserves.</h2>
+      <p class="privacy-sub reveal">No account. No server. No cloud. Your data never leaves your device without you explicitly choosing where it goes.</p>
+
+      <div class="privacy-row">
+        <div class="priv-item reveal">
+          <p class="priv-icon">📵</p>
+          <p class="priv-title">No account</p>
+          <p class="priv-body"><span style="color:var(--accent);font-weight:500;">Me.</span> works without signing up. No email, no profile, no identity.</p>
+        </div>
+        <div class="priv-item reveal" style="transition-delay:.08s">
+          <p class="priv-icon">🔒</p>
+          <p class="priv-title">On-device only</p>
+          <p class="priv-body">Everything stays on your iPhone. There is no <span style="color:var(--accent);font-weight:500;">Me.</span> server.</p>
+        </div>
+        <div class="priv-item reveal" style="transition-delay:.16s">
+          <p class="priv-icon">🚫</p>
+          <p class="priv-title">Never sold</p>
+          <p class="priv-body"><span style="color:var(--accent);font-weight:500;">Me.</span> earns revenue through the app. Not through your data.</p>
+        </div>
+        <div class="priv-item reveal" style="transition-delay:.24s">
+          <p class="priv-icon">📤</p>
+          <p class="priv-title">You control output</p>
+          <p class="priv-body">Data only moves when you compile and choose where it goes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 7 — CTA -->
+  <div class="panel" id="panel-7" style="min-height:80svh;">
+    <div class="panel-inner" style="text-align:center;" id="early-access">
+      <p class="s-eyebrow reveal" style="text-align:center;">Early access</p>
+      <h2 class="cta-headline reveal">Your data has<br>been waiting.</h2>
+      <p class="cta-sub reveal">A small group of early access testers will get <span style="color:var(--accent);font-weight:500;">Me.</span> before the public launch. Request your spot.</p>
+
+      <div id="cta-form-wrap" class="reveal" style="transition-delay:.2s;">
+        <button class="form-btn" onclick="openTally()" style="font-size:16px;padding:18px 40px;">Request early access</button>
+        <p class="form-note" style="margin-top:14px;">iOS only &nbsp;·&nbsp; Launching mid-2026 &nbsp;·&nbsp; No spam, ever.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-left">
+      <span class="footer-wordmark" style="color:var(--accent);">Me.</span>
+      <span class="footer-by">by Oi Studios &nbsp;·&nbsp; Hobart, Tasmania &nbsp;·&nbsp; © 2026</span>
+    </div>
+  </footer>
+
+  <script>
+    // TICKER
+    const tickerItems = [
+      ['Resting heart rate', '58 bpm'],
+      ['HRV', '42 ms'],
+      ['Sleep', '7h 14m'],
+      ['Deep sleep', '1h 22m'],
+      ['REM', '1h 48m'],
+      ['Steps', '9,240'],
+      ['Active energy', '612 kcal'],
+      ['VO₂ max', '48.3'],
+      ['Blood oxygen', '98%'],
+      ['Respiratory rate', '14.2 / min'],
+      ['Skin temp variance', '+0.3°C'],
+      ['Mindful minutes', '12 min'],
+      ['Body weight', '81.4 kg'],
+      ['Body fat', '16.2%'],
+      ['Blood glucose', '5.1 mmol/L'],
+      ['Workouts this week', '4'],
+      ['Running distance', '38.2 km'],
+      ['Cycling power', '218 W avg'],
+      ['Swim distance', '3.2 km'],
+      ['Calories consumed', '2,140 kcal'],
+      ['Protein', '142 g'],
+      ['Hydration', '2.4 L'],
+      ['Blood pressure', '118 / 76'],
+      ['Stand hours', '11 / 12'],
+      ['Walking steadiness', 'OK'],
+      ['Cardio fitness', 'Above avg'],
+      ['Menstrual cycle', 'Day 14'],
+      ['Hearing exposure', '72 dB avg'],
+      ['Recovery score', '74%'],
+      ['Stress level', 'Elevated'],
+    ];
+
+    function buildTicker() {
+      const ticker = document.getElementById('ticker');
+      const doubled = [...tickerItems, ...tickerItems];
+      ticker.innerHTML = doubled.map(([label, val]) =>
+        `<div class="ticker-pill"><span>◆</span>${label}: ${val}</div>`
+      ).join('');
+    }
+    buildTicker();
+
+    // MANIFESTO LIGHTING
+    (function() {
+      const lines = document.querySelectorAll('.manifesto-line');
+      const block = document.getElementById('manifesto-lines');
+      let fired = false;
+      const obs = new IntersectionObserver(entries => {
+        if (entries[0].isIntersecting && !fired) {
+          fired = true;
+          lines.forEach((line, i) => setTimeout(() => line.classList.add('lit'), i * 200));
+          obs.disconnect();
+        }
+      }, { threshold: 0.25 });
+      if (block) obs.observe(block);
+    })();
+
+    // SCROLL REVEAL
+    const reveals = document.querySelectorAll('.reveal');
+    const revObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => revObs.observe(el));
+
+    // FORM — Tally popup
+    function openTally() {
+      Tally.openPopup('lbWjPX', {
+        layout: 'modal',
+        autoClose: 3000,
+      });
+    }
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Me.</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0A0A0E;
+    --bg-surface: #111116;
+    --border: rgba(255,255,255,0.07);
+    --text-primary: #F0F0F2;
+    --text-secondary: #B8B8C8;
+    --text-tertiary: #5A5A70;
+    --accent: #00C896;
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-primary);
+    background: var(--bg);
+  }
+
+  ::selection { background: rgba(0,200,150,0.2); }
+
+  body { min-height: 100vh; }
+
+  header {
+    padding: 40px 0 32px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .container {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .wordmark {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 1px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    color: var(--text-primary);
+    text-decoration: none;
+  }
+
+  .wordmark span { color: var(--accent); }
+
+  .doc-meta {
+    margin-top: 48px;
+    padding-bottom: 32px;
+    border-bottom: 0.5px solid var(--border);
+  }
+
+  .doc-meta h1 {
+    font-size: 28px;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+  }
+
+  .doc-meta p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .doc-meta p + p { margin-top: 2px; }
+
+  .doc-body {
+    padding: 40px 0 80px;
+  }
+
+  .doc-body h2 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-primary);
+    margin: 48px 0 16px;
+  }
+
+  .doc-body h2:first-child { margin-top: 0; }
+
+  .doc-body p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 14px;
+  }
+
+  .doc-body p strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .doc-body ul {
+    margin: 0 0 14px 0;
+    padding-left: 20px;
+    list-style: none;
+  }
+
+  .doc-body ul li {
+    font-size: 15px;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    position: relative;
+    padding-left: 16px;
+  }
+
+  .doc-body ul li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--text-tertiary);
+  }
+
+  .doc-body hr {
+    border: none;
+    border-top: 0.5px solid var(--border);
+    margin: 8px 0;
+  }
+
+  .doc-body em {
+    font-style: normal;
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .doc-body a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .doc-body a:hover { text-decoration: underline; }
+
+  footer {
+    border-top: 0.5px solid var(--border);
+    padding: 32px 0;
+  }
+
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .footer-inner p {
+    font-size: 13px;
+    color: var(--text-tertiary);
+  }
+
+  .footer-inner a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+  }
+
+  .footer-inner a:hover { color: var(--text-primary); }
+
+  @media (max-width: 600px) {
+    .doc-meta h1 { font-size: 24px; }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <a href="https://meapp.health" class="wordmark">Me<span>.</span></a>
+  </div>
+</header>
+
+<div class="container">
+  <div class="doc-meta">
+    <h1>Privacy Policy</h1>
+    <p>Effective date: 1 June 2026</p>
+    <p>Last updated: 20 May 2026</p>
+  </div>
+
+  <div class="doc-body">
+
+    <p>Me. is developed by Osborne Images Pty Ltd, based in Tasmania, Australia.</p>
+    <p>This Privacy Policy explains how Me. handles your information.</p>
+    <p>Me. is designed as a local-first application. Health data and personal entries created within the app are intended to remain stored on your device unless you explicitly choose to export, share, sync, or back up that information using Apple or third-party services.</p>
+    <p>We do not collect, store, or transmit your personal health information to our servers.</p>
+
+    <hr>
+
+    <h2>Information Me. accesses</h2>
+    <p>With your permission, Me. may access health and wellness information stored in Apple Health, including data such as:</p>
+    <ul>
+      <li>Sleep</li>
+      <li>Heart rate</li>
+      <li>Activity</li>
+      <li>Workouts</li>
+      <li>Recovery metrics</li>
+      <li>Mindfulness sessions</li>
+      <li>Other health categories you explicitly allow through Apple Health permissions</li>
+    </ul>
+    <p>Me. only accesses the categories you approve through Apple's HealthKit permission system.</p>
+    <p>You can revoke Health permissions at any time through:</p>
+    <p><strong>iPhone Settings → Privacy &amp; Security → Health → Me.</strong></p>
+
+    <hr>
+
+    <h2>Apple Health data</h2>
+    <p>Health data accessed through Apple Health is used solely to display, organise, and compile information within Me.</p>
+    <p>HealthKit data is never used for advertising, marketing, profiling, or behavioural tracking purposes.</p>
+    <p>Me. does not sell HealthKit data or share HealthKit data with advertisers, data brokers, or marketing platforms.</p>
+    <p>Health data remains under your control through Apple's permission system and your device settings.</p>
+
+    <hr>
+
+    <h2>Personal entries and annotations</h2>
+    <p>Me. allows you to create:</p>
+    <ul>
+      <li>Check-ins</li>
+      <li>Notes</li>
+      <li>Voice-transcribed annotations</li>
+      <li>Health Profile entries</li>
+      <li>Structured compilations and exports</li>
+    </ul>
+    <p>These entries are stored locally on your device unless you choose to export or share them.</p>
+    <p>You are responsible for any information you choose to include in notes, exports, or AI prompts generated from Me.</p>
+
+    <hr>
+
+    <h2>Voice input</h2>
+    <p>Me. uses Apple's Speech framework for voice-to-text transcription.</p>
+    <p>Me. is designed to use on-device speech recognition where supported by Apple and the user's device configuration. Speech processing behaviour may vary depending on iOS version, language support, and Apple system settings.</p>
+    <p>Me. does not transmit or store voice recordings on our servers. Transcribed text is stored locally on your device as part of your annotations.</p>
+
+    <hr>
+
+    <h2>Sharing and exports</h2>
+    <p>Me. allows you to export or share compilations and structured outputs with:</p>
+    <ul>
+      <li>Healthcare providers</li>
+      <li>Coaches</li>
+      <li>Family members</li>
+      <li>Third-party AI systems</li>
+      <li>Other apps or services you choose</li>
+    </ul>
+    <p>Once information leaves Me., its handling becomes subject to the privacy practices and policies of the receiving service or person.</p>
+    <p>We recommend reviewing the privacy policies of any third-party service before sharing health information.</p>
+
+    <hr>
+
+    <h2>AI tools and third-party services</h2>
+    <p>Me. may be used alongside third-party AI systems such as ChatGPT, Claude, or Gemini.</p>
+    <p>When you copy, export, or paste information into external AI systems, those services handle the data according to their own privacy policies and terms.</p>
+    <p>Me. does not control, monitor, or take responsibility for how third-party AI services process shared information.</p>
+
+    <hr>
+
+    <h2>Analytics</h2>
+    <p>Me. uses TelemetryDeck for privacy-focused anonymous usage analytics.</p>
+    <p>TelemetryDeck is configured to avoid collecting directly identifying personal information or health data. Analytics may include limited technical and usage information such as feature usage, screen visits, app version, and general device information used to improve app stability and usability.</p>
+    <p>No advertising identifiers, third-party advertising SDKs, or cross-app tracking technologies are used.</p>
+    <p>You can disable anonymous analytics at any time within the app settings.</p>
+
+    <hr>
+
+    <h2>Subscription and payment information</h2>
+    <p>Subscriptions are processed through Apple's App Store.</p>
+    <p>We do not receive or store your payment card information.</p>
+    <p>Apple may provide limited subscription-related information to confirm subscription status and manage purchases.</p>
+    <p>Subscription billing and payment processing are governed by Apple's terms and privacy policies.</p>
+
+    <hr>
+
+    <h2>Data storage and security</h2>
+    <p>Me. is designed to store data locally on your device.</p>
+    <p>Security protections depend partly on your own device security settings, including passcodes, biometric authentication, iCloud configuration, and device encryption.</p>
+    <p>While we aim to use reasonable security practices, no software or device environment can be guaranteed completely secure.</p>
+
+    <hr>
+
+    <h2>Data deletion</h2>
+    <p>Because Me. primarily stores data locally on your device, deleting the app generally removes Me. data stored on the device.</p>
+    <p>However, app data may still exist within Apple-managed device backups, including iCloud backups, depending on your device settings. Any exported files or shared compilations created outside the app remain your responsibility.</p>
+    <p>Me. does not maintain user accounts or server-side health data records requiring separate deletion requests.</p>
+
+    <hr>
+
+    <h2>Children's privacy</h2>
+    <p>Me. is not intended for children under 18 years of age.</p>
+    <p>We do not knowingly collect personal information from children.</p>
+
+    <hr>
+
+    <h2>Future services</h2>
+    <p>If future versions of Me. introduce optional cloud features, accounts, synchronisation services, or online processing features, this Privacy Policy will be updated before those features become available.</p>
+
+    <hr>
+
+    <h2>Changes to this Privacy Policy</h2>
+    <p>We may update this Privacy Policy from time to time.</p>
+    <p>Updated versions will be published at meapp.health/privacy.</p>
+    <p>Continued use of Me. after updates become effective constitutes acceptance of the revised Privacy Policy.</p>
+    <p>Where practical, material changes may also be noted within the app or release notes.</p>
+
+    <hr>
+
+    <h2>Contact</h2>
+    <p>If you have questions about this Privacy Policy, contact <a href="mailto:hello@oistudios.com.au">hello@oistudios.com.au</a></p>
+
+    <hr>
+
+    <p><em>Me. is a product of Osborne Images Pty Ltd, Tasmania, Australia.</em></p>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <p>© 2026 Osborne Images Pty Ltd</p>
+      <a href="https://meapp.health/terms">Terms of Service</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

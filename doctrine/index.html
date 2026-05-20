@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hybrid Athlete Training Doctrine — Me.</title>
+  <meta name="description" content="The training philosophy behind Me. A living document on how to train as a durable, balanced, high-functioning hybrid athlete.">
+  <meta property="og:title" content="Hybrid Athlete Training Doctrine">
+  <meta property="og:description" content="The training philosophy behind Me. A living document on how to train as a durable, balanced, high-functioning hybrid athlete.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://meapp.health/doctrine">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0A0A0E;
+      --bg-surface: #111116;
+      --bg-card: #16161C;
+      --bg-elevated: #1C1C24;
+      --border: rgba(255,255,255,0.07);
+      --border-mid: rgba(255,255,255,0.12);
+      --border-strong: rgba(255,255,255,0.2);
+      --text-primary: #F0F0F2;
+      --text-secondary: #8888A0;
+      --text-tertiary: #5A5A70;
+      --accent: #00C896;
+      --accent-dim: rgba(0,200,150,0.12);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 20px;
+      --max-width: 720px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      color: var(--text-primary);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-feature-settings: "ss01", "cv11";
+    }
+
+    ::selection {
+      background: rgba(0,200,150,0.25);
+      color: var(--text-primary);
+    }
+
+    /* Layout */
+    .page {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 48px 24px 96px;
+    }
+
+    @media (min-width: 768px) {
+      .page {
+        padding: 80px 32px 120px;
+      }
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-bottom: 48px;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 64px;
+    }
+
+    .wordmark {
+      font-size: 28px;
+      font-weight: 600;
+      letter-spacing: -0.045em;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .wordmark .wm-stop {
+      color: var(--accent);
+    }
+
+    .header-link {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.15s ease;
+    }
+
+    .header-link:hover {
+      color: var(--text-primary);
+    }
+
+    /* Hero */
+    .hero {
+      margin-bottom: 64px;
+    }
+
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-size: 36px;
+      font-weight: 600;
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+      max-width: 18ch;
+    }
+
+    @media (min-width: 768px) {
+      .page-title {
+        font-size: 48px;
+      }
+    }
+
+    .meta {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text-tertiary);
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      letter-spacing: 0.02em;
+    }
+
+    .meta-divider {
+      width: 4px;
+      height: 4px;
+      background: var(--text-tertiary);
+      border-radius: 50%;
+    }
+
+    .intro {
+      margin-top: 40px;
+      padding: 24px;
+      background: var(--accent-dim);
+      border-left: 2px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+
+    .intro p + p {
+      margin-top: 12px;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 56px;
+      scroll-margin-top: 24px;
+    }
+
+    .section-number {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 12px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+    }
+
+    .section-title {
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      padding-bottom: 16px;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    .subsection {
+      margin-top: 32px;
+    }
+
+    .subsection-title {
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+
+    /* Body copy */
+    .section p,
+    .subsection p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .section p:last-child,
+    .subsection p:last-child {
+      margin-bottom: 0;
+    }
+
+    .section p strong,
+    .subsection p strong {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .section p em,
+    .subsection p em {
+      color: var(--text-primary);
+      font-style: italic;
+    }
+
+    /* Lists */
+    .section ul,
+    .subsection ul {
+      list-style: none;
+      margin-bottom: 20px;
+      padding-left: 0;
+    }
+
+    .section ul li,
+    .subsection ul li {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-secondary);
+      padding-left: 24px;
+      position: relative;
+      margin-bottom: 8px;
+    }
+
+    .section ul li::before,
+    .subsection ul li::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 13px;
+      width: 4px;
+      height: 4px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+
+    /* Definition-style blocks (Purpose, Feel, Common mistake) */
+    .session-block {
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    .session-block p {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 4px !important;
+    }
+
+    .session-block p:last-child {
+      margin-bottom: 0 !important;
+    }
+
+    .session-block .label {
+      color: var(--text-tertiary);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      display: inline;
+    }
+
+    /* Hierarchy callout (the Health → Durability → ... line) */
+    .hierarchy {
+      padding: 20px 24px;
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin: 24px 0;
+      font-size: 14px;
+      color: var(--text-primary);
+      font-weight: 500;
+      letter-spacing: 0.01em;
+      line-height: 1.6;
+    }
+
+    /* Phase blocks */
+    .phase-block {
+      margin-bottom: 20px;
+    }
+
+    .phase-block strong {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    .phase-block p {
+      margin-bottom: 0 !important;
+    }
+
+    /* Goal-specific blocks */
+    .goal-block {
+      padding: 20px;
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+    }
+
+    .goal-block strong {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    .goal-block ul {
+      margin-bottom: 0 !important;
+    }
+
+    .goal-block ul li {
+      font-size: 14px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 96px;
+      padding-top: 48px;
+      border-top: 0.5px solid var(--border);
+    }
+
+    .footer-card {
+      padding: 32px;
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      text-align: left;
+    }
+
+    .footer-card .footer-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+
+    .footer-card .footer-title {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .footer-card .footer-title .wm-stop {
+      color: var(--accent);
+    }
+
+    .footer-card p {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+
+    .footer-card a.cta {
+      display: inline-block;
+      font-size: 13px;
+      color: var(--accent);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      font-weight: 500;
+      padding: 8px 0;
+      border-bottom: 0.5px solid var(--accent);
+      transition: opacity 0.15s ease;
+    }
+
+    .footer-card a.cta:hover {
+      opacity: 0.7;
+    }
+
+    .footer-meta {
+      margin-top: 32px;
+      font-size: 11px;
+      color: var(--text-tertiary);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    /* Smooth fade-in on load */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .header, .hero, .section, .footer {
+      animation: fadeUp 0.5s ease-out backwards;
+    }
+
+    .hero { animation-delay: 0.05s; }
+    .section:nth-of-type(1) { animation-delay: 0.1s; }
+    .section:nth-of-type(2) { animation-delay: 0.12s; }
+    .section:nth-of-type(3) { animation-delay: 0.14s; }
+    .footer { animation-delay: 0.2s; }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <header class="header">
+    <a href="https://meapp.health/" class="wordmark">Me<span class="wm-stop">.</span></a>
+    <a href="https://meapp.health/" class="header-link">← Back</a>
+  </header>
+
+  <section class="hero">
+    <p class="eyebrow">Training doctrine</p>
+    <h1 class="page-title">Hybrid athlete training doctrine</h1>
+    <div class="meta">
+      <span>Version 3.2</span>
+      <span class="meta-divider"></span>
+      <span>Living document</span>
+    </div>
+    <div class="intro">
+      <p>This is the philosophy behind how I train. Self-coached, hybrid program, built around the realities of life rather than against them.</p>
+      <p>It evolves as I learn. The principles below are what I actually use to make decisions, not aspirations. They sit alongside my data inside Me<span class="wm-stop">.</span> the app I'm building, and inform my macro and micro decisions.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">01</p>
+    <h2 class="section-title">Identity</h2>
+    <p>I am building myself into a durable, balanced, high-functioning hybrid athlete.</p>
+    <p>My training is not about proving toughness through random suffering. It is about developing endurance, strength, resilience, movement quality, and composure in a way I can sustain for years.</p>
+    <p>I do not train for noise, hype, or entertainment. I train for capability. I train for clarity. I train for longevity. I train to become harder to break and easier to rely on.</p>
+    <p>The goal is not to win single sessions. The goal is to build a body and mindset that can perform across seasons, across goals, and across life demands.</p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">02</p>
+    <h2 class="section-title">Core philosophy</h2>
+    <p>Training is stress. Adaptation is earned. Fitness compounds when the system is stable. Poor decisions compound too.</p>
+    <p>The operating equation is simple. Stress plus rest equals growth. Stress without rest is degradation. Rest without stress is detraining. The job is keeping both in proportion.</p>
+    <p>Hard days should be hard enough to matter. Easy days should be easy enough to preserve quality. Contrast drives adaptation. Sustainability determines how far I can go.</p>
+    <p><strong>A program is fixed. A system adapts.</strong></p>
+    <p>Hybrid performance is not about feeling smashed all the time. It is the disciplined integration of endurance, strength, movement quality, and recovery.</p>
+    <p>My target is balance:</p>
+    <ul>
+      <li>enough endurance to stay composed under fatigue</li>
+      <li>enough strength to make work economical</li>
+      <li>enough skill to move well when tired</li>
+      <li>enough restraint to keep improving</li>
+    </ul>
+  </section>
+
+  <section class="section">
+    <p class="section-number">03</p>
+    <h2 class="section-title">Long-term orientation</h2>
+    <p>This doctrine exists to anchor three things.</p>
+    <div class="phase-block">
+      <strong>Where I've come from</strong>
+      <p>I am no longer training from chaos, guesswork, or emotion. I have moved from trying to prove myself through effort to building myself through structure.</p>
+    </div>
+    <div class="phase-block">
+      <strong>Where I'm going</strong>
+      <p>Toward a durable, capable, calm version of performance. An athlete who can run well, lift well, recover well, and live well. Competitive when needed. Balanced by default.</p>
+    </div>
+    <div class="phase-block">
+      <strong>How I behave in the middle</strong>
+      <p>I do not need perfect conditions. I need repeatable standards. My job is not to chase ideal weeks. My job is to stack enough good weeks that the direction stays right.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">04</p>
+    <h2 class="section-title">What a hybrid athlete means for me</h2>
+    <p>Being a hybrid athlete does not mean doing everything. It means developing multiple physical qualities without letting one destroy the others.</p>
+    <p>That means:</p>
+    <ul>
+      <li>aerobic capacity is foundational</li>
+      <li>strength is necessary</li>
+      <li>movement quality matters</li>
+      <li>recovery is part of training</li>
+      <li>life load must be accounted for</li>
+    </ul>
+    <p>The exact event may change. The body still follows the same rules.</p>
+    <p>Whether the target is HYROX, a faster 10k, improved strength, better work capacity, or broad athleticism, the same hierarchy remains:</p>
+    <div class="hierarchy">Health → Durability → Aerobic base → Threshold capacity → Strength → Specificity → Peak expression</div>
+    <p>If the lower layers are weak, the upper layers become fragile.</p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">05</p>
+    <h2 class="section-title">Primary training principles</h2>
+
+    <div class="subsection">
+      <h3 class="subsection-title">5.1 Aerobic engine first</h3>
+      <p>For me, the aerobic system is one of the biggest long-term levers.</p>
+      <p>A bigger aerobic engine improves:</p>
+      <ul>
+        <li>repeatability</li>
+        <li>recovery between efforts</li>
+        <li>pace sustainability</li>
+        <li>lactate clearance</li>
+        <li>work capacity under fatigue</li>
+        <li>long-session resilience</li>
+      </ul>
+      <p>I do not build myself by living anaerobically. I build myself by raising the floor so higher outputs cost less.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">5.2 Strength is for economy, resilience, and force production</h3>
+      <p>Strength matters. But it must serve the broader system.</p>
+      <p>The point is not to chase strength numbers that add fatigue without transfer. The point is to be strong enough that submaximal work feels submaximal. Strength is in service of the engine, not in competition with it.</p>
+      <p>Max strength has value. Strength endurance has value. Tissue resilience has value. The right dose depends on the season, the goal, and what the rest of training is demanding.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">5.3 Threshold is the bridge</h3>
+      <p>Threshold work is one of the most useful tools in my training because it sits near the point where speed, control, and sustainability meet.</p>
+      <p>This is where meaningful progress happens:</p>
+      <ul>
+        <li>faster sustainable pace</li>
+        <li>better tolerance to discomfort</li>
+        <li>stronger aerobic power</li>
+        <li>better transfer to long efforts and repeated work</li>
+      </ul>
+      <p>Threshold is not a pace on paper. It is a physiological state, and it shifts with recovery, fatigue, and context.</p>
+      <p>For tracking progression, time spent in the threshold zone matters more than the splits I hit on any given day. Volume of correct work, not heroic single sessions.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">5.4 Easy work must stay easy</h3>
+      <p>Most athletes lose progress by turning support work into moderate work. I will not make that mistake.</p>
+      <p>Easy sessions are not filler. They build the base, support recovery, increase frequency, and protect the quality of hard days.</p>
+      <p><em>I do not waste easy days by making them impressively average.</em></p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">5.5 Progression is earned</h3>
+      <p>Progress is not scheduled because the calendar says so. It is earned when adaptation is visible.</p>
+      <p>I progress when I see:</p>
+      <ul>
+        <li>lower cost for the same work</li>
+        <li>lower RPE for the same session</li>
+        <li>better repeatability</li>
+        <li>cleaner movement under fatigue</li>
+        <li>better recovery between efforts</li>
+      </ul>
+      <p><strong>I add one lever at a time.</strong></p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">5.6 Specificity matters, but only at the right time</h3>
+      <p>The closer the goal, the more specific training should become.</p>
+      <p>General qualities first. Specific expression later.</p>
+      <p>Too much specificity too early narrows the system. Too little specificity too late leaves performance unprepared.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">5.7 Training must fit life</h3>
+      <p>Stress is not only training stress.</p>
+      <p>Work strain, family load, poor sleep, travel, illness, emotional pressure, and under-fuelling all change what training will cost.</p>
+      <p><strong>The plan matters. Reality matters more.</strong></p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">06</p>
+    <h2 class="section-title">The balance model</h2>
+    <p>This system is built on balance, not excess.</p>
+    <p>Balance does not mean doing equal amounts of everything. It means keeping the system proportionate to the season and the goal.</p>
+    <p>At any point in time, I need to balance:</p>
+    <ul>
+      <li>endurance and strength</li>
+      <li>intensity and recovery</li>
+      <li>ambition and patience</li>
+      <li>competition and lifestyle</li>
+      <li>structure and flexibility</li>
+    </ul>
+    <p><em>A balanced athlete is not undertrained. A balanced athlete is trainable.</em></p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">07</p>
+    <h2 class="section-title">The weekly structure</h2>
+    <p>Most weeks should revolve around a simple structure.</p>
+
+    <div class="subsection">
+      <h3 class="subsection-title">7.1 Quality sessions</h3>
+      <p>Usually 2 to 3 genuine quality exposures per week.</p>
+      <p>These may come from:</p>
+      <ul>
+        <li>threshold work</li>
+        <li>VO2 work</li>
+        <li>race-specific work</li>
+        <li>heavy strength</li>
+        <li>strength endurance</li>
+        <li>hybrid density work</li>
+      </ul>
+      <p><strong>Of those 2 to 3 slots, at least one must be running-specific in every week.</strong> Quality is counted across modalities, not stacked. If hybrid density and heavy strength have already filled the week, threshold or VO2 still has its slot, or the week is rebalanced. This rule exists to stop running development being quietly crowded out by the rest of the system.</p>
+      <p>Frequency matters as much as volume. For hybrid athletes, more frequent shorter runs usually maintain running fitness better than fewer longer runs, especially when strength work is competing for the same recovery budget.</p>
+      <p>Not every hard session needs to be spectacular. It needs to be clear in purpose.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">7.2 Support sessions</h3>
+      <p>These should make up most of the week.</p>
+      <p>Support work includes:</p>
+      <ul>
+        <li>aerobic continuity</li>
+        <li>easy running</li>
+        <li>cyclical zone 2 work</li>
+        <li>technique work</li>
+        <li>station skill</li>
+        <li>mobility</li>
+        <li>low-cost strength maintenance</li>
+        <li>recovery sessions</li>
+      </ul>
+      <p>Support work should preserve the next hard session, not compete with it.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">7.3 Recovery rhythm</h3>
+      <p>Recovery is not a passive hope. It is part of the structure.</p>
+      <p>Every week should contain:</p>
+      <ul>
+        <li>true low-intensity work</li>
+        <li>enough sleep opportunity</li>
+        <li>fuelling that supports output</li>
+        <li>enough space to absorb training</li>
+        <li>enough restraint to avoid intensity leakage</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">08</p>
+    <h2 class="section-title">Threshold discipline</h2>
+    <p>The useful lesson is not copying elite volume. It is precision, restraint, and repeatability.</p>
+
+    <div class="subsection">
+      <h3 class="subsection-title">8.1 Controlled threshold work</h3>
+      <p>Threshold work should be repeatable, measurable, and controlled. Not a race. Not chaos. Not ego.</p>
+      <p>I should finish threshold sessions feeling like I trained the system hard without breaking it.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">8.2 Internal load matters</h3>
+      <p>External pace, watts, or splits do not tell the full story. My body responds to internal cost.</p>
+      <p>Heart rate, breathing, lactate when available, and perceived strain all matter. The point is to hit the intended physiology, not defend a number.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">8.3 Volume is built through discipline</h3>
+      <p>A strong system is built through consistent submaximal work, not repeated emotional overreach.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">8.4 Single-threshold by default</h3>
+      <p>Double-threshold is not a default tool. It is reserved for periods where recovery, life load, and durability genuinely justify the additional stress. In most hybrid contexts, the marginal gains do not justify the recovery debt.</p>
+      <p>What I keep from the principle is the single-threshold habit: one well-controlled, repeatable threshold session per week, executed with discipline, never as a race, calibrated to internal load rather than ambition.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">09</p>
+    <h2 class="section-title">Training intent</h2>
+    <p>The useful lesson is not training harder. It is training with intent.</p>
+
+    <div class="subsection">
+      <h3 class="subsection-title">9.1 Train the right system on the right day</h3>
+      <p>Easy means easy. Threshold means threshold. Interval means interval. Repetition means repetition.</p>
+      <p>Blending everything together usually dulls the effect.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">9.2 Paces are tools, not commandments</h3>
+      <p>Training paces are reference points. They are useful when they reflect current fitness and current readiness. They are not useful when I am carrying fatigue, heat stress, poor recovery, or extra life load.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">9.3 Economy matters</h3>
+      <p>Running well is not just fitness. It is efficiency. Good mechanics, rhythm, posture, and cadence save energy.</p>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">9.4 Consistency beats hero sessions</h3>
+      <p>The best training week is not the most impressive week. It is the week I can repeat, absorb, and build from.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">10</p>
+    <h2 class="section-title">Session categories</h2>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.1 Aerobic continuity</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;build aerobic base, durability, and recovery support.</p>
+        <p><span class="label">Feel</span> &nbsp;controlled, conversational, stable.</p>
+        <p><span class="label">Common mistake</span> &nbsp;drifting into moderate work.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.2 Threshold</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;raise sustainable output and improve control near LT2.</p>
+        <p><span class="label">Feel</span> &nbsp;strong but measured. Repeatable.</p>
+        <p><span class="label">Common mistake</span> &nbsp;turning it into racing.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.3 VO2 / high aerobic</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;lift aerobic ceiling and improve the ability to work hard without panic.</p>
+        <p><span class="label">Feel</span> &nbsp;demanding, but not chaotic.</p>
+        <p><span class="label">Seasonal home</span> &nbsp;mid-build phase for half marathon goals; closer to peak for HYROX goals. Not a year-round staple.</p>
+        <p><span class="label">Common mistake</span> &nbsp;making every rep a death effort.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.4 Strength maintenance</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;preserve force capacity and tissue resilience with minimal cost.</p>
+        <p><span class="label">Feel</span> &nbsp;crisp, low-noise, low-drama.</p>
+        <p><span class="label">Dose</span> &nbsp;2 sessions per week, primary lifts kept heavy but never to RPE 9+ in-season.</p>
+        <p><span class="label">Common mistake</span> &nbsp;adding fatigue that steals from endurance work.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.5 Strength development</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;improve force production when the phase justifies it.</p>
+        <p><span class="label">Feel</span> &nbsp;focused and deliberate.</p>
+        <p><span class="label">Dose</span> &nbsp;2 to 3 sessions per week during base or off-season phases. Reduces back to maintenance dose as event specificity increases.</p>
+        <p><span class="label">Common mistake</span> &nbsp;chasing numbers at the expense of movement quality and total load tolerance.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.6 Strength endurance / work capacity</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;sustain force and movement under fatigue.</p>
+        <p><span class="label">Feel</span> &nbsp;controlled strain.</p>
+        <p><span class="label">Common mistake</span> &nbsp;blurring this with random conditioning.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.7 Skill and efficiency</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;improve movement quality, transitions, breathing control, and technical economy.</p>
+        <p><span class="label">Feel</span> &nbsp;repeatable and sharp.</p>
+        <p><span class="label">Common mistake</span> &nbsp;pushing past technical breakdown.</p>
+      </div>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">10.8 Recovery / mobility</h3>
+      <div class="session-block">
+        <p><span class="label">Purpose</span> &nbsp;restore movement quality, reduce stiffness, and support readiness.</p>
+        <p><span class="label">Feel</span> &nbsp;restorative.</p>
+        <p><span class="label">Common mistake</span> &nbsp;trying to make recovery sessions count by making them hard.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">11</p>
+    <h2 class="section-title">Decision hierarchy</h2>
+    <p>When making training decisions, I use this order:</p>
+    <ul>
+      <li>Health and injury status</li>
+      <li>Recovery state and life stress</li>
+      <li>Phase and goal</li>
+      <li>Recent training load and quality</li>
+      <li>Performance trend</li>
+      <li>Today's planned session</li>
+    </ul>
+    <p><em>The session on the calendar is not the highest authority. The athlete is.</em></p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">12</p>
+    <h2 class="section-title">Recovery governance</h2>
+    <p>Recovery is not softness. It is what allows quality work to stay high quality.</p>
+    <p>I use recovery data to guide, not control.</p>
+    <p>Useful inputs:</p>
+    <ul>
+      <li>sleep quantity and quality</li>
+      <li>resting HR trends</li>
+      <li>HRV trends</li>
+      <li>appetite and mood</li>
+      <li>muscle soreness and heaviness</li>
+      <li>motivation to train</li>
+      <li>pace/HR mismatch</li>
+      <li>unusual mechanical stiffness</li>
+      <li>life stress</li>
+    </ul>
+    <p>Rules:</p>
+    <ul>
+      <li>one bad metric is a conversation, not a verdict</li>
+      <li>three bad days in a row is a signal</li>
+      <li>performance plus trend matters more than any single score</li>
+      <li>subjective fatigue always counts</li>
+    </ul>
+    <p><strong>Response actions:</strong></p>
+    <ul>
+      <li>One bad metric for one day: train as planned, note it.</li>
+      <li>Two bad metrics together, or three consecutive days of one bad metric: substitute the next quality session for Z2, no negotiation.</li>
+      <li>Five days of two-or-more regressed markers: trigger an unplanned deload week.</li>
+      <li>Subjective fatigue overrides data when the two disagree.</li>
+    </ul>
+    <p>Data shapes behaviour, not just decisions. The metric I optimise for becomes the metric that runs my training. I choose what I track with that in mind.</p>
+    <p><em>I do not worship readiness data. I do not ignore it either.</em></p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">13</p>
+    <h2 class="section-title">Progression rules</h2>
+    <p>Progression is earned when two or more of the following are true:</p>
+    <ul>
+      <li>same work, lower HR</li>
+      <li>same work, lower RPE</li>
+      <li>better repeatability</li>
+      <li>cleaner technique</li>
+      <li>faster recovery between reps</li>
+      <li>improved control at the same pace or load</li>
+    </ul>
+    <p>When progression is earned, I adjust one variable only:</p>
+    <ul>
+      <li>load</li>
+      <li>reps</li>
+      <li>duration</li>
+      <li>density</li>
+      <li>pace</li>
+    </ul>
+    <p>I do not chase progress in every direction at once.</p>
+    <p><strong>I hold a progression for at least 2 to 3 weeks before testing the next lever.</strong> If the progression holds cleanly, it is mine. If it does not, the previous level was the truth.</p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">14</p>
+    <h2 class="section-title">Red flags</h2>
+
+    <div class="subsection">
+      <h3 class="subsection-title">14.1 System drift</h3>
+      <ul>
+        <li>too many hard days</li>
+        <li>easy sessions becoming steady-hard</li>
+        <li>mixed sessions with no clear purpose</li>
+        <li>missed recovery accumulating</li>
+        <li>weekly structure losing contrast</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">14.2 Performance drift</h3>
+      <ul>
+        <li>higher HR for same output</li>
+        <li>higher RPE for same output</li>
+        <li>worse repeatability</li>
+        <li>form breakdown earlier in sessions</li>
+        <li>fading harder late in key work</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">14.3 Life drift</h3>
+      <ul>
+        <li>irritability</li>
+        <li>poor sleep across several nights</li>
+        <li>loss of appetite or under-fuelling</li>
+        <li>low motivation</li>
+        <li>stress load rising outside training</li>
+      </ul>
+    </div>
+
+    <div class="subsection">
+      <h3 class="subsection-title">14.4 Identity drift</h3>
+      <ul>
+        <li>training to prove, not improve</li>
+        <li>confusing exhaustion with effectiveness</li>
+        <li>over-attaching to one metric</li>
+        <li>forcing specificity year-round</li>
+        <li>letting ambition override honesty</li>
+        <li>falling in love with intensity, treating hard sessions as identity rather than tool</li>
+      </ul>
+    </div>
+
+    <p style="margin-top: 24px;"><em>When drift appears, I reduce complexity first. I restore contrast. I protect recovery. I return to essentials.</em></p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">15</p>
+    <h2 class="section-title">Phase emphasis</h2>
+
+    <div class="phase-block">
+      <strong>Base</strong>
+      <p>Build durability, aerobic depth, and movement consistency. Keep strength in. Keep ego low. Typical duration: 6 to 12 weeks.</p>
+    </div>
+
+    <div class="phase-block">
+      <strong>Build</strong>
+      <p>Increase threshold capacity, strength endurance, and goal-specific transfer. Begin narrowing toward the event or outcome. Typical duration: 4 to 8 weeks.</p>
+    </div>
+
+    <div class="phase-block">
+      <strong>Peak</strong>
+      <p>Reduce excess volume. Keep quality precise. Sharpen what already exists. Typical duration: 2 to 3 weeks.</p>
+    </div>
+
+    <div class="phase-block">
+      <strong>Deload</strong>
+      <p>A deliberate reduction in training stress mid-block to absorb accumulated load. Triggered by fatigue signals or scheduled every 3 to 5 weeks depending on phase. Volume drops 30 to 50%, intensity stays selective, sessions shorten. The aim is not rest. The aim is reset.</p>
+    </div>
+
+    <div class="phase-block">
+      <strong>Taper</strong>
+      <p>Race-specific peaking in the 7 to 14 days before competition. Volume drops, intensity is preserved at sharper but lower-volume doses. The system stays primed but not strained. Sleep, fuelling, and routine become the priorities.</p>
+    </div>
+
+    <div class="phase-block">
+      <strong>Reset</strong>
+      <p>The post-event period. Fatigue is real, the nervous system is depleted, and motivation drops naturally. Reset is not weakness, it is integration. Two weeks minimum of low structure, easy movement, and broad recovery before re-entering structured training.</p>
+    </div>
+
+    <div class="phase-block">
+      <strong>Off-season / Generalist phase</strong>
+      <p>Rebuild broad capability. Move away from event obsession. Lift more if needed. Run freely. Restore enthusiasm.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">16</p>
+    <h2 class="section-title">Hybrid race truths</h2>
+    <p>For HYROX and similar race demands, I keep these truths in mind:</p>
+    <ul>
+      <li>the aerobic system is still the main engine</li>
+      <li>stations and hard efforts punish poor pacing</li>
+      <li>transitions and efficiency save real time</li>
+      <li>breathing control matters as much as power</li>
+      <li>strength helps, but only if it transfers</li>
+      <li>the athlete who stays composed usually outperforms the athlete who surges early</li>
+    </ul>
+    <p>For general hybrid performance, the same truth applies:</p>
+    <p><em>The winner is rarely the person who can suffer the most once. It is the person who can sustain high-quality work longest without breaking the system.</em></p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">17</p>
+    <h2 class="section-title">Lifestyle doctrine</h2>
+    <p>Training is part of my life, not an escape from it.</p>
+    <p>This doctrine should support:</p>
+    <ul>
+      <li>physical capability</li>
+      <li>family presence</li>
+      <li>clear thinking</li>
+      <li>emotional steadiness</li>
+      <li>useful competitiveness</li>
+      <li>long-term health</li>
+    </ul>
+    <p>I am not building fitness at the expense of my life. I am building a life that includes fitness as a stabilising force.</p>
+    <p>Good training should make me more capable, not less available. More grounded, not more fragile. More disciplined, not more obsessive.</p>
+    <p><strong>Life-phase awareness.</strong> Periods of major life transition (new child, illness, travel, work compression) default to generalist or maintenance training, regardless of what the calendar says. Ambition does not override biology. The system bends to reality, not the other way around.</p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">18</p>
+    <h2 class="section-title">Fuelling</h2>
+    <p>Fuelling is part of training, not separate from it. For 8 to 12 hour weeks of mixed-modality work, carbohydrate availability is a performance lever, not a nutrition footnote.</p>
+    <p>Standards:</p>
+    <ul>
+      <li>Sessions over 60 minutes: fuel before.</li>
+      <li>Quality sessions: fuel before, during if over 75 minutes, and within 60 minutes after.</li>
+      <li>Hard back-to-back days: prioritise refuelling on the recovery day, not just the work day.</li>
+      <li>Daily carbohydrate intake scales with training load. Low-volume days run leaner. High-volume days require more.</li>
+      <li>Hydration with electrolytes is baseline, not a race-day intervention.</li>
+      <li>Race-day fuelling is rehearsed in training, not invented on race morning. The pre-session routine, the products used, the timing, all of it is tested before it counts.</li>
+    </ul>
+    <p><em>Common mistake: under-fuelling support work, then wondering why quality work suffers.</em></p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">19</p>
+    <h2 class="section-title">Goal-specific lens</h2>
+    <p>The doctrine is genre-neutral by design. The dial moves depending on the goal.</p>
+
+    <div class="goal-block">
+      <strong>Half marathon</strong>
+      <ul>
+        <li>Threshold and long run are the priority sessions.</li>
+        <li>Strength runs at maintenance dose only.</li>
+        <li>VO2 work appears in the mid-build phase, then thins as race nears.</li>
+        <li>Specificity means sustained marathon-pace and threshold-pace continuous running.</li>
+      </ul>
+    </div>
+
+    <div class="goal-block">
+      <strong>HYROX</strong>
+      <ul>
+        <li>Compromised running under load is the priority.</li>
+        <li>Hybrid density and transitions matter as much as raw running speed.</li>
+        <li>Strength endurance carries more weight than peak strength.</li>
+        <li>Sled push and sled pull are their own qualities, not just strength endurance. They demand specific positions, specific breathing, and dedicated practice.</li>
+        <li>Threshold and VO2 still matter, but expressed in mixed-modality form.</li>
+      </ul>
+    </div>
+
+    <div class="goal-block">
+      <strong>General hybrid / off-season</strong>
+      <ul>
+        <li>Aerobic base is the floor.</li>
+        <li>Strength can be developed more freely.</li>
+        <li>Specificity is loose by design.</li>
+        <li>The aim is broad capability and the restoration of enthusiasm.</li>
+      </ul>
+    </div>
+
+    <p>Whatever the goal, the hierarchy from section 4 still holds:</p>
+    <div class="hierarchy">Health → Durability → Aerobic base → Threshold capacity → Strength → Specificity → Peak expression</div>
+  </section>
+
+  <section class="section">
+    <p class="section-number">20</p>
+    <h2 class="section-title">Operating standards</h2>
+    <p>My default standards:</p>
+    <ul>
+      <li>train with purpose</li>
+      <li>protect easy days</li>
+      <li>earn intensity</li>
+      <li>use data, but stay human</li>
+      <li>progress one lever at a time</li>
+      <li>avoid novelty for novelty's sake</li>
+      <li>choose consistency over emotional training</li>
+      <li>respect recovery as part of performance</li>
+      <li>keep the long game visible</li>
+    </ul>
+    <p><strong>Non-negotiable:</strong> if I cannot explain Purpose → Stimulus → Adaptation → Why now, the session is noise.</p>
+  </section>
+
+  <section class="section">
+    <p class="section-number">21</p>
+    <h2 class="section-title">Final doctrine</h2>
+    <p>The system must adapt to me. I do not contort myself to satisfy the system.</p>
+    <p>The aim is not to become a specialist in suffering. The aim is to become a durable, balanced, high-functioning hybrid athlete.</p>
+    <p><em>Build the engine. Maintain strength. Move well. Recover honestly. Train in a way my future self will still respect.</em></p>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-card">
+      <p class="footer-eyebrow">About this doctrine</p>
+      <p class="footer-title">This is the philosophy behind Me<span class="wm-stop">.</span></p>
+      <p>An iOS app I'm building to hold training data, daily context, and a personal training doctrine together in one place. Self-coached athlete by self-coached athlete.</p>
+      <a href="https://meapp.health/" class="cta">Read more about Me. →</a>
+    </div>
+    <p class="footer-meta">Hybrid Athlete Training Doctrine · Version 3.2 · Living document</p>
+  </footer>
+
+</div>
+
+</body>
+</html>

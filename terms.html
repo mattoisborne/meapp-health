@@ -3,338 +3,333 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms of Service — Me.</title>
-<meta name="robots" content="noindex">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>Terms · Me.</title>
+<meta name="description" content="The terms that cover your use of the Me. app.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Terms · Me.">
+<meta property="og:description" content="The terms that cover your use of the Me. app.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* =========================================================
+   Me. website: shared shell + tokens + components
+   Inlined into every page. Tokens copied verbatim from the
+   Me. Design System v2.1 colors_and_type.css. Token names
+   kept identical so future edits map back to the system.
+   WEB DARK SURFACE IS CHARCOAL #2A2D2C (never the product
+   near-black, which is product UI only). Ruling 6.
+   ========================================================= */
+:root{
+  /* cream surface family (default) */
+  --color-bg:#F4F0E8; --color-paper:#FBF8F1; --color-paper-cool:#F1F0EC;
+  --color-line:#DED8CC; --color-soft-line:#EBE5DC;
+  --color-ink:#151716; --color-charcoal:#2A2D2C;
+  --color-muted:#646866; --color-faint:#8D9088;
+  /* charcoal-surface text tones */
+  --color-d-text:#F0F0F0; --color-d-border:#2A2A2A;
+  --color-d-muted:#C2C6C2; --color-d-faint:#8B8F8B;
+  /* signal accent (one accent, ~2% of any frame) */
+  --color-green:#00C896; --color-green-dark:#0F8F73;
+  --color-green-light:#46E0BD; --color-green-text:#003D2E;
+  /* metric palette (brand colours v2.1) */
+  --color-m-restinghr:#DC6C84; --color-m-resprate:#57B1F0;
+  --color-m-energy:#BE9924; --color-m-steps:#62CC82; --color-m-sleep:#8371DF;
+  /* support tones */
+  --color-sage:#C9D8CF; --color-clay:#D8C7B8; --color-stone:#B8B8B2; --color-grey-cool:#AEB6B0;
+  /* state */
+  --color-destructive:#E24B4A; --color-destructive-dim:rgba(226,75,74,0.10);
+  /* case-study data line, distinct cyan (Ruling 5), tuned from 2BA8C4 for cream legibility */
+  --color-cyan:#1E93B0;
+  /* type */
+  --font-sans:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono','Fira Code',ui-monospace,Menlo,monospace;
+  --track-display:-0.06em; --track-h2:-0.045em; --track-h3:-0.02em;
+  --track-body:-0.015em; --track-body-tight:-0.005em; --track-caps:0.13em; --track-wordmark:-0.045em;
+  /* radii */
+  --radius-xs:6px; --radius-sm:18px; --radius-md:24px; --radius:28px;
+  --radius-pill:999px; --radius-media:12px;
+  /* spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px;
+  /* shadows: cream depth only; no shadows on charcoal */
+  --shadow-sm:0 10px 30px rgba(20,20,18,0.06);
+  --shadow-md:0 24px 80px rgba(35,35,32,0.09);
+  --shadow-lg:0 28px 90px rgba(30,32,30,0.12);
+  --shadow-media:0 15px 38px rgba(30,32,30,0.12);
+  /* motion */
+  --ease-settle:cubic-bezier(0.22,1,0.36,1);
+  --ease-glide:cubic-bezier(0.65,0,0.35,1);
+  --ease-soft-arrival:cubic-bezier(0.34,1.4,0.5,1);
+  --ease-intent-exit:cubic-bezier(0.40,0,1,1);
+  --ease-reveal:cubic-bezier(0,0,0.2,1);
+  --dur-micro:180ms; --dur-entrance:420ms; --dur-travel:750ms; --dur-settle:1200ms; --dur-line:1000ms;
+  --maxw:1200px;
+}
 
-  :root {
-    --bg: #0A0A0E;
-    --bg-surface: #111116;
-    --border: rgba(255,255,255,0.07);
-    --text-primary: #F0F0F2;
-    --text-secondary: #B8B8C8;
-    --text-tertiary: #5A5A70;
-    --accent: #00C896;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.7;
-    color: var(--text-primary);
-    background: var(--bg);
-  }
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--color-bg);
+  color:var(--color-ink);
+  font-feature-settings:'tnum' 1,'ss01' 1,'cv11' 1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  letter-spacing:var(--track-body);
+  /* one subtle radial warmth on cream, never a hard gradient */
+  background-image:radial-gradient(120% 80% at 15% 0%, rgba(255,255,255,0.5) 0%, rgba(244,240,232,0) 55%);
+  background-attachment:fixed;
+}
+a{color:inherit}
+img,svg{display:block}
 
-  ::selection { background: rgba(0,200,150,0.2); }
+/* shared layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.reading{max-width:720px;margin:0 auto;padding:0 32px}
+.section{padding:92px 0}
+.paper-band{background:var(--color-paper)}
+@media(max-width:760px){.section{padding:60px 0}}
 
-  body { min-height: 100vh; }
+/* wordmark + green stops */
+.wm{font-family:var(--font-sans);font-weight:600;letter-spacing:var(--track-wordmark)}
+.stop,.wm-stop,.h-stop{color:var(--color-green)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark)}
+.muted{color:var(--color-muted)}
+h1{font-size:52px;font-weight:600;letter-spacing:var(--track-display);line-height:1.04}
+h2{font-size:36px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.05}
+h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.25}
+@media(max-width:760px){h1{font-size:36px}h2{font-size:28px}}
+::selection{background:rgba(0,200,150,0.22);color:var(--color-ink)}
+:focus-visible{outline:2px solid var(--color-green);outline-offset:3px;border-radius:3px}
 
-  header {
-    padding: 40px 0 32px;
-    border-bottom: 0.5px solid var(--border);
-  }
+/* ===== NAV (identical on every page) ===== */
+.nav{position:sticky;top:0;z-index:60;border-bottom:0.5px solid transparent;transition:background .2s var(--ease-settle),border-color .2s var(--ease-settle)}
+.nav.scrolled{background:rgba(244,240,232,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:0.5px solid var(--color-line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:17px 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:35px;text-decoration:none;color:var(--color-ink)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a:not(.pill){color:var(--color-muted);text-decoration:none;font-size:15px;transition:color .15s var(--ease-settle)}
+.nav-links a:not(.pill):hover{color:var(--color-ink)}
+.pill{display:inline-block;background:var(--color-green);color:var(--color-green-text);font-weight:500;font-size:15px;padding:9px 19px;border-radius:var(--radius-pill);text-decoration:none;transition:background .15s var(--ease-settle)}
+.pill:hover,.pill:focus-visible{background:var(--color-green-dark);color:#fff}
+@media(max-width:760px){.nav-links{gap:0}.nav-links a:not(.pill){display:none}}
 
-  .container {
-    max-width: 680px;
-    margin: 0 auto;
-    padding: 0 24px;
-  }
+/* shared index page header (guides + case studies) */
+.page-head{padding-top:128px;padding-bottom:8px}
+.page-head .eyebrow{margin-bottom:16px}
+.page-head h1{font-size:46px;letter-spacing:var(--track-h2);line-height:1.05;max-width:18ch}
+.page-head .intro{font-size:17px;color:var(--color-muted);line-height:1.6;margin-top:20px;max-width:60ch}
+@media(max-width:760px){.page-head{padding-top:104px}.page-head h1{font-size:34px}}
 
-  .wordmark {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 1px;
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: -0.03em;
-    color: var(--text-primary);
-    text-decoration: none;
-  }
+/* back link (subpages, eyebrow position) */
+.backlink{display:inline-block;color:var(--color-muted);font-size:13px;text-decoration:none;letter-spacing:var(--track-body-tight);transition:color .15s var(--ease-settle)}
+.backlink:hover{color:var(--color-ink)}
 
-  .wordmark span { color: var(--accent); }
+/* ===== Apple App Store badge ===== */
+.applebadge{display:inline-flex;text-decoration:none;border-radius:9px;overflow:hidden}
+.applebadge svg{height:46px;width:auto}
+.applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 
-  .doc-meta {
-    margin-top: 48px;
-    padding-bottom: 32px;
-    border-bottom: 0.5px solid var(--border);
-  }
+/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
+.coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
+.coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
+.nav .coming-tag{font-size:14px;padding:8px 16px}
+@media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
 
-  .doc-meta h1 {
-    font-size: 28px;
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-  }
+/* text link with arrow */
+.textlink{color:var(--color-ink);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;transition:color .15s var(--ease-settle)}
+.textlink .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.textlink:hover .arr{transform:translateX(3px)}
 
-  .doc-meta p {
-    font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
+/* ===== consolidated footer (every page) ===== */
+.foot{background:var(--color-charcoal);color:var(--color-d-text);padding:56px 32px 36px}
+.foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
+@media(max-width:760px){.foot-brand{font-size:20px}}
+.foot .applebadge svg{height:40px}
+.foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
+.foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
+.foot-links a:hover{color:var(--color-d-text);text-decoration:underline;text-underline-offset:3px}
+.foot-cred{color:#5d615e;font-size:12px;letter-spacing:var(--track-body-tight)}
 
-  .doc-meta p + p { margin-top: 2px; }
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .42s var(--ease-reveal),transform .42s var(--ease-reveal)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
+.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal.d1,.reveal.d2,.reveal.d3,.reveal.d4,.reveal.d5{opacity:1;transform:none;transition:none}}
 
-  .doc-body {
-    padding: 40px 0 80px;
-  }
+/* ===== shared card primitives ===== */
+.card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.card:hover{border-color:var(--color-line)}
 
-  .doc-body h2 {
-    font-size: 15px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-primary);
-    margin: 48px 0 16px;
-  }
+/* tag pill */
+.tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-pill);line-height:1}
+.tag-green{background:var(--color-green);color:var(--color-green-text)}
+.tag-sleep{background:var(--color-m-sleep);color:#fff}
+.tag-faint{background:transparent;border:1px solid var(--color-line);color:var(--color-faint)}
 
-  .doc-body h2:first-child { margin-top: 0; }
+/* dark case-study card */
+.cs-card{background:var(--color-charcoal);color:var(--color-d-text);border-radius:var(--radius);padding:38px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-card h3{font-size:26px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.12;color:var(--color-d-text)}
+.cs-card .dek{color:var(--color-d-muted);font-size:16px;line-height:1.5}
+.cs-card .meta{color:var(--color-d-faint);font-size:13px}
+.cs-card .cs-link{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.cs-card .cs-link .arr{transition:transform .2s var(--ease-settle)}
+.cs-card .cs-link:hover .arr{transform:translateX(3px)}
 
-  .doc-body p {
-    font-size: 15px;
-    color: var(--text-secondary);
-    margin-bottom: 14px;
-  }
+/* coming-soon card */
+.cs-soon{background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-soon h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-faint)}
+.cs-soon p{font-size:14px;color:var(--color-faint);line-height:1.5}
 
-  .doc-body p strong {
-    color: var(--text-primary);
-    font-weight: 500;
-  }
+/* guide card */
+.guide-card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:flex-start;gap:12px;text-decoration:none;color:inherit;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.guide-card:hover{border-color:var(--color-line);background:#fff}
+.guide-card .num{white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:4px 11px;border-radius:var(--radius-pill)}
+.guide-card h3{font-size:21px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2}
+.guide-card p{font-size:15px;color:var(--color-muted);line-height:1.5}
+.guide-card .read{color:var(--color-green);font-size:14px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.guide-card .read .arr{transition:transform .2s var(--ease-settle)}
+.guide-card:hover .read .arr{transform:translateX(3px)}
 
-  .doc-body ul {
-    margin: 0 0 14px 0;
-    padding-left: 20px;
-    list-style: none;
-  }
+/* related case-study callout (reusable) */
+.related{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.related h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3)}
+.related p{font-size:15px;color:var(--color-muted);line-height:1.55}
+.related a{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px}
+.related a .arr{transition:transform .2s var(--ease-settle)}
+.related a:hover .arr{transform:translateX(3px)}
 
-  .doc-body ul li {
-    font-size: 15px;
-    color: var(--text-secondary);
-    margin-bottom: 6px;
-    position: relative;
-    padding-left: 16px;
-  }
-
-  .doc-body ul li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background: var(--text-tertiary);
-  }
-
-  .doc-body hr {
-    border: none;
-    border-top: 0.5px solid var(--border);
-    margin: 8px 0;
-  }
-
-  .doc-body em {
-    font-style: normal;
-    font-size: 13px;
-    color: var(--text-tertiary);
-  }
-
-  .doc-body a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-
-  .doc-body a:hover { text-decoration: underline; }
-
-  footer {
-    border-top: 0.5px solid var(--border);
-    padding: 32px 0;
-  }
-
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .footer-inner p {
-    font-size: 13px;
-    color: var(--text-tertiary);
-  }
-
-  .footer-inner a {
-    font-size: 13px;
-    color: var(--text-secondary);
-    text-decoration: none;
-  }
-
-  .footer-inner a:hover { color: var(--text-primary); }
-
-  @media (max-width: 600px) {
-    .doc-meta h1 { font-size: 24px; }
-    .footer-inner { flex-direction: column; align-items: flex-start; }
-  }
+/* ===== legal pages (privacy / terms) ===== */
+.legal-top{padding:120px 0 0}
+@media(max-width:760px){.legal-top{padding:100px 0 0}}
+.legal-top .backlink{margin-bottom:30px}
+.legal-article{max-width:720px;margin:0 auto;padding:0 32px}
+.legal-article h1{font-size:44px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.08}
+@media(max-width:760px){.legal-article h1{font-size:32px}}
+.legal-updated{font-size:13px;color:var(--color-faint);margin-top:16px}
+.legal-lede{font-size:18px;line-height:1.6;color:var(--color-muted);margin-top:24px}
+.legal-body{padding:40px 0 8px}
+.legal-body h2{font-size:24px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:44px 0 14px;line-height:1.2}
+.legal-body h2:first-child{margin-top:0}
+.legal-body p{font-size:16px;line-height:1.7;color:var(--color-ink);margin-bottom:18px}
+.legal-body ul{margin:0 0 18px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.legal-body ul li{font-size:16px;line-height:1.6;color:var(--color-ink);padding-left:24px;position:relative}
+.legal-body ul li::before{content:"";position:absolute;left:3px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--color-green)}
+.legal-body a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px}
+.legal-note{margin:8px auto 64px;max-width:720px;padding:0 32px}
+.legal-note .box{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:20px 24px;font-size:14px;color:var(--color-muted);line-height:1.6}
 </style>
 </head>
 <body>
-
-<header>
-  <div class="container">
-    <a href="https://meapp.health" class="wordmark">Me<span>.</span></a>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="wm nav-brand" href="index.html">Me<span class="wm-stop">.</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="case-studies/index.html">Case studies</a>
+    <a href="guides/index.html">Guides</a>
+    <span class="coming-tag"><span class="dot"></span>Coming to iOS June 2026</span>
   </div>
-</header>
-
-<div class="container">
-  <div class="doc-meta">
-    <h1>Terms of Service</h1>
-    <p>Effective date: 1 June 2026</p>
-    <p>Last updated: 26 May 2026</p>
+</div></nav>
+<main>
+  <div class="legal-article legal-top">
+    <a class="backlink" href="index.html">Me. home</a>
   </div>
+  <article class="legal-article">
+    <h1>Terms<span class="h-stop">.</span></h1>
+    <div class="legal-updated">Last updated 29 May 2026</div>
+    <p class="legal-lede">These terms cover your use of the Me. app. By downloading and using Me., you agree to them.</p>
+    <!-- ============================================================
+         BRAND WRAPPER. The copy below is a faithful draft consistent
+         with the product. Replace with the final reviewed legal copy
+         at deploy. Structure, type, and the obfuscated contact link
+         stay as built.
+         ============================================================ -->
+    <div class="legal-body">
+      <h2>What Me. is</h2>
+      <p>Me. is a personal health data app for iOS. It reads your Apple Health data on your device, lets you add your own context, and compiles structured outputs you can take wherever you choose. Me. organises and compiles; it does not interpret, score, or advise.</p>
 
-  <div class="doc-body">
+      <h2>Not medical advice</h2>
+      <p>Me. is not a medical device and does not provide medical advice, diagnosis, or treatment. The data and compilations Me. produces are for your own use and for sharing with qualified people and tools. Always take clinical questions to your GP or a qualified professional. Do not rely on Me. for decisions about your health in place of professional care.</p>
 
-    <p>These Terms of Service ("Terms") govern your use of Me. ("the app"), developed by Osborne Images Pty Ltd ("we", "us", "our"), based in Tasmania, Australia.</p>
-    <p>By downloading, accessing, or using Me., you agree to these Terms.</p>
+      <h2>Your responsibilities</h2>
+      <ul>
+        <li>You are responsible for the accuracy of the context you add.</li>
+        <li>You decide what to include in a compilation and where to send it.</li>
+        <li>You are responsible for how you use any output, including in third-party AI tools.</li>
+      </ul>
 
-    <hr>
+      <h2>Free and Pro</h2>
+      <p>Me. is free to download and includes the complete app. Me. Pro is an optional subscription that adds longer history ranges, unlimited compilations, and profile change history. Pro is offered with a 7-day free trial. Subscriptions are billed through your Apple account, and pricing is shown in the App Store for your region. Manage or cancel a subscription in your App Store account settings.</p>
 
-    <h2>What Me. does</h2>
-    <p>Me. is a personal health data app that reads data from Apple Health, allows you to add context through check-ins, annotations, voice notes, and a Health Profile, and compiles structured outputs for use with healthcare providers, coaches, and AI tools.</p>
-    <p>Me. organises and presents information provided by you and Apple Health. Me. does not interpret, diagnose, monitor, score, or provide medical advice.</p>
+      <h2>Third-party tools</h2>
+      <p>When you paste a compilation into an AI tool or share it with a professional, that service operates under its own terms and privacy policy, not ours. Me. has no control over how a third party handles data you choose to share with it.</p>
 
-    <hr>
+      <h2>Intellectual property</h2>
+      <p>The Me. app, its design, and its brand are owned by Oi Studios. The data you create and compile is yours. Using Me. does not transfer any rights in your data to us.</p>
 
-    <h2>Eligibility</h2>
-    <p>You must be at least 18 years old, or otherwise legally capable of consenting to the collection and handling of health-related information in your jurisdiction, to use Me.</p>
+      <h2>Availability and changes</h2>
+      <p>Me. is provided as is. We work to keep it reliable, but we do not guarantee uninterrupted or error-free operation. We may update the app and these terms over time; material changes will be reflected on this page with a new date.</p>
 
-    <hr>
+      <h2>Liability</h2>
+      <p>To the extent permitted by law, Oi Studios is not liable for decisions made on the basis of the app or its outputs. Nothing in these terms limits rights you have under the Australian Consumer Law.</p>
 
-    <h2>Not medical advice</h2>
-    <p>Me. is not a medical device, diagnostic tool, or clinical decision support system.</p>
-    <p>Nothing within Me., including compilations, summaries, exports, or structured outputs, constitutes medical advice, diagnosis, treatment, or healthcare recommendations.</p>
-    <p>The app is intended to support conversations with qualified healthcare professionals, not replace them.</p>
-    <p>If you have a medical concern, consult a qualified healthcare provider. Do not make health decisions based solely on information from Me. or from third-party AI analysis of Me. compilations.</p>
-
-    <hr>
-
-    <h2>Your data and privacy</h2>
-    <p>Me. stores your health data and personal entries locally on your device, or in your own iCloud account if you turn on iCloud sync. When sync is on, your data resides in your personal iCloud account with Apple acting as the data processor. It is not sent to Oi Studios.</p>
-    <p>We do not access or view your health data. The only information that can reach us is an anonymous prompt you explicitly choose to share, which contains prompt text only — no health data, compile content, annotations, or profile information — or anything you choose to send us directly, such as in a support request. Prompt sharing is optional and off by default.</p>
-    <p>Certain limited technical information, such as crash diagnostics, subscription status, or anonymous analytics, may be collected to maintain and improve the app. Any such collection is described in our <a href="https://meapp.health/privacy">Privacy Policy</a>.</p>
-    <p>When you share a compilation, export a backup, or copy data from the app, you are choosing to send that data outside Me. You are responsible for how shared data is used, stored, and protected after it leaves the app.</p>
-    <p>When you paste a compilation into a third-party AI tool (such as ChatGPT, Claude, or Gemini), that data becomes subject to the third party's terms, privacy practices, and data handling policies, not ours. We recommend reviewing the privacy practices of any service you share your health data with.</p>
-
-    <hr>
-
-    <h2>Accuracy</h2>
-    <p>Me. reads data from Apple Health and displays it as provided. We do not modify or intentionally alter your health data.</p>
-    <p>The accuracy, completeness, and availability of your data depend on the devices, services, and applications connected to Apple Health.</p>
-    <p>Annotations, check-ins, voice notes, and Health Profile entries are created by you and remain your responsibility.</p>
-    <p>Compilations generated by Me. aim to present your data faithfully, but we do not guarantee that compilations, exports, or summaries are complete, accurate, or free from error. Important health information should always be verified with source devices or qualified healthcare professionals.</p>
-
-    <hr>
-
-    <h2>AI-generated outputs</h2>
-    <p>Me. may be used alongside third-party AI systems to organise or analyse exported health information.</p>
-    <p>Any responses, summaries, interpretations, or recommendations generated by third-party AI systems are created by those systems, not by Me.</p>
-    <p>We do not verify, endorse, or guarantee the accuracy, safety, or suitability of AI-generated outputs. AI systems can produce incorrect, incomplete, misleading, or inappropriate information.</p>
-    <p>You should not rely on AI-generated outputs for medical decisions without review by a qualified healthcare professional.</p>
-
-    <hr>
-
-    <h2>Subscriptions</h2>
-    <p>Me. offers optional paid subscriptions through Apple's App Store.</p>
-    <p>Available subscription tiers, features, and pricing are displayed within the app at the time of purchase and may change over time.</p>
-    <p>Subscriptions renew automatically unless cancelled at least 24 hours before the end of the current billing period.</p>
-    <p>You can manage or cancel subscriptions through your Apple Account subscription settings.</p>
-    <p>We aim to maintain a useful free tier and will communicate significant changes to subscription features clearly within the app where practical.</p>
-    <p>Billing, payment processing, refunds, and subscription management are handled by Apple and subject to Apple's terms and policies.</p>
-
-    <hr>
-
-    <h2>Acceptable use</h2>
-    <p>You agree not to:</p>
-    <ul>
-      <li>Use Me. for any unlawful purpose or in violation of applicable laws or regulations</li>
-      <li>Attempt to reverse engineer, decompile, exploit vulnerabilities in, or extract source code from the app except where permitted by law</li>
-      <li>Use the app to create fraudulent, misleading, or intentionally deceptive health records or reports</li>
-      <li>Redistribute, resell, sublicense, or commercially exploit the app without permission</li>
-      <li>Use bots, scraping systems, or automated methods to abuse, overload, interfere with, or disrupt the operation of the app</li>
-    </ul>
-
-    <hr>
-
-    <h2>Intellectual property</h2>
-    <p>Me., including its software, design, branding, interface elements, text, graphics, and related assets, is the intellectual property of Osborne Images Pty Ltd or its licensors.</p>
-    <p>Your health data remains yours.</p>
-    <p>Any compilations, exports, notes, or outputs you generate using Me. remain yours to use and share as you choose.</p>
-
-    <hr>
-
-    <h2>Availability</h2>
-    <p>We aim to keep Me. available and functional, but we do not guarantee uninterrupted or error-free operation.</p>
-    <p>The app may be updated, modified, suspended, or temporarily unavailable for maintenance, technical reasons, or platform-related issues.</p>
-    <p>Because Me. primarily operates on-device, many features may continue functioning without an internet connection.</p>
-
-    <hr>
-
-    <h2>Limitation of liability</h2>
-    <p>To the maximum extent permitted by law, Me. is provided "as is" and "as available" without warranties of any kind, whether express or implied, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
-    <p>We are not liable for any direct, indirect, incidental, consequential, special, exemplary, or punitive damages arising from or related to your use of Me., including but not limited to:</p>
-    <ul>
-      <li>Health decisions made using information, compilations, or exports generated by the app</li>
-      <li>Inaccuracies in Apple Health data or data supplied by third-party devices or services</li>
-      <li>Loss of data resulting from device failure, app deletion, iOS updates, backups, or sync issues</li>
-      <li>Actions, recommendations, or outputs generated by third-party AI systems</li>
-      <li>Reliance on information shared with healthcare providers, coaches, or external services</li>
-    </ul>
-    <p>Our total liability for any claim relating to Me. will not exceed the total amount paid by you for Me. subscriptions during the 12 months preceding the claim.</p>
-    <p>Nothing in these Terms excludes, restricts, or modifies any rights or remedies you may have under Australian Consumer Law or other applicable laws that cannot legally be excluded.</p>
-
-    <hr>
-
-    <h2>Termination</h2>
-    <p>You may stop using Me. at any time by deleting the app.</p>
-    <p>Locally stored Me. app data is generally removed from your device when the app is deleted, subject to Apple Health retention behaviour, iCloud backups, and any exports or copies created outside the app. If you have enabled iCloud sync, data in your iCloud account can be managed or deleted through your device's iCloud settings.</p>
-    <p>We reserve the right to update, suspend, or discontinue the app or parts of the app at any time.</p>
-    <p>If we discontinue Me., we will attempt to provide reasonable notice where practical.</p>
-
-    <hr>
-
-    <h2>Changes to these Terms</h2>
-    <p>We may update these Terms from time to time.</p>
-    <p>Updated versions will be published at meapp.health/terms with a revised effective date.</p>
-    <p>Continued use of Me. after updated Terms become effective constitutes acceptance of the revised Terms.</p>
-    <p>Where practical, material changes may also be noted within the app or release notes.</p>
-
-    <hr>
-
-    <h2>Governing law</h2>
-    <p>These Terms are governed by the laws of Tasmania, Australia.</p>
-    <p>Any disputes arising from or relating to these Terms or your use of Me. are subject to the exclusive jurisdiction of the courts of Tasmania, Australia.</p>
-
-    <hr>
-
-    <h2>Contact</h2>
-    <p>If you have questions about these Terms, contact <a href="mailto:hello@oistudios.com.au">hello@oistudios.com.au</a></p>
-
-    <hr>
-
-    <p><em>Me. is a product of Osborne Images Pty Ltd, Tasmania, Australia.</em></p>
-
-  </div>
-</div>
-
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <p>© 2026 Osborne Images Pty Ltd</p>
-      <a href="https://meapp.health/privacy">Privacy Policy</a>
+      <h2>Governing law and contact</h2>
+      <p>These terms are governed by the laws of Tasmania, Australia. Me. is made by Oi Studios, Hobart, Tasmania. Questions can be sent using the <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a> link.</p>
     </div>
+  </article>
+  <div class="legal-note">
+    <div class="box">This page is the brand wrapper for the final terms of service. The reviewed legal copy is dropped into the article above without changing the layout, type, or the obfuscated contact link.</div>
   </div>
-</footer>
+</main>
+<footer class="foot"><div class="foot-in">
+  <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
+  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS June 2026</span>
+  <div class="sublab">iOS only · No account required · Free to download</div>
+  <div class="foot-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="guides/index.html">Guides</a>
+    <a href="case-studies/index.html">Case studies</a>
+    <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
+  </div>
+  <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>
+</div></footer>
+<script>
+/* shared shell scripts: nav blur on scroll, scroll reveals, obfuscated contact */
+(function(){
+  var nav=document.getElementById('nav');
+  if(nav){
+    var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>24);};
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){io.observe(el);});
+  }
+  /* obfuscated contact: literal address never in static DOM */
+  document.querySelectorAll('.contact-link').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var user='info',domain='meapp.health';
+      window.location.href='mailto:'+user+'@'+domain;
+    });
+  });
+})();
 
+
+</script>
 </body>
 </html>

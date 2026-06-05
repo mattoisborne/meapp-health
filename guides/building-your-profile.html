@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy · Me.</title>
-<meta name="description" content="Me. is built so your health data stays yours. No account, no server, nothing to sell.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Privacy · Me.">
-<meta property="og:description" content="Me. is built so your health data stays yours. No account, no server, nothing to sell.">
+<title>Building your profile. · Me.</title>
+<meta name="description" content="Your data tells part of the story. Your profile tells the rest.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building your profile. · Me.">
+<meta property="og:description" content="Your data tells part of the story. Your profile tells the rest.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -206,85 +206,92 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .related a .arr{transition:transform .2s var(--ease-settle)}
 .related a:hover .arr{transform:translateX(3px)}
 
-/* ===== legal pages (privacy / terms) ===== */
-.legal-top{padding:120px 0 0}
-@media(max-width:760px){.legal-top{padding:100px 0 0}}
-.legal-top .backlink{margin-bottom:30px}
-.legal-article{max-width:720px;margin:0 auto;padding:0 32px}
-.legal-article h1{font-size:44px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.08}
-@media(max-width:760px){.legal-article h1{font-size:32px}}
-.legal-updated{font-size:13px;color:var(--color-faint);margin-top:16px}
-.legal-lede{font-size:18px;line-height:1.6;color:var(--color-muted);margin-top:24px}
-.legal-body{padding:40px 0 8px}
-.legal-body h2{font-size:24px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:44px 0 14px;line-height:1.2}
-.legal-body h2:first-child{margin-top:0}
-.legal-body p{font-size:16px;line-height:1.7;color:var(--color-ink);margin-bottom:18px}
-.legal-body ul{margin:0 0 18px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.legal-body ul li{font-size:16px;line-height:1.6;color:var(--color-ink);padding-left:24px;position:relative}
-.legal-body ul li::before{content:"";position:absolute;left:3px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--color-green)}
-.legal-body a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px}
-.legal-note{margin:8px auto 64px;max-width:720px;padding:0 32px}
-.legal-note .box{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:20px 24px;font-size:14px;color:var(--color-muted);line-height:1.6}
+/* ===== guides index ===== */
+.guides-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:8px 0 0}
+@media(max-width:760px){.guides-grid{grid-template-columns:1fr}}
+
+.faq-wrap{max-width:720px;margin:0 auto;padding-top:24px;border-top:1px solid var(--color-line)}
+.faq-wrap h2{margin-bottom:36px}
+.faq-item{padding:24px 0;border-bottom:0.5px solid var(--color-soft-line)}
+.faq-item:last-child{border-bottom:0}
+.faq-item h3{font-size:17px;font-weight:600;letter-spacing:var(--track-body);color:var(--color-ink);margin-bottom:10px}
+.faq-item p{font-size:17px;color:var(--color-muted);line-height:1.6}
+.faq-item p + p{margin-top:12px}
+.faq-item a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px;transition:color .15s var(--ease-settle)}
+.faq-item a:hover{color:var(--color-ink)}
+
+/* ===== individual guide (long-read) ===== */
+.guide-article{max-width:720px;margin:0 auto;padding:0 32px}
+.guide-top{padding:120px 0 0}
+@media(max-width:760px){.guide-top{padding:100px 0 0}}
+.guide-top .backlink{margin-bottom:34px}
+.guide-tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:5px 13px;border-radius:var(--radius-pill);margin-bottom:20px}
+.guide-article h1{font-size:44px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.08}
+@media(max-width:760px){.guide-article h1{font-size:32px}}
+.guide-meta{font-size:13px;color:var(--color-faint);margin-top:16px}
+.guide-body{padding:40px 0 8px}
+.guide-body p{font-size:18px;line-height:1.7;color:var(--color-ink);letter-spacing:var(--track-body);margin-bottom:26px}
+.guide-body h4{font-size:20px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:38px 0 16px}
+.guide-body .promptquote{background:var(--color-paper-cool);border:1px solid var(--color-line);border-left:3px solid var(--color-green);border-radius:var(--radius-sm);padding:20px 22px;font-family:var(--font-mono);font-size:14.5px;line-height:1.6;color:var(--color-ink);letter-spacing:-0.01em;margin:0 0 26px}
+.guide-body .examples{margin:0 0 26px}
+.guide-body .ex-cat{font-size:11px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin:22px 0 12px}
+.guide-body .ex-list{display:flex;flex-direction:column;gap:8px}
+.guide-body .ex-list span{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-sm);padding:11px 16px;font-family:var(--font-mono);font-size:13.5px;color:var(--color-muted);line-height:1.5}
+.guide-body ul{margin:0 0 26px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:14px}
+.guide-body ul li{font-size:18px;line-height:1.6;color:var(--color-ink);padding-left:26px;position:relative}
+.guide-body ul li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--color-green)}
+.guide-body .tier{display:block;margin-bottom:6px}
+.guide-body .tier b{color:var(--color-ink)}
+
+.guide-foot{max-width:720px;margin:0 auto;padding:8px 32px 0}
+.next-link{display:flex;flex-direction:column;gap:6px;padding:30px 0;border-top:1px solid var(--color-line);text-decoration:none}
+.next-link .nl-lab{font-size:13px;color:var(--color-muted);letter-spacing:var(--track-body-tight)}
+.next-link .nl-title{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);display:inline-flex;align-items:center;gap:10px}
+.next-link .nl-title .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.next-link:hover .nl-title .arr{transform:translateX(4px)}
+.guide-related{margin-top:8px;margin-bottom:64px}
 </style>
 </head>
 <body>
 <nav class="nav" id="nav"><div class="nav-in">
-  <a class="wm nav-brand" href="index.html">Me<span class="wm-stop">.</span></a>
+  <a class="wm nav-brand" href="../index.html">Me<span class="wm-stop">.</span></a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="case-studies/index.html">Case studies</a>
-    <a href="guides/index.html">Guides</a>
+    <a href="../index.html">Home</a>
+    <a href="../case-studies/index.html">Case studies</a>
+    <a href="../guides/index.html">Guides</a>
     <span class="coming-tag"><span class="dot"></span>Coming to iOS June 2026</span>
   </div>
 </div></nav>
 <main>
-  <div class="legal-article legal-top">
-    <a class="backlink" href="index.html">Me. home</a>
+  <div class="guide-article guide-top">
+    <a class="backlink" href="index.html">Guides</a>
   </div>
-  <article class="legal-article">
-    <h1>Privacy<span class="h-stop">.</span></h1>
-    <div class="legal-updated">Last updated 29 May 2026</div>
-    <p class="legal-lede">Me. is built so your health data stays yours. There is no account, no Me. server, and nothing to sell. This page explains what that means in practice.</p>
-    <!-- ============================================================
-         BRAND WRAPPER. The copy below is a faithful draft consistent
-         with the product (no account, on-device, no servers). Replace
-         with the final reviewed legal copy at deploy. Structure, type,
-         and the obfuscated contact link stay as built.
-         ============================================================ -->
-    <div class="legal-body">
-      <h2>The short version</h2>
-      <p>Me. reads your Apple Health data on your device, lets you add your own context, and compiles structured outputs that you choose to share. Your data is stored on your iPhone. It does not pass through a Me. server, because there is no Me. server.</p>
-
-      <h2>No account, no identity</h2>
-      <p>Me. works without signing up. There is no email, no profile, and no identity tied to your use of the app. We do not ask who you are, and we have no way to link your data to you.</p>
-
-      <h2>What stays on your device</h2>
-      <p>Everything you put into Me. and everything Me. reads from Apple Health stays on your iPhone:</p>
-      <ul>
-        <li>The health data Apple Health shares with Me. when you grant permission.</li>
-        <li>Your daily check-ins, notes, and Health Profile.</li>
-        <li>The compilations you generate.</li>
-      </ul>
-      <p>Me. only reads the Apple Health categories you permit, and only when you grant access. You can change or revoke that access at any time in the iOS Health settings.</p>
-
-      <h2>iCloud backup</h2>
-      <p>If you enable iCloud backup, your Me. data is included in your device backup and stored through your own iCloud account, under your Apple account and your encryption. That is your choice and your control. Me. cannot read your iCloud backup.</p>
-
-      <h2>What moves, and when</h2>
-      <p>Data only leaves your device when you compile and choose where it goes. A compilation is plain text that you copy or share deliberately, into an AI tool, to a GP, or to a coach. Me. does not transmit your data anywhere on its own.</p>
-
-      <h2>Never sold</h2>
-      <p>Me. earns through the app, not through your data. We do not sell, rent, or share your health data with advertisers, data brokers, or anyone else. There is no analytics profile built from your health information.</p>
-
-      <h2>Deleting the app</h2>
-      <p>Because your data lives on your device, deleting the app removes it. If you have iCloud backup enabled, your data can be restored when you reinstall. Me. holds no copy on a server, so there is nothing to request or erase from us.</p>
-
-      <h2>Contact</h2>
-      <p>Questions about privacy can be sent to us using the <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a> link. Me. is made by Oi Studios, Hobart, Tasmania, Australia.</p>
+  <article class="guide-article">
+    <span class="guide-tag">Guide 2</span>
+    <h1>Building your profile<span class="h-stop">.</span></h1>
+    <div class="guide-meta">5 min read</div>
+    <div class="guide-body">
+      <p>The difference between a useful AI conversation and a generic one is context. Your data tells part of the story. Your profile tells the rest. A complete profile means every compilation you run carries your full picture: not just numbers, but the conditions, medications, history, and preferences that make those numbers mean something.</p>
+      <h4>What the profile covers</h4>
+      <p>Ten sections in total. Personal context, conditions and diagnoses, medications and supplements, test results, hormonal health, mental health context, procedures, diet, lifestyle, and the doctrine layer. Together they build a health picture that no wearable can capture on its own. You decide how much detail to add and when.</p>
+      <h4>The doctrine layer</h4>
+      <p>This is the most distinctive part of the profile and the one most worth taking seriously. It is where you capture your health values and preferences in your own words. What trade-offs you are willing to make. What has worked for you and what has not. What you want any GP, coach, or AI tool to understand about you before they say anything.</p>
+      <p>It is also where you tell the AI how you want it to respond to you. Whether you want direct answers or detailed explanations. Whether you prefer recommendations or options. Whether you want it to challenge your assumptions or work within them. A well-written doctrine layer shapes not just what the AI knows about you, but how it talks to you.</p>
+      <p>A good doctrine layer is not a list of goals. It is a genuine statement of your health values and how you want to be spoken to. It takes a little thought to write well, but once it is there it travels with every compilation.</p>
+      <h4>A useful shortcut</h4>
+      <p>Not sure where to start? Use an AI tool to help you write it. Paste this prompt into ChatGPT, Claude, or Gemini and work through it conversationally:</p>
+      <div class="promptquote">"I want to write a personal health doctrine for use with AI. Ask me questions one at a time to help me articulate my health values, what I want from my care, how I like to receive information, and what I want any doctor, coach, or AI to understand about me before we begin."</div>
+      <p>Take the output, refine it in your own words, and paste it into the doctrine layer. It will be the most useful thing in your profile.</p>
+      <h4>How to approach it</h4>
+      <p>The profile does not need to be complete to be useful. Start with the sections most relevant to your situation and fill the rest over time. If you are managing a condition, start there. If training is the main reason you are here, start with lifestyle and the doctrine layer. There is no wrong entry point.</p>
+      <p>What you want to avoid is leaving it empty. An empty profile means every compilation starts from scratch. Even a partially complete profile changes the quality of what comes back significantly.</p>
+      <h4>It is not set and forget</h4>
+      <p>Your health picture changes. A new medication. A diagnosis. A shift in how you are training. The profile tracks these changes over time so your compilations always reflect where you are now. When something changes, update it. The record of what changed and when becomes part of your history, and that history is often where the most useful questions live.</p>
     </div>
   </article>
-  <div class="legal-note">
-    <div class="box">This page is the brand wrapper for the final privacy policy. The reviewed legal copy is dropped into the article above without changing the layout, type, or the obfuscated contact link.</div>
+  <div class="guide-foot">
+    
+    <a class="next-link" href="your-context-layer.html"><span class="nl-lab">Next</span><span class="nl-title">Your context layer <span class="arr">&rarr;</span></span></a>
   </div>
 </main>
 <footer class="foot"><div class="foot-in">
@@ -292,10 +299,10 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS June 2026</span>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="guides/index.html">Guides</a>
-    <a href="case-studies/index.html">Case studies</a>
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../case-studies/index.html">Case studies</a>
     <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
   </div>
   <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>

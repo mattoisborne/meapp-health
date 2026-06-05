@@ -1,978 +1,606 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Me. — Your health data, set free.</title>
-  <meta name="description" content="Apple Health collects everything. Me. sets it free. Your data, your questions, your terms.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300..700;1,14..32,300..700&display=swap" rel="stylesheet">
-  <script async src="https://tally.so/widgets/embed.js"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg: #08080C;
-      --surface: #0f0f14;
-      --surface-2: #16161e;
-      --border: rgba(255,255,255,0.07);
-      --border-mid: rgba(255,255,255,0.05);
-      --text-primary: #F0F0F2;
-      --text-secondary: #A0A0A0;
-      --text-tertiary: #666680;
-      --accent: #00C896;
-      --accent-dim: rgba(0,200,150,0.08);
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--text-primary);
-      font-family: 'Inter', sans-serif;
-      -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
-    }
-
-    /* NAV */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 22px 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(8,8,12,0.75);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border-bottom: 0.5px solid rgba(255,255,255,0.04);
-    }
-
-    .nav-wordmark {
-      font-size: 19px;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      color: var(--text-primary);
-    }
-
-    .nav-cta {
-      display: inline-flex;
-      align-items: center;
-      padding: 9px 22px;
-      background: var(--accent);
-      color: #001a12;
-      font-size: 13px;
-      font-weight: 600;
-      border-radius: 100px;
-      text-decoration: none;
-      letter-spacing: -0.01em;
-      transition: opacity 0.15s, transform 0.15s;
-      border: none;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-    }
-    .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
-
-    /* PANELS */
-    .panel {
-      min-height: 100svh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 140px 48px 100px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .panel-inner {
-      max-width: 860px;
-      width: 100%;
-      margin: 0 auto;
-    }
-
-    /* PANEL 1 */
-    #panel-1 { text-align: center; padding-top: 160px; }
-
-    .eyebrow {
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 36px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.1s forwards;
-    }
-
-    .hero-statement {
-      font-size: clamp(40px, 7vw, 88px);
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      line-height: 1.0;
-      color: var(--text-primary);
-      margin-bottom: 40px;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.3s forwards;
-    }
-
-    .hero-statement em {
-      font-style: normal;
-      color: var(--text-primary);
-    }
-
-    .hero-statement em .accent-word {
-      color: var(--accent);
-    }
-
-    .hero-body {
-      font-size: clamp(17px, 2.2vw, 22px);
-      color: var(--text-secondary);
-      max-width: 580px;
-      margin: 0 auto 56px;
-      line-height: 1.65;
-      letter-spacing: -0.02em;
-      font-weight: 400;
-      opacity: 0;
-      animation: fadeUp 1s ease 0.55s forwards;
-    }
-
-    .hero-body strong { color: var(--text-primary); font-weight: 500; }
-
-    /* TICKER */
-    .data-ticker-wrap {
-      overflow: hidden;
-      width: 100vw;
-      margin-left: calc(-50vw + 50%);
-      opacity: 0;
-      animation: fadeUp 1s ease 0.8s forwards;
-      margin-bottom: 64px;
-    }
-
-    .data-ticker {
-      display: flex;
-      gap: 10px;
-      width: max-content;
-      animation: tickerScroll 36s linear infinite;
-    }
-
-    .ticker-pill {
-      padding: 8px 18px;
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 100px;
-      font-size: 13px;
-      color: var(--text-secondary);
-      white-space: nowrap;
-      letter-spacing: -0.01em;
-      flex-shrink: 0;
-    }
-
-    .ticker-pill span {
-      color: var(--accent);
-      margin-right: 8px;
-      font-size: 9px;
-      opacity: 0.6;
-    }
-
-    /* HERO FORM */
-    .hero-form-wrap {
-      opacity: 0;
-      animation: fadeUp 1s ease 1s forwards;
-    }
-
-    .hero-form {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-    }
-
-    .form-input {
-      padding: 15px 22px;
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-      border-radius: 100px;
-      color: var(--text-primary);
-      font-size: 15px;
-      font-family: 'Inter', sans-serif;
-      outline: none;
-      transition: border-color 0.2s;
-      width: 280px;
-    }
-
-    .form-input::placeholder { color: var(--text-tertiary); }
-    .form-input:focus { border-color: rgba(0,200,150,0.5); }
-
-    .form-btn {
-      padding: 15px 28px;
-      background: var(--accent);
-      color: #001a12;
-      font-size: 14px;
-      font-weight: 600;
-      border: none;
-      border-radius: 100px;
-      cursor: pointer;
-      font-family: 'Inter', sans-serif;
-      letter-spacing: -0.01em;
-      transition: opacity 0.15s, transform 0.15s;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-
-    .form-btn:hover { opacity: 0.85; transform: translateY(-1px); }
-    .form-btn:active { transform: translateY(0); }
-
-    .form-note {
-      font-size: 12px;
-      color: var(--text-tertiary);
-      margin-top: 14px;
-      text-align: center;
-    }
-
-    /* PANEL 2 — DATA UNIVERSE */
-    #panel-2 {
-      background: var(--surface);
-      border-top: 0.5px solid var(--border);
-      border-bottom: 0.5px solid var(--border);
-      text-align: center;
-    }
-
-    .universe-headline {
-      font-size: clamp(28px, 4.5vw, 54px);
-      font-weight: 600;
-      letter-spacing: -0.045em;
-      line-height: 1.1;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-    }
-
-    .universe-sub {
-      font-size: 17px;
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto 64px;
-      line-height: 1.65;
-      letter-spacing: -0.02em;
-    }
-
-    .source-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      text-align: left;
-      margin-bottom: 48px;
-    }
-
-    .source-category {
-      padding: 28px 24px;
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-    }
-
-    .source-category:first-child { border-radius: 16px 0 0 16px; }
-    .source-category:last-child { border-radius: 0 16px 16px 0; }
-
-    .source-cat-label {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 18px;
-    }
-
-    .source-list { list-style: none; display: flex; flex-direction: column; gap: 9px; }
-
-    .source-list li {
-      font-size: 13px;
-      color: var(--text-secondary);
-      letter-spacing: -0.01em;
-      line-height: 1.4;
-    }
-
-    .source-list li.more { color: var(--text-tertiary); font-style: italic; }
-
-    .universe-rule {
-      font-size: 15px;
-      color: var(--text-secondary);
-      letter-spacing: -0.01em;
-      text-align: center;
-    }
-
-    .universe-rule strong { color: var(--text-secondary); font-weight: 500; }
-
-    /* PANEL 3 — MANIFESTO */
-    #panel-3 { text-align: center; }
-
-    .manifesto-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 500;
-      margin-bottom: 56px;
-    }
-
-    .manifesto-lines { display: flex; flex-direction: column; gap: 0; margin-bottom: 0; }
-
-    .manifesto-line {
-      font-size: clamp(18px, 2.4vw, 32px);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      line-height: 1.25;
-      color: var(--text-tertiary);
-      padding: 22px 0;
-      border-bottom: 0.5px solid var(--border-mid);
-      transition: color 0.5s ease;
-    }
-
-    .manifesto-line:first-child { border-top: 0.5px solid var(--border-mid); }
-    .manifesto-line.lit { color: var(--text-primary); }
-    .manifesto-line.lit em { font-style: normal; color: var(--text-primary); }
-
-    /* PANEL 4 — USE CASES */
-    #panel-4 {
-      background: var(--surface);
-      border-top: 0.5px solid var(--border);
-      border-bottom: 0.5px solid var(--border);
-    }
-
-    .cases-headline {
-      font-size: clamp(28px, 4.5vw, 54px);
-      font-weight: 600;
-      letter-spacing: -0.045em;
-      line-height: 1.1;
-      color: var(--text-primary);
-      margin-bottom: 16px;
-      max-width: 640px;
-    }
-
-    .cases-sub {
-      font-size: 17px;
-      color: var(--text-secondary);
-      max-width: 480px;
-      line-height: 1.6;
-      letter-spacing: -0.02em;
-      margin-bottom: 64px;
-    }
-
-    .case-row {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      align-items: start;
-      padding: 30px 0;
-      border-top: 0.5px solid var(--border-mid);
-      gap: 48px;
-    }
-
-    .case-row:last-of-type { border-bottom: 0.5px solid var(--border-mid); }
-
-    .case-who {
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--text-tertiary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding-top: 4px;
-    }
-
-    .case-what {
-      font-size: clamp(15px, 1.8vw, 19px);
-      color: var(--text-primary);
-      letter-spacing: -0.02em;
-      line-height: 1.5;
-      font-weight: 400;
-    }
-
-    .case-what strong { font-weight: 500; }
-
-    .cases-endnote {
-      margin-top: 48px;
-      font-size: 14px;
-      color: var(--text-secondary);
-      letter-spacing: -0.01em;
-      text-align: center;
-    }
-
-    /* PANEL 5 — DIFFERENCE */
-    #panel-5 { text-align: center; }
-
-    .diff-headline {
-      font-size: clamp(28px, 4.5vw, 54px);
-      font-weight: 600;
-      letter-spacing: -0.045em;
-      line-height: 1.1;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-    }
-
-    .diff-sub {
-      font-size: 17px;
-      color: var(--text-secondary);
-      max-width: 520px;
-      margin: 0 auto 64px;
-      line-height: 1.65;
-      letter-spacing: -0.02em;
-    }
-
-    .diff-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2px;
-      text-align: left;
-      margin-bottom: 48px;
-    }
-
-    .diff-card {
-      padding: 36px 32px;
-      background: var(--surface);
-      border: 0.5px solid var(--border);
-    }
-
-    .diff-card:first-child { border-radius: 16px 0 0 16px; }
-    .diff-card:last-child { border-radius: 0 16px 16px 0; }
-
-    .diff-tag {
-      font-size: 10px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    .diff-tag.them { color: var(--text-tertiary); }
-    .diff-tag.us { color: var(--accent); }
-
-    .diff-items { display: flex; flex-direction: column; gap: 14px; }
-
-    .diff-item {
-      font-size: 15px;
-      letter-spacing: -0.02em;
-      line-height: 1.5;
-    }
-
-    .diff-card:first-child .diff-item { color: var(--text-tertiary); }
-    .diff-card:last-child .diff-item { color: var(--text-primary); }
-
-    .diff-claim {
-      font-size: 15px;
-      color: var(--text-secondary);
-      max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.7;
-      letter-spacing: -0.01em;
-      text-align: center;
-    }
-
-    .diff-claim strong { color: var(--text-secondary); font-weight: 500; }
-
-    /* PANEL 6 — PRIVACY */
-    #panel-6 {
-      background: var(--surface);
-      border-top: 0.5px solid var(--border);
-      border-bottom: 0.5px solid var(--border);
-      text-align: center;
-    }
-
-    .privacy-headline {
-      font-size: clamp(24px, 3.5vw, 44px);
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      color: var(--text-primary);
-      margin-bottom: 16px;
-    }
-
-    .privacy-sub {
-      font-size: 16px;
-      color: var(--text-secondary);
-      max-width: 440px;
-      margin: 0 auto 56px;
-      line-height: 1.65;
-      letter-spacing: -0.02em;
-    }
-
-    .privacy-row { display: flex; gap: 2px; justify-content: center; }
-
-    .priv-item {
-      flex: 1;
-      max-width: 210px;
-      padding: 28px 20px;
-      background: var(--bg);
-      border: 0.5px solid var(--border);
-      text-align: center;
-    }
-
-    .priv-item:first-child { border-radius: 16px 0 0 16px; }
-    .priv-item:last-child { border-radius: 0 16px 16px 0; }
-
-    .priv-icon { font-size: 22px; margin-bottom: 12px; }
-
-    .priv-title {
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--text-primary);
-      margin-bottom: 6px;
-      letter-spacing: -0.01em;
-    }
-
-    .priv-body { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
-
-    /* PANEL 7 — CTA */
-    #panel-7 { text-align: center; min-height: 80svh; }
-
-    .cta-headline {
-      font-size: clamp(36px, 6vw, 76px);
-      font-weight: 600;
-      letter-spacing: -0.05em;
-      line-height: 1.05;
-      color: var(--text-primary);
-      margin-bottom: 20px;
-    }
-
-    .cta-sub {
-      font-size: 17px;
-      color: var(--text-secondary);
-      max-width: 380px;
-      margin: 0 auto 52px;
-      line-height: 1.6;
-      letter-spacing: -0.02em;
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 36px 48px;
-      border-top: 0.5px solid rgba(255,255,255,0.04);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .footer-left { display: flex; align-items: center; gap: 12px; }
-
-    .footer-wordmark {
-      font-size: 16px;
-      font-weight: 600;
-      letter-spacing: -0.04em;
-      color: var(--accent);
-    }
-
-    .footer-by { font-size: 12px; color: var(--text-secondary); }
-
-    /* REVEAL */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-    }
-
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    /* SECTION EYEBROW shared */
-    .s-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 24px;
-    }
-
-    /* ANIMATIONS */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes tickerScroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* MOBILE */
-    @media (max-width: 768px) {
-      nav { padding: 18px 24px; }
-      .panel { padding: 120px 24px 80px; }
-      .source-grid { grid-template-columns: 1fr 1fr; }
-      .source-category:first-child { border-radius: 12px 0 0 0; }
-      .source-category:nth-child(2) { border-radius: 0 12px 0 0; }
-      .source-category:nth-child(3) { border-radius: 0 0 0 12px; }
-      .source-category:last-child { border-radius: 0 0 12px 0; }
-      .case-row { grid-template-columns: 1fr; gap: 8px; padding: 24px 0; }
-      .diff-grid { grid-template-columns: 1fr; }
-      .diff-card:first-child { border-radius: 16px 16px 0 0; }
-      .diff-card:last-child { border-radius: 0 0 16px 16px; }
-      .privacy-row { flex-wrap: wrap; }
-      .priv-item { max-width: calc(50% - 1px); min-width: 120px; }
-      .priv-item:first-child { border-radius: 12px 0 0 0; }
-      .priv-item:nth-child(2) { border-radius: 0 12px 0 0; }
-      .priv-item:nth-child(3) { border-radius: 0 0 0 12px; }
-      .priv-item:last-child { border-radius: 0 0 12px 0; }
-      .hero-form, #cta-form { flex-direction: column; align-items: center; }
-      .form-input { width: 100%; max-width: 320px; }
-      footer { flex-direction: column; align-items: flex-start; padding: 32px 24px; }
-    }
-
-    @media (max-width: 480px) {
-      .source-grid { grid-template-columns: 1fr; }
-      .source-category { border-radius: 0 !important; }
-      .source-category:first-child { border-radius: 12px 12px 0 0 !important; }
-      .source-category:last-child { border-radius: 0 0 12px 12px !important; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Me. Health intelligence.</title>
+<meta name="description" content="Me. reads your Apple Health data, adds the context only you can provide, and compiles a structured output ready for your GP, your coach, or any AI.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Me. Your data, your context, your decision.">
+<meta property="og:description" content="Me. reads your Apple Health data, adds the context only you can provide, and compiles a structured output ready for your GP, your coach, or any AI.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+/* =========================================================
+   Me. website: shared shell + tokens + components
+   Inlined into every page. Tokens copied verbatim from the
+   Me. Design System v2.1 colors_and_type.css. Token names
+   kept identical so future edits map back to the system.
+   WEB DARK SURFACE IS CHARCOAL #2A2D2C (never the product
+   near-black, which is product UI only). Ruling 6.
+   ========================================================= */
+:root{
+  /* cream surface family (default) */
+  --color-bg:#F4F0E8; --color-paper:#FBF8F1; --color-paper-cool:#F1F0EC;
+  --color-line:#DED8CC; --color-soft-line:#EBE5DC;
+  --color-ink:#151716; --color-charcoal:#2A2D2C;
+  --color-muted:#646866; --color-faint:#8D9088;
+  /* charcoal-surface text tones */
+  --color-d-text:#F0F0F0; --color-d-border:#2A2A2A;
+  --color-d-muted:#C2C6C2; --color-d-faint:#8B8F8B;
+  /* signal accent (one accent, ~2% of any frame) */
+  --color-green:#00C896; --color-green-dark:#0F8F73;
+  --color-green-light:#46E0BD; --color-green-text:#003D2E;
+  /* metric palette (brand colours v2.1) */
+  --color-m-restinghr:#DC6C84; --color-m-resprate:#57B1F0;
+  --color-m-energy:#BE9924; --color-m-steps:#62CC82; --color-m-sleep:#8371DF;
+  /* support tones */
+  --color-sage:#C9D8CF; --color-clay:#D8C7B8; --color-stone:#B8B8B2; --color-grey-cool:#AEB6B0;
+  /* state */
+  --color-destructive:#E24B4A; --color-destructive-dim:rgba(226,75,74,0.10);
+  /* case-study data line, distinct cyan (Ruling 5), tuned from 2BA8C4 for cream legibility */
+  --color-cyan:#1E93B0;
+  /* type */
+  --font-sans:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono','Fira Code',ui-monospace,Menlo,monospace;
+  --track-display:-0.06em; --track-h2:-0.045em; --track-h3:-0.02em;
+  --track-body:-0.015em; --track-body-tight:-0.005em; --track-caps:0.13em; --track-wordmark:-0.045em;
+  /* radii */
+  --radius-xs:6px; --radius-sm:18px; --radius-md:24px; --radius:28px;
+  --radius-pill:999px; --radius-media:12px;
+  /* spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px;
+  /* shadows: cream depth only; no shadows on charcoal */
+  --shadow-sm:0 10px 30px rgba(20,20,18,0.06);
+  --shadow-md:0 24px 80px rgba(35,35,32,0.09);
+  --shadow-lg:0 28px 90px rgba(30,32,30,0.12);
+  --shadow-media:0 15px 38px rgba(30,32,30,0.12);
+  /* motion */
+  --ease-settle:cubic-bezier(0.22,1,0.36,1);
+  --ease-glide:cubic-bezier(0.65,0,0.35,1);
+  --ease-soft-arrival:cubic-bezier(0.34,1.4,0.5,1);
+  --ease-intent-exit:cubic-bezier(0.40,0,1,1);
+  --ease-reveal:cubic-bezier(0,0,0.2,1);
+  --dur-micro:180ms; --dur-entrance:420ms; --dur-travel:750ms; --dur-settle:1200ms; --dur-line:1000ms;
+  --maxw:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--color-bg);
+  color:var(--color-ink);
+  font-feature-settings:'tnum' 1,'ss01' 1,'cv11' 1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  letter-spacing:var(--track-body);
+  /* one subtle radial warmth on cream, never a hard gradient */
+  background-image:radial-gradient(120% 80% at 15% 0%, rgba(255,255,255,0.5) 0%, rgba(244,240,232,0) 55%);
+  background-attachment:fixed;
+}
+a{color:inherit}
+img,svg{display:block}
+
+/* shared layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.reading{max-width:720px;margin:0 auto;padding:0 32px}
+.section{padding:92px 0}
+.paper-band{background:var(--color-paper)}
+@media(max-width:760px){.section{padding:60px 0}}
+
+/* wordmark + green stops */
+.wm{font-family:var(--font-sans);font-weight:600;letter-spacing:var(--track-wordmark)}
+.stop,.wm-stop,.h-stop{color:var(--color-green)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark)}
+.muted{color:var(--color-muted)}
+h1{font-size:52px;font-weight:600;letter-spacing:var(--track-display);line-height:1.04}
+h2{font-size:36px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.05}
+h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.25}
+@media(max-width:760px){h1{font-size:36px}h2{font-size:28px}}
+::selection{background:rgba(0,200,150,0.22);color:var(--color-ink)}
+:focus-visible{outline:2px solid var(--color-green);outline-offset:3px;border-radius:3px}
+
+/* ===== NAV (identical on every page) ===== */
+.nav{position:sticky;top:0;z-index:60;border-bottom:0.5px solid transparent;transition:background .2s var(--ease-settle),border-color .2s var(--ease-settle)}
+.nav.scrolled{background:rgba(244,240,232,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:0.5px solid var(--color-line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:17px 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:35px;text-decoration:none;color:var(--color-ink)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a:not(.pill){color:var(--color-muted);text-decoration:none;font-size:15px;transition:color .15s var(--ease-settle)}
+.nav-links a:not(.pill):hover{color:var(--color-ink)}
+.pill{display:inline-block;background:var(--color-green);color:var(--color-green-text);font-weight:500;font-size:15px;padding:9px 19px;border-radius:var(--radius-pill);text-decoration:none;transition:background .15s var(--ease-settle)}
+.pill:hover,.pill:focus-visible{background:var(--color-green-dark);color:#fff}
+@media(max-width:760px){.nav-links{gap:0}.nav-links a:not(.pill){display:none}}
+
+/* shared index page header (guides + case studies) */
+.page-head{padding-top:128px;padding-bottom:8px}
+.page-head .eyebrow{margin-bottom:16px}
+.page-head h1{font-size:46px;letter-spacing:var(--track-h2);line-height:1.05;max-width:18ch}
+.page-head .intro{font-size:17px;color:var(--color-muted);line-height:1.6;margin-top:20px;max-width:60ch}
+@media(max-width:760px){.page-head{padding-top:104px}.page-head h1{font-size:34px}}
+
+/* back link (subpages, eyebrow position) */
+.backlink{display:inline-block;color:var(--color-muted);font-size:13px;text-decoration:none;letter-spacing:var(--track-body-tight);transition:color .15s var(--ease-settle)}
+.backlink:hover{color:var(--color-ink)}
+
+/* ===== Apple App Store badge ===== */
+.applebadge{display:inline-flex;text-decoration:none;border-radius:9px;overflow:hidden}
+.applebadge svg{height:46px;width:auto}
+.applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
+
+/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
+.coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
+.coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
+.nav .coming-tag{font-size:14px;padding:8px 16px}
+@media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
+
+/* text link with arrow */
+.textlink{color:var(--color-ink);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;transition:color .15s var(--ease-settle)}
+.textlink .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.textlink:hover .arr{transform:translateX(3px)}
+
+/* ===== consolidated footer (every page) ===== */
+.foot{background:var(--color-charcoal);color:var(--color-d-text);padding:56px 32px 36px}
+.foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
+@media(max-width:760px){.foot-brand{font-size:20px}}
+.foot .applebadge svg{height:40px}
+.foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
+.foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
+.foot-links a:hover{color:var(--color-d-text);text-decoration:underline;text-underline-offset:3px}
+.foot-cred{color:#5d615e;font-size:12px;letter-spacing:var(--track-body-tight)}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .42s var(--ease-reveal),transform .42s var(--ease-reveal)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
+.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal.d1,.reveal.d2,.reveal.d3,.reveal.d4,.reveal.d5{opacity:1;transform:none;transition:none}}
+
+/* ===== shared card primitives ===== */
+.card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.card:hover{border-color:var(--color-line)}
+
+/* tag pill */
+.tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-pill);line-height:1}
+.tag-green{background:var(--color-green);color:var(--color-green-text)}
+.tag-sleep{background:var(--color-m-sleep);color:#fff}
+.tag-faint{background:transparent;border:1px solid var(--color-line);color:var(--color-faint)}
+
+/* dark case-study card */
+.cs-card{background:var(--color-charcoal);color:var(--color-d-text);border-radius:var(--radius);padding:38px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-card h3{font-size:26px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.12;color:var(--color-d-text)}
+.cs-card .dek{color:var(--color-d-muted);font-size:16px;line-height:1.5}
+.cs-card .meta{color:var(--color-d-faint);font-size:13px}
+.cs-card .cs-link{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.cs-card .cs-link .arr{transition:transform .2s var(--ease-settle)}
+.cs-card .cs-link:hover .arr{transform:translateX(3px)}
+
+/* coming-soon card */
+.cs-soon{background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-soon h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-faint)}
+.cs-soon p{font-size:14px;color:var(--color-faint);line-height:1.5}
+
+/* guide card */
+.guide-card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:flex-start;gap:12px;text-decoration:none;color:inherit;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.guide-card:hover{border-color:var(--color-line);background:#fff}
+.guide-card .num{white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:4px 11px;border-radius:var(--radius-pill)}
+.guide-card h3{font-size:21px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2}
+.guide-card p{font-size:15px;color:var(--color-muted);line-height:1.5}
+.guide-card .read{color:var(--color-green);font-size:14px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.guide-card .read .arr{transition:transform .2s var(--ease-settle)}
+.guide-card:hover .read .arr{transform:translateX(3px)}
+
+/* related case-study callout (reusable) */
+.related{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.related h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3)}
+.related p{font-size:15px;color:var(--color-muted);line-height:1.55}
+.related a{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px}
+.related a .arr{transition:transform .2s var(--ease-settle)}
+.related a:hover .arr{transform:translateX(3px)}
+
+/* ===== homepage ===== */
+/* hero */
+.hero{padding:56px 0 92px}
+.hero-grid{display:grid;grid-template-columns:0.86fr 1.14fr;gap:60px;align-items:center}
+@media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}}
+.hero h1{margin-top:20px}
+.hero .sub{font-size:17px;color:var(--color-muted);line-height:1.5;margin:24px 0 30px;max-width:48ch}
+.hero-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.hero-video{position:relative;padding-top:56.25%;border-radius:var(--radius-media);overflow:hidden;box-shadow:var(--shadow-media);border:1px solid var(--color-soft-line);background:var(--color-paper-cool)}
+.video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--color-faint)}
+.video-placeholder .play{width:56px;height:56px;border-radius:50%;border:1px solid var(--color-line);display:flex;align-items:center;justify-content:center;background:var(--color-paper)}
+.video-placeholder small{font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase}
+@media(max-width:900px){.hero-grid .hero-copy{order:1}.hero-grid .hero-media{order:2}}
+
+/* problem */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+@media(max-width:840px){.two-col{grid-template-columns:1fr;gap:36px}}
+.problem h2{margin:12px 0 22px}
+.problem p{color:var(--color-muted);font-size:17px;line-height:1.55;margin-top:16px}
+.problem .close{color:var(--color-ink);font-weight:500}
+.chip-scatter{position:relative;min-height:300px}
+.chip{position:absolute;background:rgba(251,248,241,0.72);border:1px solid var(--color-clay);border-radius:var(--radius-pill);padding:10px 17px;font-size:14px;box-shadow:var(--shadow-sm);white-space:nowrap;letter-spacing:var(--track-body-tight);transition:transform .6s var(--ease-settle),opacity .6s var(--ease-settle)}
+@media(max-width:840px){.chip-scatter{min-height:200px;margin-top:8px}.chip:nth-child(n+5){display:none}}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
+@media(max-width:840px){.steps{grid-template-columns:1fr}}
+.step{position:relative;overflow:hidden}
+.step .bignum{font-size:78px;font-weight:600;color:var(--color-faint);opacity:.26;letter-spacing:var(--track-display);line-height:.8;margin-bottom:6px}
+.step .lab{font-size:13px;color:var(--color-green-dark);font-weight:500;margin-bottom:12px;letter-spacing:var(--track-body-tight)}
+.step h3{margin-bottom:10px}
+.step p{font-size:15px;color:var(--color-muted);line-height:1.55}
+
+/* section heads */
+.sec-head .eyebrow{margin-bottom:14px}
+.sec-head h2{margin-bottom:0}
+.sec-intro{font-size:17px;color:var(--color-muted);margin-top:16px;max-width:62ch;line-height:1.55}
+
+/* use cases */
+.uc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;align-items:stretch;grid-auto-rows:1fr}
+@media(max-width:980px){.uc-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:680px){.uc-grid{grid-template-columns:1fr}}
+.uc{display:flex;flex-direction:column}
+.uc .uc-cat{font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green)}
+.uc h3{font-size:20px;margin:11px 0 10px}
+.uc p{font-size:15px;color:var(--color-muted);line-height:1.55;margin-bottom:20px}
+.prompt{margin-top:auto;background:var(--color-bg);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:16px}
+.prompt .lab{font-size:13px;color:var(--color-faint);margin-bottom:9px}
+.prompt .pt{font-family:var(--font-mono);font-size:13.5px;line-height:1.6;color:var(--color-ink);letter-spacing:-0.01em}
+
+/* devices — airy centered field, breadth-forward (no boxes) */
+.dev-cloud{margin:46px auto 0;max-width:880px;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px}
+.dev-cloud .dev-cat{flex-basis:100%;text-align:center;font-size:11px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin:22px 0 4px}
+.dev-cloud .dev-cat:first-child{margin-top:0}
+.dev-pill{background:var(--color-paper);border:1px solid var(--color-line);border-radius:var(--radius-pill);padding:9px 18px;font-size:14px;letter-spacing:var(--track-body-tight);white-space:nowrap;box-shadow:var(--shadow-sm)}
+.dev-more{flex-basis:100%;display:flex;justify-content:center;margin-top:26px}
+.dev-more .dev-pill{background:rgba(0,200,150,0.08);border-color:rgba(0,200,150,0.32);color:var(--color-green-dark);font-weight:500;box-shadow:none}
+.dev-close{font-size:20px;font-weight:500;color:var(--color-ink);margin:46px auto 0;letter-spacing:var(--track-h3);max-width:34ch;line-height:1.3;text-align:center}
+.dev-gap{font-size:14px;color:var(--color-muted);margin:34px auto 0;max-width:62ch;line-height:1.6;text-align:center}
+.dev-gap a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px;transition:color .15s var(--ease-settle)}
+.dev-gap a:hover{color:var(--color-ink)}
+
+/* privacy */
+.priv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px}
+.priv-grid-3{align-items:stretch}
+@media(max-width:880px){.priv-grid{grid-template-columns:repeat(2,1fr)}.priv-grid-3{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:760px){.priv-grid-3{grid-template-columns:1fr}}
+@media(max-width:560px){.priv-grid{grid-template-columns:1fr}}
+.priv{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:30px}
+.priv .ic{width:42px;height:42px;border-radius:12px;background:rgba(0,200,150,0.08);display:flex;align-items:center;justify-content:center;color:var(--color-green);margin-bottom:18px}
+.priv .ic svg{width:20px;height:20px;stroke-width:1.5}
+.priv h3{font-size:18px;font-weight:600;margin-bottom:9px}
+.priv p{font-size:15px;color:var(--color-muted);line-height:1.55}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;align-items:stretch}
+@media(max-width:760px){.price-grid{grid-template-columns:1fr}.price.pro{order:-1}}
+.price{border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;align-items:flex-start}
+.price.free{background:var(--color-paper);border:1px solid var(--color-line)}
+.price.pro{background:var(--color-charcoal);color:var(--color-d-text);box-shadow:var(--shadow-md)}
+.price .tier{font-weight:600;font-size:22px;letter-spacing:var(--track-wordmark)}
+.price.pro .tier{color:var(--color-d-text)}
+.price .amt{font-size:34px;font-weight:600;margin:16px 0 4px;letter-spacing:var(--track-h2)}
+.price p{font-size:15px;line-height:1.55;margin:14px 0 24px}
+.price.free p{color:var(--color-muted)}
+.price.pro p{color:var(--color-d-muted)}
+.price .trial{color:var(--color-green);font-size:15px;font-weight:500;margin:0 0 22px}
+.price .spacer{flex:1}
+
+/* case study teaser */
+.teaser-card{max-width:660px;margin-top:42px}
+.teaser-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:46px;align-items:stretch}
+@media(max-width:980px){.teaser-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.teaser-grid{grid-template-columns:1fr}}
+.teaser-grid .cs-card,.teaser-grid .cs-soon{height:100%;padding:34px}
+.teaser-grid .cs-card h3{font-size:23px}
+.teaser-grid .cs-card .spacer,.teaser-grid .cs-soon .spacer{flex:1;min-height:8px;width:100%}
+.teaser-viewall{margin-top:30px}
+.teaser-viewall a{color:var(--color-ink);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:8px;font-weight:500}
+.teaser-viewall a .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.teaser-viewall a:hover .arr{transform:translateX(3px)}
+
+/* steps flow connector (desktop only, optional) */
+@media(max-width:840px){.flow-line{display:none}}
+</style>
 </head>
 <body>
-
-  <nav>
-    <span class="nav-wordmark">Me.</span>
-    <button class="nav-cta" onclick="openTally()">Request early access</button>
-  </nav>
-
-  <!-- PANEL 1 — PROVOCATION -->
-  <div class="panel" id="panel-1">
-    <div class="panel-inner">
-
-      <p class="eyebrow">A new kind of health app</p>
-
-      <h1 class="hero-statement">
-        Apple Health<br>collects everything.<br><em><span class="accent-word">Me.</span> sets it free.</em>
-      </h1>
-
-      <p class="hero-body">
-        You're generating more health data than any generation before you.<br>
-        <strong>Most of it is sitting there, doing nothing.</strong><br>
-        <span style="color:var(--text-secondary);font-size:clamp(17px,2.2vw,22px);font-weight:400;"><span style="color:var(--accent);font-weight:500;">Me.</span> adds your context, compiles your story, and formats it for the most powerful analytical tools ever built.</span>
-      </p>
-
-      <div class="data-ticker-wrap">
-        <div class="data-ticker" id="ticker"></div>
-      </div>
-
-      <div class="hero-form-wrap" id="hero-form-wrap">
-        <button class="form-btn" onclick="openTally()" style="font-size:16px;padding:18px 40px;">Request early access</button>
-        <p class="form-note" style="margin-top:14px;">iOS only &nbsp;·&nbsp; Launching mid-2026 &nbsp;·&nbsp; No spam, ever.</p>
-      </div>
-
-    </div>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="wm nav-brand" href="index.html">Me<span class="wm-stop">.</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="case-studies/index.html">Case studies</a>
+    <a href="guides/index.html">Guides</a>
+    <span class="coming-tag"><span class="dot"></span>Coming to iOS June 2026</span>
   </div>
+</div></nav>
+<main>
 
-  <!-- PANEL 2 — DATA UNIVERSE -->
-  <div class="panel" id="panel-2">
-    <div class="panel-inner">
-      <p class="s-eyebrow reveal" style="text-align:center;">One permission. Everything.</p>
-      <h2 class="universe-headline reveal" style="text-align:center;">If it talks to Apple Health,<br><span style="color:var(--accent);">Me.</span> reads it.</h2>
-      <p class="universe-sub reveal">Apple Health is the most powerful health data platform ever built. It quietly aggregates everything: every device you wear, every app you use.</p>
-      <p class="universe-sub reveal" style="margin-top:16px;"><span style="color:var(--accent);font-weight:500;">Me.</span> is the first app that actually puts all of that to work.</p>
-
-      <div class="source-grid">
-        <div class="source-category reveal">
-          <p class="source-cat-label">Wearables</p>
-          <ul class="source-list">
-            <li>Apple Watch</li>
-            <li>Oura Ring</li>
-            <li>Whoop</li>
-            <li>Garmin</li>
-            <li>Fitbit</li>
-            <li>Polar</li>
-            <li>Coros</li>
-            <li>Withings ScanWatch</li>
-            <li>Ultrahuman Ring</li>
-            <li>Amazfit</li>
-            <li class="more">+ more</li>
-          </ul>
-        </div>
-        <div class="source-category reveal" style="transition-delay:.08s">
-          <p class="source-cat-label">Health devices</p>
-          <ul class="source-list">
-            <li>Dexcom (CGM)</li>
-            <li>Abbott Libre (CGM)</li>
-            <li>Withings scales</li>
-            <li>Blood pressure monitors</li>
-            <li>Pulse oximeters</li>
-            <li>Smart thermometers</li>
-            <li>ECG monitors</li>
-            <li class="more">+ more</li>
-          </ul>
-        </div>
-        <div class="source-category reveal" style="transition-delay:.16s">
-          <p class="source-cat-label">Fitness &amp; training</p>
-          <ul class="source-list">
-            <li>Strava</li>
-            <li>Nike Run Club</li>
-            <li>TrainingPeaks</li>
-            <li>MyFitnessPal</li>
-            <li>Cronometer</li>
-            <li>Strong</li>
-            <li>Tempo</li>
-            <li class="more">+ more</li>
-          </ul>
-        </div>
-        <div class="source-category reveal" style="transition-delay:.24s">
-          <p class="source-cat-label">Sleep &amp; wellbeing</p>
-          <ul class="source-list">
-            <li>AutoSleep</li>
-            <li>Sleep Cycle</li>
-            <li>Headspace</li>
-            <li>Calm</li>
-            <li>Endel</li>
-            <li>Pillow</li>
-            <li class="more">+ more</li>
-          </ul>
-        </div>
-      </div>
-
-      <p class="universe-rule reveal">This isn't an integration story. <strong>Apple Health is already doing the work.</strong> <span style="color:var(--accent);font-weight:500;">Me.</span> is what happens next.</p>
-    </div>
-  </div>
-
-  <!-- PANEL 3 — MANIFESTO -->
-  <div class="panel" id="panel-3">
-    <div class="panel-inner" style="text-align:center;">
-      <p class="manifesto-eyebrow reveal">What we believe</p>
-      <div class="manifesto-lines" id="manifesto-lines">
-        <p class="manifesto-line">Your data was generated by you.</p>
-        <p class="manifesto-line">It belongs to you. Not the platform that collected it.</p>
-        <p class="manifesto-line">Every other health app tells you <span style="font-style:normal;">what your numbers mean.</span></p>
-        <p class="manifesto-line"><span style="color:var(--accent);font-weight:500;">Me.</span> doesn't. That's the point.</p>
-        <p class="manifesto-line">You decide what the data means.</p>
-        <p class="manifesto-line">You add the context that makes it real.</p>
-        <p class="manifesto-line">You decide where it goes.</p>
-        <p class="manifesto-line">We make sure it's ready when you need it.</p>
+<!-- 02 · HERO -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow">Health intelligence<span class="h-stop">.</span></span>
+      <h1>Your data<span class="h-stop">.</span><br>Your context<span class="h-stop">.</span><br>Your decision<span class="h-stop">.</span></h1>
+      <p class="sub">Me. reads and displays your Apple Health data, adds the context only you can provide, and compiles a structured output ready for your GP, your coach, or any AI to reason from.</p>
+      <div class="hero-cta">
+        <span class="coming-tag"><span class="dot"></span>Coming to iOS June 2026</span>
+        <a href="#how-it-works" class="textlink">See how it works <span class="arr">&rarr;</span></a>
       </div>
     </div>
-  </div>
-
-  <!-- PANEL 3B — AI MOMENT -->
-  <div class="panel" id="panel-ai" style="background:var(--surface);border-top:0.5px solid var(--border);border-bottom:0.5px solid var(--border);">
-    <div class="panel-inner">
-      <p class="s-eyebrow reveal">Why now</p>
-      <h2 style="font-size:clamp(28px,4.5vw,54px);font-weight:600;letter-spacing:-0.045em;line-height:1.1;color:var(--text-primary);margin-bottom:56px;max-width:640px;" class="reveal">The most powerful analytical tools ever built are waiting for your data.</h2>
-
-      <div style="display:flex;flex-direction:column;gap:0;" class="reveal">
-        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);">
-          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;">AI systems can now reason across your health data with a depth and speed that simply did not exist before. But they are only as good as what you feed them. Raw numbers produce generic answers. <strong>Your data with your context attached produces something entirely different.</strong></p>
-        </div>
-        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);">
-          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;"><span style="color:var(--accent);font-weight:500;">Me.</span> captures that context through daily check-ins, voice notes, and annotations that take under 90 seconds. How you slept. How you felt. What changed. What you noticed. That layer is what transforms a spreadsheet of numbers into a story an AI, a physician, or a coach can actually reason from.</p>
-        </div>
-        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);">
-          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;">The same output that an AI reasons across, your physician can read before your appointment. Your coach can act on before your next session. Your therapist can reference without you having to reconstruct everything from memory. <strong>The data is the same. The audience is whoever you choose.</strong></p>
-        </div>
-        <div style="padding:28px 0;border-top:0.5px solid var(--border-mid);border-bottom:0.5px solid var(--border-mid);">
-          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;margin-bottom:24px;"><span style="color:var(--accent);font-weight:500;">Me.</span> doesn't decide who analyses your data.</p>
-          <p style="font-size:clamp(16px,2vw,20px);color:var(--text-primary);letter-spacing:-0.02em;line-height:1.55;font-weight:400;">It produces output that is <strong>formatted for AI, legible for clinicians, and actionable for coaches</strong>. The direction is yours. The quality is consistent.</p>
-        </div>
-      </div>
-
-      <p style="margin-top:40px;font-size:15px;color:var(--text-secondary);letter-spacing:-0.01em;text-align:center;" class="reveal">ChatGPT. Claude. Gemini. Your GP. Your coach. Your therapist. All of them. None of them. Your call.</p>
-    </div>
-  </div>
-
-  <!-- PANEL 4 — USE CASES -->
-  <div class="panel" id="panel-4">
-    <div class="panel-inner">
-      <p class="s-eyebrow reveal">What becomes possible</p>
-      <h2 class="cases-headline reveal">The use cases are<br>as unlimited as the data.</h2>
-      <p class="cases-sub reveal"><span style="color:var(--accent);font-weight:500;">Me.</span> doesn't decide what you do with your health data. It just makes sure you can do anything with it.</p>
-
-      <div class="cases-stream">
-        <div class="case-row reveal">
-          <p class="case-who">The athlete</p>
-          <p class="case-what">You've been tracking every workout, every recovery score, every night of sleep. <span style="color:var(--accent);font-weight:500;">Me.</span> compiles it alongside your annotations — the note that said legs felt dead by kilometre three, the check-in that flagged a poor night before the long run — into <strong>something your coach can actually reason from.</strong></p>
-        </div>
-        <div class="case-row reveal">
-          <p class="case-who">The patient</p>
-          <p class="case-what">You walk into your GP appointment with <strong>90 days of annotated health data</strong>. Sleep, HRV, energy, mood, the week you changed medication, the fortnight you felt off. Not screenshots. A coherent, structured story.</p>
-        </div>
-        <div class="case-row reveal">
-          <p class="case-who">The curious</p>
-          <p class="case-what">What's your biological age? What's actually driving your energy? <span style="color:var(--accent);font-weight:500;">Me.</span> compiles your data — numbers and context together — into a <strong>structured output ready to drop into ChatGPT, Claude, Gemini, or any AI platform</strong> so you can ask the questions no health app will answer for you.</p>
-        </div>
-        <div class="case-row reveal">
-          <p class="case-who">The investigator</p>
-          <p class="case-what">Something has felt off for weeks. You can't explain it. The data alone won't tell you why. But the data plus your daily annotations — energy, mood, stress, sleep quality, what changed — <strong>builds a picture that actually has answers in it.</strong></p>
-        </div>
-        <div class="case-row reveal">
-          <p class="case-who">The optimiser</p>
-          <p class="case-what">Is the new training block working? Did the supplement make a difference? Your biometrics tell part of the story. Your annotations tell the rest. <strong>Compile both. Compare. Find out.</strong></p>
-        </div>
-        <div class="case-row reveal">
-          <p class="case-who">The longevity seeker</p>
-          <p class="case-what">You're not sick. You're paying attention. You want a long-term record that compounds over time: biometrics, annotations, context, all of it <strong>structured and portable</strong> so the picture only gets clearer as the years go on.</p>
-        </div>
-      </div>
-
-      <p class="cases-endnote reveal">These are six. There are thousands more. <span style="color:var(--accent);font-weight:500;">Me.</span> doesn't need to know yours.</p>
-    </div>
-  </div>
-
-  <!-- PANEL 5 — THE DIFFERENCE -->
-  <div class="panel" id="panel-5">
-    <div class="panel-inner" style="text-align:center;">
-      <p class="s-eyebrow reveal" style="text-align:center;">A different kind of app</p>
-      <h2 class="diff-headline reveal">We're not here<br>to tell you what to think.</h2>
-      <p class="diff-sub reveal">Every health platform is a walled garden. They collect your data, interpret it their way, and lock it inside. <span style="color:var(--accent);font-weight:500;">Me.</span> is built on a different premise entirely.</p>
-
-      <div class="diff-grid">
-        <div class="diff-card reveal">
-          <p class="diff-tag them">Every other app</p>
-          <div class="diff-items">
-            <p class="diff-item">Scores and grades your data</p>
-            <p class="diff-item">Tells you what your numbers mean</p>
-            <p class="diff-item">Keeps everything inside their ecosystem</p>
-            <p class="diff-item">Monetises your behaviour</p>
-            <p class="diff-item">Works with their hardware only</p>
-          </div>
-        </div>
-        <div class="diff-card reveal" style="transition-delay:.1s">
-        <p class="diff-tag us">Me.</p>
-          <div class="diff-items">
-            <p class="diff-item">Reports your data. Never interprets it.</p>
-            <p class="diff-item">Captures your context, not just your numbers</p>
-            <p class="diff-item">Lets you decide what it means</p>
-            <p class="diff-item">Structured output ready for ChatGPT, Claude, Gemini, any AI</p>
-            <p class="diff-item">Earns through the app. Not through you.</p>
-            <p class="diff-item">Works with everything in Apple Health</p>
-          </div>
-        </div>
-      </div>
-
-      <p class="diff-claim reveal"><strong><span style="color:var(--accent);">Me.</span> was built for the age of AI.</strong> The only health app designed from the ground up to produce output that works for any system, any specialist, any question you need answered.</p>
-    </div>
-  </div>
-
-  <!-- PANEL 6 — PRIVACY -->
-  <div class="panel" id="panel-6">
-    <div class="panel-inner">
-      <p class="s-eyebrow reveal" style="text-align:center;">Privacy</p>
-      <h2 class="privacy-headline reveal" style="text-align:center;">Built like your health<br>data deserves.</h2>
-      <p class="privacy-sub reveal">No account. No server. No cloud. Your data never leaves your device without you explicitly choosing where it goes.</p>
-
-      <div class="privacy-row">
-        <div class="priv-item reveal">
-          <p class="priv-icon">📵</p>
-          <p class="priv-title">No account</p>
-          <p class="priv-body"><span style="color:var(--accent);font-weight:500;">Me.</span> works without signing up. No email, no profile, no identity.</p>
-        </div>
-        <div class="priv-item reveal" style="transition-delay:.08s">
-          <p class="priv-icon">🔒</p>
-          <p class="priv-title">On-device only</p>
-          <p class="priv-body">Everything stays on your iPhone. There is no <span style="color:var(--accent);font-weight:500;">Me.</span> server.</p>
-        </div>
-        <div class="priv-item reveal" style="transition-delay:.16s">
-          <p class="priv-icon">🚫</p>
-          <p class="priv-title">Never sold</p>
-          <p class="priv-body"><span style="color:var(--accent);font-weight:500;">Me.</span> earns revenue through the app. Not through your data.</p>
-        </div>
-        <div class="priv-item reveal" style="transition-delay:.24s">
-          <p class="priv-icon">📤</p>
-          <p class="priv-title">You control output</p>
-          <p class="priv-body">Data only moves when you compile and choose where it goes.</p>
+    <div class="hero-media">
+      <div class="hero-video">
+        <!-- ===== HERO VIDEO ============================================
+             At go-live, delete the .video-placeholder div below and
+             uncomment the iframe. Set VIMEO_ID (deploy token).
+        <iframe src="https://player.vimeo.com/video/VIMEO_ID?background=1&autopause=0&muted=1&loop=1&autoplay=1&dnt=1"
+          style="position:absolute;inset:0;width:100%;height:100%;border:0;"
+          allow="autoplay; fullscreen; picture-in-picture"
+          title="Me. how it works" loading="lazy"></iframe>
+        ============================================================== -->
+        <div class="video-placeholder">
+          <div class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4.5l12 7.5-12 7.5z"/></svg></div>
+          <small>Video coming soon</small>
         </div>
       </div>
     </div>
   </div>
+</header>
 
-  <!-- PANEL 7 — CTA -->
-  <div class="panel" id="panel-7" style="min-height:80svh;">
-    <div class="panel-inner" style="text-align:center;" id="early-access">
-      <p class="s-eyebrow reveal" style="text-align:center;">Early access</p>
-      <h2 class="cta-headline reveal">Your data has<br>been waiting.</h2>
-      <p class="cta-sub reveal">A small group of early access testers will get <span style="color:var(--accent);font-weight:500;">Me.</span> before the public launch. Request your spot.</p>
+<!-- 03 · THE PROBLEM -->
+<section class="section">
+  <div class="wrap two-col">
+    <div class="problem reveal">
+      <span class="eyebrow">The gap</span>
+      <h2>Your data is everywhere.<br>Your health picture is nowhere.</h2>
+      <p>You are generating more health data than any generation before you. Sleep, heart rate, HRV, blood oxygen, activity, menstrual health, even time in daylight. It accumulates quietly in Apple Health, read by the device that collected it, used by no one.</p>
+      <p>The data is not the problem. What is missing is structure. Context. A way to bring it together so it can actually be used: by a GP who needs the full picture, by a coach who needs the numbers, by an AI that can reason across all of it.</p>
+      <p class="close">That is the gap Me. closes.</p>
+    </div>
+    <div class="chip-scatter reveal" id="chipScatter" aria-hidden="true">
+      <span class="chip" style="top:5%;left:8%">Sleep</span>
+      <span class="chip" style="top:23%;left:50%">HRV</span>
+      <span class="chip" style="top:43%;left:16%">Steps</span>
+      <span class="chip" style="top:40%;left:60%">Workouts</span>
+      <span class="chip" style="top:64%;left:38%">Glucose</span>
+      <span class="chip" style="top:80%;left:10%">Notes</span>
+    </div>
+  </div>
+</section>
 
-      <div id="cta-form-wrap" class="reveal" style="transition-delay:.2s;">
-        <button class="form-btn" onclick="openTally()" style="font-size:16px;padding:18px 40px;">Request early access</button>
-        <p class="form-note" style="margin-top:14px;">iOS only &nbsp;·&nbsp; Launching mid-2026 &nbsp;·&nbsp; No spam, ever.</p>
+<!-- 04 · WHAT ME. DOES -->
+<section class="section paper-band" id="how-it-works">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>Three steps. One picture<span class="h-stop" style="color:inherit">.</span></h2>
+    </div>
+    <div class="steps">
+      <div class="card step reveal">
+        <div class="bignum">01</div>
+        <div class="lab">01 · Data in</div>
+        <h3>If it talks to Apple Health, Me. reads it.</h3>
+        <p>Apple Watch, Oura Ring, Whoop, Garmin, Fitbit, Withings, CGMs, blood pressure monitors, and hundreds more. One permission. Everything.</p>
+      </div>
+      <div class="card step reveal d1">
+        <div class="bignum">02</div>
+        <div class="lab">02 · Context added</div>
+        <h3>30 seconds a day. The layer that changes everything.</h3>
+        <p>A five-point daily check-in. A freeform note. The details no device can capture: how you felt, what changed, what you noticed. This is the data that makes the rest of it useful.</p>
+      </div>
+      <div class="card step reveal d2">
+        <div class="bignum">03</div>
+        <div class="lab">03 · Compiled out</div>
+        <h3>Ready for your GP, your coach, or any AI.</h3>
+        <p>Choose a time range. Select what to include. Compile. The output is yours to take wherever it needs to go: your GP, your coach, a specialist, or straight into a conversation with any AI.</p>
       </div>
     </div>
   </div>
+</section>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-left">
-      <span class="footer-wordmark" style="color:var(--accent);">Me.</span>
-      <span class="footer-by">by Oi Studios &nbsp;·&nbsp; Hobart, Tasmania &nbsp;·&nbsp; © 2026</span>
+<!-- 05 · WHO IT'S FOR -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Use cases</span>
+      <h2>Your data. Your questions<span class="h-stop" style="color:inherit">.</span></h2>
+      <p class="sec-intro">Me. does not decide what you do with your health data. It makes sure you can do anything with it.</p>
     </div>
-  </footer>
+    <div class="uc-grid">
+      <article class="card uc reveal">
+        <span class="uc-cat">The athlete</span>
+        <h3>Train with the full picture.</h3>
+        <p>You have targets and you are already tracking. Me. compiles your training load, recovery data, and daily notes into a single structured output your coach can actually work from.</p>
+        <div class="prompt"><div class="lab">Try asking:</div><div class="pt">"My legs have felt heavy for two weeks but my HRV looks fine on paper. Look at my training load, sleep depth, and recovery data together and suggest some options for how I approach this week. Once we agree on the right approach, give me an updated training plan I can add back into Me."</div></div>
+      </article>
+      <article class="card uc reveal d1">
+        <span class="uc-cat">The curious</span>
+        <h3>Ask the questions your apps never answer.</h3>
+        <p>You have years of health data and no way to interrogate it. Me. compiles everything into a structured output you can drop into any AI and start asking real questions.</p>
+        <div class="prompt"><div class="lab">Try asking:</div><div class="pt">"I have low energy days roughly once a week and I cannot predict them. Look across my data in the 24 hours before my worst days, identify any pattern, and provide some recommendations on what is worth a closer look."</div></div>
+      </article>
+      <article class="card uc reveal d2">
+        <span class="uc-cat">Managing your health</span>
+        <h3>Walk into every appointment prepared.</h3>
+        <p>Living with a condition means a lot of appointments and a lot of gaps between them. Me. builds a continuous, annotated record so every conversation with your GP or specialist starts from the full picture.</p>
+        <div class="prompt"><div class="lab">Try asking:</div><div class="pt">"Act as a medical secretary preparing a patient briefing. My energy has dropped since I changed medication three weeks ago. Compile everything from that period into a structured summary my GP can read in two minutes and flag anything that looks outside my normal range."</div></div>
+      </article>
+      <article class="card uc reveal">
+        <span class="uc-cat">The longevity thinker</span>
+        <h3>Conscious decisions, compounding over time.</h3>
+        <p>Nothing is wrong. You are paying attention. Me. builds a record of your biometrics and daily context that gets more useful the longer you keep it.</p>
+        <div class="prompt"><div class="lab">Try asking:</div><div class="pt">"I started going to bed an hour earlier six weeks ago. Act as a longevity researcher and compare my sleep quality and HRV before and after. Give me an assessment of whether it has made a measurable difference and what has not shifted yet."</div></div>
+      </article>
+      <article class="card uc reveal d1">
+        <span class="uc-cat">The everyday person</span>
+        <h3>Your data is already there,<br>now you can actually use it.</h3>
+        <p>You have been wearing a watch and carrying a phone for years. Me. gives all of that data somewhere to go.</p>
+        <div class="prompt"><div class="lab">Try asking:</div><div class="pt">"I have never really looked at this data before. Tell me what stands out most from the last 30 days and provide some suggestions on what might be worth a closer look."</div></div>
+      </article>
+      <article class="card uc reveal d2">
+        <span class="uc-cat">The carer</span>
+        <h3>Managing health together.</h3>
+        <p>Me. gives the people you support a way to build and own their health record. When the next appointment arrives, the full picture is already compiled, annotated, and ready to use together.</p>
+        <div class="prompt"><div class="lab">Try asking:</div><div class="pt">"My mother has an appointment with her specialist next week. Help compile the last 60 days of her data into a clear summary she can take in, and flag anything that has shifted since her last visit."</div></div>
+      </article>
+    </div>
+  </div>
+</section>
 
-  <script>
-    // TICKER
-    const tickerItems = [
-      ['Resting heart rate', '58 bpm'],
-      ['HRV', '42 ms'],
-      ['Sleep', '7h 14m'],
-      ['Deep sleep', '1h 22m'],
-      ['REM', '1h 48m'],
-      ['Steps', '9,240'],
-      ['Active energy', '612 kcal'],
-      ['VO₂ max', '48.3'],
-      ['Blood oxygen', '98%'],
-      ['Respiratory rate', '14.2 / min'],
-      ['Skin temp variance', '+0.3°C'],
-      ['Mindful minutes', '12 min'],
-      ['Body weight', '81.4 kg'],
-      ['Body fat', '16.2%'],
-      ['Blood glucose', '5.1 mmol/L'],
-      ['Workouts this week', '4'],
-      ['Running distance', '38.2 km'],
-      ['Cycling power', '218 W avg'],
-      ['Swim distance', '3.2 km'],
-      ['Calories consumed', '2,140 kcal'],
-      ['Protein', '142 g'],
-      ['Hydration', '2.4 L'],
-      ['Blood pressure', '118 / 76'],
-      ['Stand hours', '11 / 12'],
-      ['Walking steadiness', 'OK'],
-      ['Cardio fitness', 'Above avg'],
-      ['Menstrual cycle', 'Day 14'],
-      ['Hearing exposure', '72 dB avg'],
-      ['Recovery score', '74%'],
-      ['Stress level', 'Elevated'],
-    ];
+<!-- 06 · DEVICE ECOSYSTEM -->
+<section class="section paper-band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Works with everything</span>
+      <h2>One permission. Every device you already use<span class="h-stop" style="color:inherit">.</span></h2>
+      <p class="sec-intro">Me. reads from Apple Health. That single connection reaches every device and app that writes there: wearables, health monitors, fitness platforms, sleep trackers. There are hundreds of them. If yours is one, you are already set up.</p>
+    </div>
+    <div class="dev-cloud reveal">
+      <span class="dev-cat">Wearables</span>
+      <span class="dev-pill">Apple Watch</span><span class="dev-pill">Oura Ring</span><span class="dev-pill">Whoop</span><span class="dev-pill">Garmin</span><span class="dev-pill">Fitbit</span>
+      <span class="dev-cat">Health devices</span>
+      <span class="dev-pill">Blood pressure monitors</span><span class="dev-pill">Digital scales</span><span class="dev-pill">Dexcom CGM</span><span class="dev-pill">Abbott Libre</span>
+      <span class="dev-cat">Fitness and training</span>
+      <span class="dev-pill">Strava</span><span class="dev-pill">MyFitnessPal</span><span class="dev-pill">Nike Run Club</span><span class="dev-pill">Hevy</span>
+      <span class="dev-cat">Sleep</span>
+      <span class="dev-pill">AutoSleep</span><span class="dev-pill">Sleep Cycle</span><span class="dev-pill">Pillow</span><span class="dev-pill">Sleep++</span>
+      <div class="dev-more"><span class="dev-pill">+ hundreds more</span></div>
+    </div>
+    <p class="dev-gap reveal">Some devices need a bridge app to write all their data to Apple Health.<br>If something's missing, apps like Health Sync and HRV Sync can fill the gap.<br>They're separate apps, not part of Me.</p>
+  </div>
+</section>
 
-    function buildTicker() {
-      const ticker = document.getElementById('ticker');
-      const doubled = [...tickerItems, ...tickerItems];
-      ticker.innerHTML = doubled.map(([label, val]) =>
-        `<div class="ticker-pill"><span>◆</span>${label}: ${val}</div>`
-      ).join('');
-    }
-    buildTicker();
+<!-- 07 · PRIVACY -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Privacy architecture</span>
+      <h2>No account. You control the output. Stored your way.</h2>
+    </div>
+    <div class="priv-grid priv-grid-3">
+      <div class="priv reveal"><div class="ic"><i data-lucide="user-x"></i></div><h3>No account, no server</h3><p>Me. works without signing up. No email, no profile, no identity. Everything stays on your iPhone. There is no Me. server and your data is never sold.</p></div>
+      <div class="priv reveal d1"><div class="ic"><i data-lucide="send"></i></div><h3>You control the output</h3><p>Data only moves when you compile and choose where it goes. Me. earns through the app, not through your data.</p></div>
+      <div class="priv reveal d2"><div class="ic"><i data-lucide="cloud"></i></div><h3>Your data, your storage</h3><p>Everything stays on your device. If you choose to back up via iCloud, your Me. data is included. Your Apple account, your encryption, your call.</p></div>
+    </div>
+  </div>
+</section>
 
-    // MANIFESTO LIGHTING
-    (function() {
-      const lines = document.querySelectorAll('.manifesto-line');
-      const block = document.getElementById('manifesto-lines');
-      let fired = false;
-      const obs = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && !fired) {
-          fired = true;
-          lines.forEach((line, i) => setTimeout(() => line.classList.add('lit'), i * 200));
-          obs.disconnect();
-        }
-      }, { threshold: 0.25 });
-      if (block) obs.observe(block);
-    })();
+<!-- 08 · PRICING -->
+<section class="section paper-band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Free and Pro</span>
+      <h2>Start for free. Upgrade when you need more<span class="h-stop" style="color:inherit">.</span></h2>
+    </div>
+    <div class="price-grid">
+      <div class="price free reveal">
+        <div class="amt">Free</div>
+        <p>Everything you need to start. Read your Apple Health data, build your profile and context, and compile the last 7 days, up to 5 times a month.</p>
+        <div class="spacer"></div>
+        <span class="coming-tag"><span class="dot"></span>Coming to iOS June 2026</span>
+      </div>
+      <div class="price pro reveal d1">
+        <div class="amt">Pro</div>
+        <p>Full history compilation, unlimited compiles, and profile change history. Everything in the free tier, plus more.</p>
+        <div class="trial">Try Pro free for 7 days</div>
+        <div class="spacer"></div>
+        <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS June 2026</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    // SCROLL REVEAL
-    const reveals = document.querySelectorAll('.reveal');
-    const revObs = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }
-      });
-    }, { threshold: 0.1 });
-    reveals.forEach(el => revObs.observe(el));
+<!-- 09 · CASE STUDY TEASER -->
+<section class="section">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Case studies</span>
+      <h2>What becomes visible when data and context live together<span class="h-stop" style="color:inherit">.</span></h2>
+      <p class="sec-intro">Real user data. Real patterns. The kind of reading that only becomes possible when biomarkers, annotations, and daily context are compiled in one place.</p>
+    </div>
+    <div class="teaser-grid">
+      <article class="cs-card reveal">
+        <span class="tag tag-sleep">Case Study 01</span>
+        <h3>Three crashes. Same signal. Three different causes.</h3>
+        <div class="dek">HRV detects the stress. Annotations explain it. The difference is in what you do next.</div>
+        <div class="spacer"></div>
+        <div class="meta">~6 min read</div>
+        <a class="cs-link" href="case-studies/01-hrv-crashes.html">Read the case study <span class="arr">&rarr;</span></a>
+      </article>
+      <article class="cs-card reveal d1">
+        <span class="tag tag-sleep">Case Study 02</span>
+        <h3>The body keeps score of your life, not just your training.</h3>
+        <div class="dek">431 nights of one person's sleep data. The biggest lever on deep sleep was not how hard they trained.</div>
+        <div class="spacer"></div>
+        <div class="meta">~8 min read</div>
+        <a class="cs-link" href="case-studies/02-sleep-architecture.html">Read the case study <span class="arr">&rarr;</span></a>
+      </article>
+      <article class="cs-card reveal d2">
+        <span class="tag tag-sleep">Case Study 03</span>
+        <h3>The plan that knew who it was for.</h3>
+        <div class="dek">A Hyrox block ends. A half marathon target takes shape. What happens when the AI already knows your constraints before you ask.</div>
+        <div class="spacer"></div>
+        <div class="meta">~7 min read</div>
+        <a class="cs-link" href="case-studies/03-training-plan.html">Read the case study <span class="arr">&rarr;</span></a>
+      </article>
+    </div>
+    <div class="teaser-viewall reveal">
+      <a href="case-studies/index.html">View all case studies <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
-    // FORM — Tally popup
-    function openTally() {
-      Tally.openPopup('lbWjPX', {
-        layout: 'modal',
-        autoClose: 3000,
-      });
-    }
-
-
-  </script>
+</main>
+<footer class="foot"><div class="foot-in">
+  <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
+  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS June 2026</span>
+  <div class="sublab">iOS only · No account required · Free to download</div>
+  <div class="foot-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="guides/index.html">Guides</a>
+    <a href="case-studies/index.html">Case studies</a>
+    <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
+  </div>
+  <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>
+</div></footer>
+<script>
+/* shared shell scripts: nav blur on scroll, scroll reveals, obfuscated contact */
+(function(){
+  var nav=document.getElementById('nav');
+  if(nav){
+    var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>24);};
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){io.observe(el);});
+  }
+  /* obfuscated contact: literal address never in static DOM */
+  document.querySelectorAll('.contact-link').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var user='info',domain='meapp.health';
+      window.location.href='mailto:'+user+'@'+domain;
+    });
+  });
+})();
+(function(){if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(window.innerWidth<840)return;var sc=document.getElementById('chipScatter');if(!sc)return;var chips=[].slice.call(sc.querySelectorAll('.chip'));chips.forEach(function(c,i){var dx=(Math.random()*16-8),dy=(Math.random()*14-12);c.style.transform='translate('+dx+'px,'+dy+'px)';c.style.opacity='0';c.style.transitionDelay=(i*60)+'ms';});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){chips.forEach(function(c){c.style.transform='none';c.style.opacity='1';});io.disconnect();}});},{threshold:0.3});io.observe(sc);})();
+if(window.lucide){lucide.createIcons();}
+</script>
 </body>
 </html>

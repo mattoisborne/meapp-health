@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The body keeps score of your life, not just your training. · Me.</title>
+<meta name="description" content="431 nights of one person’s sleep data. The biggest lever on deep sleep was not how hard they trained.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The body keeps score of your life, not just your training. · Me.">
+<meta property="og:description" content="431 nights of one person’s sleep data. The biggest lever on deep sleep was not how hard they trained.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   Me. website: shared shell + tokens + components
+   Inlined into every page. Tokens copied verbatim from the
+   Me. Design System v2.1 colors_and_type.css. Token names
+   kept identical so future edits map back to the system.
+   WEB DARK SURFACE IS CHARCOAL #2A2D2C (never the product
+   near-black, which is product UI only). Ruling 6.
+   ========================================================= */
+:root{
+  /* cream surface family (default) */
+  --color-bg:#F4F0E8; --color-paper:#FBF8F1; --color-paper-cool:#F1F0EC;
+  --color-line:#DED8CC; --color-soft-line:#EBE5DC;
+  --color-ink:#151716; --color-charcoal:#2A2D2C;
+  --color-muted:#646866; --color-faint:#8D9088;
+  /* charcoal-surface text tones */
+  --color-d-text:#F0F0F0; --color-d-border:#2A2A2A;
+  --color-d-muted:#C2C6C2; --color-d-faint:#8B8F8B;
+  /* signal accent (one accent, ~2% of any frame) */
+  --color-green:#00C896; --color-green-dark:#0F8F73;
+  --color-green-light:#46E0BD; --color-green-text:#003D2E;
+  /* metric palette (brand colours v2.1) */
+  --color-m-restinghr:#DC6C84; --color-m-resprate:#57B1F0;
+  --color-m-energy:#BE9924; --color-m-steps:#62CC82; --color-m-sleep:#8371DF;
+  /* support tones */
+  --color-sage:#C9D8CF; --color-clay:#D8C7B8; --color-stone:#B8B8B2; --color-grey-cool:#AEB6B0;
+  /* state */
+  --color-destructive:#E24B4A; --color-destructive-dim:rgba(226,75,74,0.10);
+  /* case-study data line, distinct cyan (Ruling 5), tuned from 2BA8C4 for cream legibility */
+  --color-cyan:#1E93B0;
+  /* type */
+  --font-sans:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono','Fira Code',ui-monospace,Menlo,monospace;
+  --track-display:-0.06em; --track-h2:-0.045em; --track-h3:-0.02em;
+  --track-body:-0.015em; --track-body-tight:-0.005em; --track-caps:0.13em; --track-wordmark:-0.045em;
+  /* radii */
+  --radius-xs:6px; --radius-sm:18px; --radius-md:24px; --radius:28px;
+  --radius-pill:999px; --radius-media:12px;
+  /* spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px;
+  /* shadows: cream depth only; no shadows on charcoal */
+  --shadow-sm:0 10px 30px rgba(20,20,18,0.06);
+  --shadow-md:0 24px 80px rgba(35,35,32,0.09);
+  --shadow-lg:0 28px 90px rgba(30,32,30,0.12);
+  --shadow-media:0 15px 38px rgba(30,32,30,0.12);
+  /* motion */
+  --ease-settle:cubic-bezier(0.22,1,0.36,1);
+  --ease-glide:cubic-bezier(0.65,0,0.35,1);
+  --ease-soft-arrival:cubic-bezier(0.34,1.4,0.5,1);
+  --ease-intent-exit:cubic-bezier(0.40,0,1,1);
+  --ease-reveal:cubic-bezier(0,0,0.2,1);
+  --dur-micro:180ms; --dur-entrance:420ms; --dur-travel:750ms; --dur-settle:1200ms; --dur-line:1000ms;
+  --maxw:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--color-bg);
+  color:var(--color-ink);
+  font-feature-settings:'tnum' 1,'ss01' 1,'cv11' 1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  letter-spacing:var(--track-body);
+  /* one subtle radial warmth on cream, never a hard gradient */
+  background-image:radial-gradient(120% 80% at 15% 0%, rgba(255,255,255,0.5) 0%, rgba(244,240,232,0) 55%);
+  background-attachment:fixed;
+}
+a{color:inherit}
+img,svg{display:block}
+
+/* shared layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.reading{max-width:720px;margin:0 auto;padding:0 32px}
+.section{padding:92px 0}
+.paper-band{background:var(--color-paper)}
+@media(max-width:760px){.section{padding:60px 0}}
+
+/* wordmark + green stops */
+.wm{font-family:var(--font-sans);font-weight:600;letter-spacing:var(--track-wordmark)}
+.stop,.wm-stop,.h-stop{color:var(--color-green)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark)}
+.muted{color:var(--color-muted)}
+h1{font-size:52px;font-weight:600;letter-spacing:var(--track-display);line-height:1.04}
+h2{font-size:36px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.05}
+h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.25}
+@media(max-width:760px){h1{font-size:36px}h2{font-size:28px}}
+::selection{background:rgba(0,200,150,0.22);color:var(--color-ink)}
+:focus-visible{outline:2px solid var(--color-green);outline-offset:3px;border-radius:3px}
+
+/* ===== NAV (identical on every page) ===== */
+.nav{position:sticky;top:0;z-index:60;border-bottom:0.5px solid transparent;transition:background .2s var(--ease-settle),border-color .2s var(--ease-settle)}
+.nav.scrolled{background:rgba(244,240,232,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:0.5px solid var(--color-line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:17px 32px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{font-size:35px;text-decoration:none;color:var(--color-ink)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a:not(.pill){color:var(--color-muted);text-decoration:none;font-size:15px;transition:color .15s var(--ease-settle)}
+.nav-links a:not(.pill):hover{color:var(--color-ink)}
+.pill{display:inline-block;background:var(--color-green);color:var(--color-green-text);font-weight:500;font-size:15px;padding:9px 19px;border-radius:var(--radius-pill);text-decoration:none;transition:background .15s var(--ease-settle)}
+.pill:hover,.pill:focus-visible{background:var(--color-green-dark);color:#fff}
+@media(max-width:760px){.nav-links{gap:0}.nav-links a:not(.pill){display:none}}
+
+/* shared index page header (guides + case studies) */
+.page-head{padding-top:128px;padding-bottom:8px}
+.page-head .eyebrow{margin-bottom:16px}
+.page-head h1{font-size:46px;letter-spacing:var(--track-h2);line-height:1.05;max-width:18ch}
+.page-head .intro{font-size:17px;color:var(--color-muted);line-height:1.6;margin-top:20px;max-width:60ch}
+@media(max-width:760px){.page-head{padding-top:104px}.page-head h1{font-size:34px}}
+
+/* back link (subpages, eyebrow position) */
+.backlink{display:inline-block;color:var(--color-muted);font-size:13px;text-decoration:none;letter-spacing:var(--track-body-tight);transition:color .15s var(--ease-settle)}
+.backlink:hover{color:var(--color-ink)}
+
+/* ===== Apple App Store badge ===== */
+.applebadge{display:inline-flex;text-decoration:none;border-radius:9px;overflow:hidden}
+.applebadge svg{height:46px;width:auto}
+.applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
+
+/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
+.coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
+.coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
+.nav .coming-tag{font-size:14px;padding:8px 16px}
+@media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
+
+/* text link with arrow */
+.textlink{color:var(--color-ink);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;transition:color .15s var(--ease-settle)}
+.textlink .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.textlink:hover .arr{transform:translateX(3px)}
+
+/* ===== consolidated footer (every page) ===== */
+.foot{background:var(--color-charcoal);color:var(--color-d-text);padding:56px 32px 36px}
+.foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
+@media(max-width:760px){.foot-brand{font-size:20px}}
+.foot .applebadge svg{height:40px}
+.foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
+.foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
+.foot-links a:hover{color:var(--color-d-text);text-decoration:underline;text-underline-offset:3px}
+.foot-cred{color:#5d615e;font-size:12px;letter-spacing:var(--track-body-tight)}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .42s var(--ease-reveal),transform .42s var(--ease-reveal)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
+.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal.d1,.reveal.d2,.reveal.d3,.reveal.d4,.reveal.d5{opacity:1;transform:none;transition:none}}
+
+/* ===== shared card primitives ===== */
+.card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.card:hover{border-color:var(--color-line)}
+
+/* tag pill */
+.tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-pill);line-height:1}
+.tag-green{background:var(--color-green);color:var(--color-green-text)}
+.tag-sleep{background:var(--color-m-sleep);color:#fff}
+.tag-faint{background:transparent;border:1px solid var(--color-line);color:var(--color-faint)}
+
+/* dark case-study card */
+.cs-card{background:var(--color-charcoal);color:var(--color-d-text);border-radius:var(--radius);padding:38px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-card h3{font-size:26px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.12;color:var(--color-d-text)}
+.cs-card .dek{color:var(--color-d-muted);font-size:16px;line-height:1.5}
+.cs-card .meta{color:var(--color-d-faint);font-size:13px}
+.cs-card .cs-link{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.cs-card .cs-link .arr{transition:transform .2s var(--ease-settle)}
+.cs-card .cs-link:hover .arr{transform:translateX(3px)}
+
+/* coming-soon card */
+.cs-soon{background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-soon h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-faint)}
+.cs-soon p{font-size:14px;color:var(--color-faint);line-height:1.5}
+
+/* guide card */
+.guide-card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:flex-start;gap:12px;text-decoration:none;color:inherit;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.guide-card:hover{border-color:var(--color-line);background:#fff}
+.guide-card .num{white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:4px 11px;border-radius:var(--radius-pill)}
+.guide-card h3{font-size:21px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2}
+.guide-card p{font-size:15px;color:var(--color-muted);line-height:1.5}
+.guide-card .read{color:var(--color-green);font-size:14px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.guide-card .read .arr{transition:transform .2s var(--ease-settle)}
+.guide-card:hover .read .arr{transform:translateX(3px)}
+
+/* related case-study callout (reusable) */
+.related{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.related h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3)}
+.related p{font-size:15px;color:var(--color-muted);line-height:1.55}
+.related a{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px}
+.related a .arr{transition:transform .2s var(--ease-settle)}
+.related a:hover .arr{transform:translateX(3px)}
+
+/* ===== case study (long-read editorial) ===== */
+.cs-hero{padding-top:118px;max-width:784px;margin-left:auto;margin-right:auto}
+@media(max-width:760px){.cs-hero{padding-top:98px}}
+.cs-hero .backlink{margin-bottom:30px}
+.cs-hero .meta-strip{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:22px;font-size:13px;color:var(--color-faint)}
+.cs-hero .meta-strip .ms-tag{color:var(--color-m-sleep);font-weight:500;letter-spacing:.04em}
+.cs-hero h1{font-size:50px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.06;max-width:16ch}
+@media(max-width:760px){.cs-hero h1{font-size:34px}}
+.cs-hero .dek{font-size:19px;color:var(--color-muted);line-height:1.5;margin-top:20px;max-width:46ch}
+
+/* single centered reading column (ToC removed) */
+.cs-layout{max-width:784px;margin:0 auto;padding:0 32px;display:block}
+
+.cs-body{min-width:0}
+.cs-body section{scroll-margin-top:90px;padding-top:8px}
+.cs-body h2{font-size:30px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.1;margin:64px 0 8px}
+.cs-body section:first-of-type h2{margin-top:40px}
+.cs-body .sec-eyebrow{display:block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;margin-bottom:14px}
+.cs-body p{font-size:18px;line-height:1.7;color:var(--color-ink);letter-spacing:var(--track-body);margin:22px 0}
+.cs-body p.lead{font-size:20px;color:var(--color-muted)}
+.cs-body strong{font-weight:600}
+.cs-body .mono{font-family:var(--font-mono);font-size:.92em;background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius-xs);padding:1px 6px;color:var(--color-green-dark)}
+.cs-body .anno{color:var(--color-ink);font-style:normal}
+
+/* pull quote */
+.pullquote{margin:44px 0;padding:4px 0 4px 26px;border-left:3px solid var(--color-green);font-size:26px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.25;color:var(--color-ink)}
+@media(max-width:760px){.pullquote{font-size:22px}}
+
+/* legend card */
+.legend{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:24px 26px;margin:28px 0;box-shadow:var(--shadow-sm)}
+.legend .lg-row{display:flex;align-items:flex-start;gap:14px;padding:11px 0;border-bottom:0.5px solid var(--color-soft-line)}
+.legend .lg-row:last-child{border-bottom:0}
+.legend .sw{width:14px;height:14px;border-radius:4px;flex:none;margin-top:3px}
+.legend .lg-cat{font-weight:600;font-size:15px;color:var(--color-ink)}
+.legend .lg-desc{font-size:14px;color:var(--color-muted);line-height:1.45}
+
+/* charts */
+.chart{margin:30px 0 8px}
+.chart svg{width:100%;height:auto;display:block;border-radius:var(--radius-sm);background:var(--color-paper);border:1px solid var(--color-soft-line);box-shadow:var(--shadow-sm)}
+.chart figcaption{font-size:13px;color:var(--color-faint);margin-top:12px;line-height:1.5;letter-spacing:var(--track-body-tight)}
+.chart details{margin-top:10px;font-size:13px;color:var(--color-muted)}
+.chart details summary{cursor:pointer;color:var(--color-green-dark);letter-spacing:var(--track-body-tight)}
+.chart details table{width:100%;border-collapse:collapse;margin-top:12px;font-family:var(--font-mono);font-size:12px}
+.chart details th,.chart details td{border:0.5px solid var(--color-soft-line);padding:5px 8px;text-align:right}
+.chart details th:first-child,.chart details td:first-child{text-align:left}
+
+/* breakout (wider than 720 reading column) — centered on the page via calc, no transform */
+.breakout{width:min(960px,calc(100vw - 48px));margin-left:calc(50% - min(480px, (100vw - 48px) / 2));margin-right:0}
+@media(max-width:1000px){.breakout{width:100%;margin-left:0}}
+
+/* prompt blockquotes (CS03 compile section) */
+.promptq{margin:22px 0;background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-left:3px solid var(--color-line);border-radius:var(--radius-xs);padding:18px 22px;font-family:var(--font-mono);font-size:15px;line-height:1.6;color:var(--color-ink);letter-spacing:-0.005em}
+.promptq.specific{border-left-color:var(--color-green)}
+.promptq .pq-lab{display:block;font-family:var(--font-sans);font-size:11px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-faint);margin-bottom:10px}
+
+/* workflow illustrations (CS03) — diagram floats on cream, no card chrome */
+.workflow{margin-top:34px;margin-bottom:8px}
+.workflow svg{width:100%;height:auto;display:block}
+.workflow.narrow{max-width:560px;margin-left:auto;margin-right:auto}
+.workflow figcaption{font-size:13px;color:var(--color-faint);margin-top:14px;line-height:1.5;letter-spacing:var(--track-body-tight);text-align:center}
+
+/* result callout (CS03) — charcoal card, large time */
+.result-card{background:var(--color-charcoal);color:var(--color-d-text);border-radius:var(--radius);padding:40px 38px;margin:34px 0;box-shadow:var(--shadow-md)}
+.result-card .rc-lab{font-size:11px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-d-faint);margin-bottom:18px}
+.result-card .rc-time{font-size:72px;font-weight:600;letter-spacing:var(--track-display);line-height:1;font-variant-numeric:tabular-nums}
+@media(max-width:560px){.result-card .rc-time{font-size:54px}}
+.result-card .rc-note{font-size:18px;line-height:1.55;color:var(--color-d-muted);margin-top:22px;max-width:48ch}
+.result-card .rc-note .q{color:var(--color-d-text)}
+
+/* stat block */
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:32px 0}
+@media(max-width:600px){.stats{grid-template-columns:1fr}}
+.stat{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow-sm)}
+.stat .num{font-size:38px;font-weight:600;letter-spacing:var(--track-h2);line-height:1;font-variant-numeric:tabular-nums}
+.stat .num .u{font-size:15px;font-weight:400;color:var(--color-faint);letter-spacing:0;margin-left:2px}
+.stat .lab{font-size:13px;color:var(--color-muted);margin-top:12px;line-height:1.4}
+
+/* signal callout */
+.signal{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:22px 24px;margin:26px 0}
+.signal .eyb{display:block;font-size:11px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin-bottom:10px}
+.signal p{font-size:16px;line-height:1.6;color:var(--color-ink);margin:0}
+.signal .seq{font-family:var(--font-mono);font-size:14px;color:var(--color-cyan-text,var(--color-ink));background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-xs);padding:2px 7px;white-space:nowrap}
+
+/* differentiation / observation box */
+.diffbox{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:28px 30px;margin:30px 0;box-shadow:var(--shadow-sm);border-left:4px solid var(--color-faint)}
+.diffbox.amber{border-left-color:var(--color-m-energy)}
+.diffbox.red{border-left-color:var(--color-destructive)}
+.diffbox.energy{border-left-color:var(--color-m-energy)}
+.diffbox.resprate{border-left-color:var(--color-m-resprate)}
+.diffbox.restinghr{border-left-color:var(--color-m-restinghr)}
+.diffbox.steps{border-left-color:var(--color-m-steps)}
+.diffbox .row{display:grid;grid-template-columns:160px 1fr;gap:8px 18px;padding:10px 0;border-bottom:0.5px solid var(--color-soft-line)}
+.diffbox .row:last-child{border-bottom:0}
+.diffbox .row:first-child{padding-top:0}
+@media(max-width:560px){.diffbox .row{grid-template-columns:1fr;gap:2px}}
+.diffbox .rk{font-size:12px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-faint);padding-top:2px}
+.diffbox .rv{font-size:16px;line-height:1.5;color:var(--color-ink)}
+
+/* comparison table */
+.cmp-wrap{margin:30px 0;overflow-x:auto;border-radius:var(--radius-sm);border:1px solid var(--color-soft-line);box-shadow:var(--shadow-sm)}
+.cmp{width:100%;border-collapse:collapse;font-size:14px;background:var(--color-paper);min-width:560px}
+.cmp th,.cmp td{padding:13px 16px;text-align:left;border-bottom:0.5px solid var(--color-soft-line);letter-spacing:var(--track-body-tight)}
+.cmp thead th{font-size:12px;text-transform:uppercase;letter-spacing:var(--track-caps);color:var(--color-faint);font-weight:600}
+.cmp tbody th{font-weight:600;color:var(--color-ink);font-size:13px}
+.cmp td{font-variant-numeric:tabular-nums;color:var(--color-ink)}
+.cmp .col-amber{background:rgba(190,153,36,0.07)}
+.cmp .col-red{background:rgba(226,75,74,0.06)}
+.cmp tr:last-child td,.cmp tr:last-child th{border-bottom:0}
+.cmp .cat-dot{display:inline-flex;align-items:center;gap:8px}
+.cmp .cat-dot::before{content:"";width:9px;height:9px;border-radius:3px;display:inline-block}
+.cmp .cat-amber::before{background:var(--color-m-energy)}
+.cmp .cat-red::before{background:var(--color-destructive)}
+.cmp .hi{font-weight:600}
+
+/* series footer (article outro, distinct from site footer) */
+.series{background:var(--color-paper);border-top:1px solid var(--color-line);margin-top:72px}
+.series-in{max-width:720px;margin:0 auto;padding:64px 32px}
+.series-in h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);margin-bottom:18px}
+.series-in p{font-size:16px;line-height:1.6;color:var(--color-muted);margin-bottom:18px}
+.series-credit{font-family:var(--font-mono);font-size:13px;color:var(--color-green-dark);margin-bottom:30px}
+.series-about{font-size:14px;color:var(--color-faint);line-height:1.55;padding-top:22px;border-top:0.5px solid var(--color-soft-line)}
+.series-cross{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:8px 0 36px}
+@media(max-width:600px){.series-cross{grid-template-columns:1fr}}
+.cross-card{background:var(--color-bg);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:20px 22px;text-decoration:none;color:inherit;transition:border-color .15s var(--ease-settle)}
+.cross-card:hover{border-color:var(--color-muted)}
+.cross-card .cc-dir{font-size:12px;color:var(--color-faint);text-transform:uppercase;letter-spacing:var(--track-caps);margin-bottom:8px}
+.cross-card .cc-title{font-size:16px;font-weight:600;color:var(--color-ink);line-height:1.35;letter-spacing:var(--track-body)}
+.cross-card.soon .cc-title{color:var(--color-faint)}
+.cross-card .cc-go{color:var(--color-green);font-size:14px;margin-top:10px;display:inline-block}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="wm nav-brand" href="../index.html">Me<span class="wm-stop">.</span></a>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../case-studies/index.html">Case studies</a>
+    <a href="../guides/index.html">Guides</a>
+    <span class="coming-tag"><span class="dot"></span>Coming to iOS June 2026</span>
+  </div>
+</div></nav>
+<main>
+  <header class="cs-hero wrap">
+    <a class="backlink" href="index.html">Case studies</a>
+    <h1>The body keeps score of your life, not just your training<span class="h-stop">.</span></h1>
+    <p class="dek">431 nights of one person's sleep data. The biggest lever on deep sleep was not how hard they trained. It was daylight, life stress, and two small evening habits.</p>
+    <div class="meta-strip"><span class="ms-tag">Case Study 02</span><span>Reading time ~8 minutes</span></div>
+  </header>
+
+  <div class="cs-layout" style="margin-top:36px"><figure class="chart breakout"><svg viewBox="0 0 960 272" role="img" aria-label="Deep sleep by month over 14 months, lowest in mid-year winter, highest in the December-January summer, with an evening habit change marked in early 2026." xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif"><rect x="109.7" y="68" width="191.1" height="156" fill="rgba(87,177,240,0.10)"/><text x="205.3" y="81" text-anchor="middle" font-size="10" fill="#57B1F0" font-weight="600">extended trip</text><line x1="46" y1="146" x2="938" y2="146" stroke="#8D9088" stroke-width="1" stroke-dasharray="4 4"/><text x="46" y="141" font-size="9.5" fill="#8D9088" letter-spacing="0.04em">baseline 33min</text><text x="38" y="212.8181818181818" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">24</text><text x="38" y="149" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">33</text><text x="38" y="85.18181818181819" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">42</text><polyline points="46.0,138.9 109.7,153.1 173.4,167.3 237.1,195.6 300.9,202.7 364.6,188.5 428.3,167.3 492.0,146.0 555.7,124.7 619.4,96.4 683.1,89.3 746.9,110.5 810.6,124.7 874.3,131.8 938.0,138.9" fill="none" stroke="#1E93B0" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/><circle cx="46.0" cy="138.9" r="2.4" fill="#1E93B0"/><circle cx="109.7" cy="153.1" r="2.4" fill="#1E93B0"/><circle cx="173.4" cy="167.3" r="2.4" fill="#1E93B0"/><circle cx="237.1" cy="195.6" r="2.4" fill="#1E93B0"/><circle cx="300.9" cy="202.7" r="2.4" fill="#1E93B0"/><circle cx="364.6" cy="188.5" r="2.4" fill="#1E93B0"/><circle cx="428.3" cy="167.3" r="2.4" fill="#1E93B0"/><circle cx="492.0" cy="146.0" r="2.4" fill="#1E93B0"/><circle cx="555.7" cy="124.7" r="2.4" fill="#1E93B0"/><circle cx="619.4" cy="96.4" r="2.4" fill="#1E93B0"/><circle cx="683.1" cy="89.3" r="2.4" fill="#1E93B0"/><circle cx="746.9" cy="110.5" r="2.4" fill="#1E93B0"/><circle cx="810.6" cy="124.7" r="5" fill="#62CC82" stroke="#FBF8F1" stroke-width="1.5"/><circle cx="874.3" cy="131.8" r="2.4" fill="#1E93B0"/><circle cx="938.0" cy="138.9" r="5" fill="#1E93B0" stroke="#FBF8F1" stroke-width="1.5"/><line x1="300.9" y1="18" x2="300.9" y2="196.7" stroke="#57B1F0" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/><rect x="297.9" y="15" width="6" height="6" rx="1.5" fill="#57B1F0"/><text x="308.9" y="21" text-anchor="start" font-size="10.5" fill="#3a3d3c" letter-spacing="-0.01em">winter low</text><line x1="683.1" y1="18" x2="683.1" y2="83.3" stroke="#BE9924" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/><rect x="680.1" y="15" width="6" height="6" rx="1.5" fill="#BE9924"/><text x="675.1" y="21" text-anchor="end" font-size="10.5" fill="#3a3d3c" letter-spacing="-0.01em">summer peak</text><line x1="810.6" y1="41" x2="810.6" y2="118.7" stroke="#62CC82" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/><rect x="807.6" y="38" width="6" height="6" rx="1.5" fill="#62CC82"/><text x="802.6" y="44" text-anchor="end" font-size="10.5" fill="#3a3d3c" letter-spacing="-0.01em">evening habit change</text><text x="46.0" y="258" text-anchor="middle" font-size="10" fill="#8D9088" font-weight="400">Mar</text><text x="173.4" y="258" text-anchor="middle" font-size="10" fill="#8D9088" font-weight="400">May</text><text x="300.9" y="258" text-anchor="middle" font-size="10" fill="#8D9088" font-weight="400">Jul</text><text x="428.3" y="258" text-anchor="middle" font-size="10" fill="#8D9088" font-weight="400">Sep</text><text x="555.7" y="258" text-anchor="middle" font-size="10" fill="#8D9088" font-weight="400">Nov</text><text x="683.1" y="258" text-anchor="middle" font-size="10" fill="#8D9088" font-weight="400">Jan</text><text x="810.6" y="258" text-anchor="middle" font-size="10" fill="#E24B4A" font-weight="600">Mar</text><text x="938.0" y="258" text-anchor="middle" font-size="10" fill="#8D9088" font-weight="600">May</text></svg><figcaption>Monthly mean nightly deep sleep across 14 months (431 nights). Deep sleep swings with the seasons and with life, not the training calendar. Markers are approximate; the year runs in a temperate Southern Hemisphere climate (winter is June to August).</figcaption></figure></div>
+
+  <div class="cs-layout">
+    <article class="cs-body">
+
+      <section id="thesis">
+        <span class="sec-eyebrow" style="color:var(--color-green-dark)">The thesis</span>
+        <h2>Same effort, different life, different recovery<span class="h-stop">.</span></h2>
+        <p class="lead">Deep sleep is the body's scarcest, most restorative currency. It is the stage that does the heavy structural repair, and the one most easily lost. Across 431 nights, this user ran a structural deficit: a mean of about <span class="mono">33 minutes</span> a night, roughly 8% of total sleep, against a 13 to 23% healthy reference.</p>
+        <p>The interesting part is what moved it. Not training. Across the year, the largest levers on deep sleep were environmental and behavioural: daylight, life stress, and a couple of small evening habits. The training calendar barely registered against them. The body was keeping score of the whole life, not just the sessions.</p>
+        <blockquote class="pullquote">Same effort, different life, different recovery.</blockquote>
+      </section>
+
+      <section id="reading">
+        <span class="sec-eyebrow" style="color:var(--color-green-dark)">Orientation</span>
+        <h2>How to read this case<span class="h-stop">.</span></h2>
+        <p>As in the first case study, every finding is read in two layers. The first is the biomarker: deep sleep, REM, HRV, resting heart rate. The second is the context: daylight, life events, habits, and what went in the body the night before. The number tells you what happened. The context tells you why.</p>
+        <p>A small recovery vocabulary runs through the piece. The <strong>HRV readiness floor</strong> sits around <span class="mono">30ms</span>, below which the autonomic system is clearly taxed. The <strong>resting-heart-rate recovery floor</strong> sits around <span class="mono">47bpm</span>, the marker of a fully rested, fully tapered state. And REM and deep sleep respond to different stressors, which is why they sometimes move in opposite directions.</p>
+        <div class="legend">
+          <div class="lg-row"><span class="sw" style="background:#1E93B0"></span><div><div class="lg-cat">Cyan · Deep sleep</div><div class="lg-desc">The protagonist metric, carried through every chart.</div></div></div>
+          <div class="lg-row"><span class="sw" style="background:#BE9924"></span><div><div class="lg-cat">Amber · Daylight</div><div class="lg-desc">Finding 01, the environmental signal.</div></div></div>
+          <div class="lg-row"><span class="sw" style="background:#57B1F0"></span><div><div class="lg-cat">Blue · Life stress</div><div class="lg-desc">Finding 02, the autonomic modifier.</div></div></div>
+          <div class="lg-row"><span class="sw" style="background:#DC6C84"></span><div><div class="lg-cat">Pink · Alcohol</div><div class="lg-desc">Finding 03, the clearest negative input.</div></div></div>
+          <div class="lg-row"><span class="sw" style="background:#62CC82"></span><div><div class="lg-cat">Green · The habit change</div><div class="lg-desc">Finding 04, the clearest positive intervention.</div></div></div>
+        </div>
+      </section>
+
+      <section id="daylight">
+        <span class="sec-eyebrow" style="color:#BE9924">Finding 01</span>
+        <h2>Daylight moves deep sleep<span class="h-stop">.</span></h2>
+        <p>The cleanest environmental signal in the dataset. Across 385 paired days, the sunniest quarter of days produced about 30% more deep sleep than the darkest quarter: <span class="mono">45.6</span> versus <span class="mono">35.2</span> minutes a night. The effect holds at +22% even with the trip period excluded, so it is not just an artefact of one bright stretch.</p>
+        <p>The relationship is not linear, and the data says so honestly. Day-to-day, the correlation is weak (Pearson 0.14); daylight is one input among many and the daily noise is large. The story is in the tail. The step-up concentrates above roughly two hours of daylight, and this user was below that threshold on about 82% of normal-life days.</p>
+        <figure class="chart"><svg viewBox="0 0 720 280" role="img" aria-label="Deep sleep averaged 35.2 minutes on the darkest 25% of days and 45.6 minutes on the sunniest 25%." xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif"><line x1="44" y1="234.0" x2="700" y2="234.0" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="237.0" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">0</text><line x1="44" y1="173.4" x2="700" y2="173.4" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="176.4" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">15</text><line x1="44" y1="112.8" x2="700" y2="112.8" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="115.8" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">30</text><line x1="44" y1="52.3" x2="700" y2="52.3" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="55.3" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">45</text><rect x="93.2" y="91.8" width="229.5" height="142.2" rx="3" fill="#D8C7B8"/><text x="208.0" y="84.8" text-anchor="middle" font-size="12" font-weight="600" fill="#646866" font-variant-numeric="tabular-nums">35.2</text><text x="208.0" y="252.0" text-anchor="middle" font-size="11" fill="#646866">Darkest 25% of days</text><rect x="421.2" y="49.8" width="229.5" height="184.2" rx="3" fill="#BE9924"/><text x="536.0" y="42.8" text-anchor="middle" font-size="12" font-weight="600" fill="#BE9924" font-variant-numeric="tabular-nums">45.6</text><text x="536.0" y="252.0" text-anchor="middle" font-size="11" fill="#646866">Sunniest 25% of days</text></svg><figcaption>Mean nightly deep sleep on the darkest quarter of days versus the sunniest quarter, across 385 paired days. The step-up concentrates above roughly two hours of daylight.</figcaption></figure>
+        <div class="stats">
+          <div class="stat"><div class="num">+30<span class="u">%</span></div><div class="lab">Deep sleep, sunniest vs darkest quarter (annual)</div></div>
+          <div class="stat"><div class="num">+22<span class="u">%</span></div><div class="lab">Same effect with the trip excluded</div></div>
+          <div class="stat"><div class="num">120<span class="u">min</span></div><div class="lab">Daylight threshold where the step-up concentrates</div></div>
+        </div>
+        <div class="diffbox energy">
+          <div class="row"><div class="rk">What the data shows</div><div class="rv">More daylight is associated with more deep sleep, with the gain concentrated above about two hours of daylight.</div></div>
+          <div class="row"><div class="rk">Associated with</div><div class="rv">Brighter days, more time outdoors, the lighter half of the year.</div></div>
+          <div class="row"><div class="rk">Stays outside the data</div><div class="rv">Why the threshold sits where it does, and how much is light itself versus the activity that comes with a bright day.</div></div>
+        </div>
+      </section>
+
+      <section id="stress">
+        <span class="sec-eyebrow" style="color:#57B1F0">Finding 02</span>
+        <h2>Stress stacks, it doesn't add<span class="h-stop">.</span></h2>
+        <p>The intellectual core of the year. A natural experiment made it legible: a 100-day period living away from normal work and routine, compared against the prior 100 days of ordinary life. Training continued throughout both. Life stress did not.</p>
+        <p>The payoff is in the decoupling. Bucket the days by training load and compare HRV within each bucket: at every matched load, HRV ran 3 to 8ms higher away from normal life. And the gap <em class="anno">widened</em> with intensity, reaching about +8.3ms at the hardest sessions. If training load alone explained recovery, the gap would close at matched load. It does not.</p>
+        <figure class="chart"><svg viewBox="0 0 720 320" role="img" aria-label="Grouped bars showing HRV higher during the trip than in normal life across five training-load buckets, with the gap widening at higher intensity." xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif"><line x1="44" y1="246.2" x2="700" y2="246.2" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="249.2" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">40</text><line x1="44" y1="162.9" x2="700" y2="162.9" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="165.9" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">46</text><line x1="44" y1="79.6" x2="700" y2="79.6" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="82.6" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">52</text><rect x="63.3" y="65.7" width="40.0" height="208.3" rx="3" fill="#57B1F0"/><rect x="115.9" y="107.3" width="40.0" height="166.7" rx="3" fill="#AEB6B0"/><text x="109.6" y="292.0" text-anchor="middle" font-size="11" fill="#646866">Rest / easy</text><rect x="194.5" y="79.6" width="40.0" height="194.4" rx="3" fill="#57B1F0"/><rect x="247.1" y="135.1" width="40.0" height="138.9" rx="3" fill="#AEB6B0"/><text x="240.8" y="292.0" text-anchor="middle" font-size="11" fill="#646866">Moderate</text><rect x="325.7" y="100.4" width="40.0" height="173.6" rx="3" fill="#57B1F0"/><rect x="378.3" y="162.9" width="40.0" height="111.1" rx="3" fill="#AEB6B0"/><text x="372.0" y="292.0" text-anchor="middle" font-size="11" fill="#646866">Tempo</text><rect x="456.9" y="121.2" width="40.0" height="152.8" rx="3" fill="#57B1F0"/><rect x="509.5" y="190.7" width="40.0" height="83.3" rx="3" fill="#AEB6B0"/><text x="503.2" y="292.0" text-anchor="middle" font-size="11" fill="#646866">Threshold</text><rect x="588.1" y="103.2" width="40.0" height="170.8" rx="3" fill="#57B1F0"/><text x="608.1" y="96.2" text-anchor="middle" font-size="12" font-weight="600" fill="#57B1F0" font-variant-numeric="tabular-nums">+8.3</text><rect x="640.7" y="218.4" width="40.0" height="55.6" rx="3" fill="#AEB6B0"/><text x="634.4" y="292.0" text-anchor="middle" font-size="11" fill="#646866">Hard</text><rect x="44" y="304" width="10" height="10" rx="2" fill="#57B1F0"/><text x="59" y="312" font-size="10.5" fill="#646866">Away from normal life</text><rect x="192" y="304" width="10" height="10" rx="2" fill="#AEB6B0"/><text x="207" y="312" font-size="10.5" fill="#646866">Normal life</text></svg><figcaption>HRV bucketed by training load, compared between the low-stress trip and normal life. At every matched load, HRV ran higher away from normal life, and the gap widened with intensity, reaching about +8.3ms at the hardest sessions.</figcaption></figure>
+        <p>Two more readings point the same way. There were zero sub-30ms readiness days during the low-stress period, against 4% in normal life. And same-day HRV immediately after a hard session was near-identical between the two periods: the hard session lands the body in the same place, but in the low-stress period that place was further from the floor to begin with.</p>
+        <blockquote class="pullquote" style="border-left-color:#57B1F0">The body recovers from training and life stress out of the same budget.</blockquote>
+        <div class="diffbox resprate">
+          <div class="row"><div class="rk">What the data shows</div><div class="rv">Identical physical work cost more autonomically when life stress was higher, and the cost grew with intensity.</div></div>
+          <div class="row"><div class="rk">Associated with</div><div class="rv">Work load, routine, and the demands of ordinary life sitting underneath the training.</div></div>
+          <div class="row"><div class="rk">Stays outside the data</div><div class="rv">Which specific stressors mattered most, and how the effect would generalise beyond one person and one trip.</div></div>
+        </div>
+      </section>
+
+      <section id="alcohol">
+        <span class="sec-eyebrow" style="color:#DC6C84">Finding 03</span>
+        <h2>The alcohol fingerprint<span class="h-stop">.</span></h2>
+        <p>A clean dose-response signature, and a small sample. This is four nights, so it is suggestive rather than definitive, and the section keeps that caveat in view. But the fingerprint is consistent and worth reading.</p>
+        <p>The signature is selective. REM is suppressed, down to <span class="mono">&minus;62%</span> on the heaviest night, while deep sleep is preserved or even slightly elevated as early-night sedation deepens it. HRV and resting heart rate carry the metabolic cost of overnight clearance. Two tiers separate cleanly: heavy and late (HRV crashing 21 to 63%, RHR up 9 to 15bpm) versus moderate at a normal bedtime, which barely registers.</p>
+        <figure class="chart"><svg viewBox="0 0 720 300" role="img" aria-label="Indexed to baseline 100, REM fell to 83 on drinking nights while deep sleep held at about 106." xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif"><line x1="44" y1="254.0" x2="700" y2="254.0" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="257.0" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">0</text><line x1="44" y1="156.5" x2="700" y2="156.5" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="159.5" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">50</text><line x1="44" y1="59.1" x2="700" y2="59.1" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="62.1" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">100</text><rect x="75.1" y="59.1" width="114.8" height="194.9" rx="3" fill="#B8B8B2"/><rect x="226.1" y="92.2" width="114.8" height="161.8" rx="3" fill="#DC6C84"/><text x="283.5" y="85.2" text-anchor="middle" font-size="12" font-weight="600" fill="#DC6C84" font-variant-numeric="tabular-nums">−17%</text><text x="208.0" y="272.0" text-anchor="middle" font-size="11" fill="#646866">REM sleep</text><rect x="403.1" y="59.1" width="114.8" height="194.9" rx="3" fill="#B8B8B2"/><rect x="554.1" y="47.4" width="114.8" height="206.6" rx="3" fill="#1E93B0"/><text x="611.5" y="40.4" text-anchor="middle" font-size="12" font-weight="600" fill="#1E93B0" font-variant-numeric="tabular-nums">+6%</text><text x="536.0" y="272.0" text-anchor="middle" font-size="11" fill="#646866">Deep sleep</text><rect x="44" y="284" width="10" height="10" rx="2" fill="#B8B8B2"/><text x="59" y="292" font-size="10.5" fill="#646866">Baseline</text><rect x="114" y="284" width="10" height="10" rx="2" fill="#DC6C84"/><text x="129" y="292" font-size="10.5" fill="#646866">Drinking night</text></svg><figcaption>Sleep architecture on drinking nights versus baseline, indexed to baseline = 100. REM is selectively suppressed while deep sleep is preserved or slightly elevated. Mean across four nights; the heaviest night reached −62% REM.</figcaption></figure>
+        <div class="signal"><span class="eyb">The read</span><p>The fingerprint is REM, not deep sleep. Acetaldehyde suppresses REM while early sedation can deepen N3, which is why a drinking night can look "deep" on a summary while the restorative REM work quietly goes missing.</p></div>
+        <div class="diffbox restinghr">
+          <div class="row"><div class="rk">What the data shows</div><div class="rv">On drinking nights REM fell sharply while deep sleep held, with the autonomic cost scaling with amount and lateness.</div></div>
+          <div class="row"><div class="rk">Associated with</div><div class="rv">Heavier, later drinking; the moderate, early case barely moved the numbers.</div></div>
+          <div class="row"><div class="rk">Stays outside the data</div><div class="rv">Anything firm from four nights. The pattern is a signal to watch, not a conclusion.</div></div>
+        </div>
+      </section>
+
+      <section id="habit">
+        <span class="sec-eyebrow" style="color:#3f9b5c">Finding 04</span>
+        <h2>The evening habit change that worked<span class="h-stop">.</span></h2>
+        <p>The hopeful close, and the cleanest single-variable improvement in the dataset outside the trip. In early 2026 two evening changes happened together: food capped earlier in the evening, and screens reduced after a set time. Bounded windows were compared on either side of the change, chosen to avoid race-taper confounders.</p>
+        <p>The result was a 35% reduction in awake-during-night time, about 9% more deep sleep, and higher sleep efficiency, even at a slightly shorter total duration. REM was unchanged. An extended 37-night window confirmed the direction.</p>
+        <figure class="chart"><svg viewBox="0 0 720 300" role="img" aria-label="Indexed to before 100, awake time fell to 65, deep sleep rose to 109, sleep efficiency rose, and REM held at 100 after the evening changes." xmlns="http://www.w3.org/2000/svg" font-family="Inter,system-ui,sans-serif"><line x1="44" y1="254.0" x2="700" y2="254.0" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="257.0" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">0</text><line x1="44" y1="158.2" x2="700" y2="158.2" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="161.2" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">50</text><line x1="44" y1="62.3" x2="700" y2="62.3" stroke="#EBE5DC" stroke-width="1"/><text x="36" y="65.3" text-anchor="end" font-size="9.5" fill="#8D9088" font-variant-numeric="tabular-nums">100</text><rect x="65.3" y="62.3" width="52.4" height="191.7" rx="3" fill="#B8B8B2"/><rect x="134.3" y="129.4" width="52.4" height="124.6" rx="3" fill="#62CC82"/><text x="160.5" y="122.4" text-anchor="middle" font-size="12" font-weight="600" fill="#3f9b5c" font-variant-numeric="tabular-nums">−35%</text><text x="126.0" y="272.0" text-anchor="middle" font-size="11" fill="#646866">Awake at night</text><rect x="229.3" y="62.3" width="52.4" height="191.7" rx="3" fill="#B8B8B2"/><rect x="298.3" y="45.1" width="52.4" height="208.9" rx="3" fill="#62CC82"/><text x="324.5" y="38.1" text-anchor="middle" font-size="12" font-weight="600" fill="#3f9b5c" font-variant-numeric="tabular-nums">+9%</text><text x="290.0" y="272.0" text-anchor="middle" font-size="11" fill="#646866">Deep sleep</text><rect x="393.3" y="62.3" width="52.4" height="191.7" rx="3" fill="#B8B8B2"/><rect x="462.3" y="54.7" width="52.4" height="199.3" rx="3" fill="#62CC82"/><text x="488.5" y="47.7" text-anchor="middle" font-size="12" font-weight="600" fill="#3f9b5c" font-variant-numeric="tabular-nums">+4%</text><text x="454.0" y="272.0" text-anchor="middle" font-size="11" fill="#646866">Sleep efficiency</text><rect x="557.3" y="62.3" width="52.4" height="191.7" rx="3" fill="#B8B8B2"/><rect x="626.3" y="62.3" width="52.4" height="191.7" rx="3" fill="#62CC82"/><text x="652.5" y="55.3" text-anchor="middle" font-size="12" font-weight="600" fill="#3f9b5c" font-variant-numeric="tabular-nums">held</text><text x="618.0" y="272.0" text-anchor="middle" font-size="11" fill="#646866">REM sleep</text><rect x="44" y="284" width="10" height="10" rx="2" fill="#B8B8B2"/><text x="59" y="292" font-size="10.5" fill="#646866">Before</text><rect x="102" y="284" width="10" height="10" rx="2" fill="#62CC82"/><text x="117" y="292" font-size="10.5" fill="#646866">After</text></svg><figcaption>Sleep quality before and after two evening changes (food capped earlier, screens reduced), indexed to before = 100. Bounded windows compared to avoid race-taper confounders. Awake time fell, deep sleep rose, REM held.</figcaption></figure>
+        <div class="stats">
+          <div class="stat"><div class="num">&minus;35<span class="u">%</span></div><div class="lab">Time awake during the night</div></div>
+          <div class="stat"><div class="num">+9<span class="u">%</span></div><div class="lab">Deep sleep</div></div>
+          <div class="stat"><div class="num">held</div><div class="lab">REM unchanged, efficiency up</div></div>
+        </div>
+        <div class="diffbox steps">
+          <div class="row"><div class="rk">What the data shows</div><div class="rv">Removing two late-evening inputs was associated with faster, less fragmented sleep and more deep sleep.</div></div>
+          <div class="row"><div class="rk">Associated with</div><div class="rv">Earlier last meal and reduced late-evening screen exposure. A plausible mechanism: late eating raises core temperature and keeps digestion active; screens delay melatonin onset.</div></div>
+          <div class="row"><div class="rk">Stays outside the data</div><div class="rv">Which of the two changes did more, since they moved together.</div></div>
+        </div>
+      </section>
+
+      <section id="synthesis">
+        <span class="sec-eyebrow" style="color:var(--color-green-dark)">Synthesis</span>
+        <h2>What the year shows<span class="h-stop">.</span></h2>
+        <p>Set the findings against the thesis and a ranking appears. The largest swing of all is seasonal: deep sleep ran about 58% higher in summer than in winter, the combined circadian envelope that the daylight finding sits inside. Then daylight itself, then the evening habit change, with life stress acting across all of them as the autonomic modifier rather than a single lever.</p>
+        <div class="cmp-wrap">
+          <table class="cmp">
+            <thead><tr><th>Lever</th><th>Effect on deep sleep</th><th>Type</th></tr></thead>
+            <tbody>
+              <tr><th>Seasonality</th><td class="hi">+58% summer vs winter</td><td>Environmental envelope</td></tr>
+              <tr><th>Daylight</th><td>+30% annual / +22% normal life</td><td>Environmental</td></tr>
+              <tr><th>Evening habit change</th><td>+9% deep, &minus;35% awake</td><td>Behavioural</td></tr>
+              <tr><th>Life stress</th><td>+3 to +8ms HRV at matched load</td><td>Autonomic modifier</td></tr>
+              <tr><th>Training load</th><td>Little independent effect on deep sleep</td><td>Reference</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Two smaller threads close the year. A magnesium-based sleep supplement showed an early, unconfirmed signal across a short window, the REM-to-deep ratio shifting from about 3.0:1 toward 2.2:1. It is 17 nights with a post-race confounder, so it reads as a signal worth watching for another clean month, not as efficacy. And the seasonality result is the envelope the daylight finding lives inside, not a separate cause.</p>
+        <p>Where recommendations appear, they belong to the data or to a named human, not to Me. The data associates more daylight, earlier evenings, and lower background stress with better deep sleep. Where a target was set, it was set by the user's coach, for instance reaching the resting-heart-rate recovery floor a set number of times in race week, an instruction that belongs to the coach and the data behind it.</p>
+      </section>
+
+      <section id="methodology">
+        <span class="sec-eyebrow" style="color:var(--color-faint)">Methodology</span>
+        <h2>Methodology<span class="h-stop">.</span></h2>
+        <p><strong>Data sources.</strong> All data was collected via Apple Health on-device: sleep stages, HRV (rMSSD), resting heart rate, respiratory rate, wrist temperature, workouts, and time in daylight. Annotations and check-ins were entered in the Me. app. The window covers 431 nights across 14 months.</p>
+        <p><strong>Known limitation on deep sleep.</strong> Apple Watch is understood to underestimate N3 deep sleep by roughly 15 to 25%, so the stage percentages here are conservative. The relative comparisons (sunny vs dark, before vs after) are more reliable than the absolute minutes.</p>
+        <p><strong>Baselines and exclusions.</strong> All baselines are personal averages across the window, not population norms. A block of duplicate stage records (16 to 24 March 2025) produced impossible durations and was excluded as a data-quality measure.</p>
+        <p><strong>Statistical methods.</strong> Pearson correlation where the relationship was plausibly linear, quartile comparison where it was not, and a matched-load comparison for the stress decoupling. Several variables were not measured, including caffeine, bedroom environment, sleep-onset latency, within-night stage timing, endocrine markers, and the precise count of awakenings; conclusions are bounded accordingly.</p>
+        <p><strong>What this case study is not.</strong> It is not a medical assessment, and nothing here was diagnosed by a clinician. Any respiratory-rate or temperature signals are read as subclinical observations, not diagnoses. The case study demonstrates a reading framework, not a diagnostic tool. To understand what any of this means for you, take it to your GP or compile it for analysis. Not medical advice.</p>
+      </section>
+
+    </article>
+  </div>
+
+  <section class="series" id="series">
+    <div class="series-in">
+      <h3>About this case study series</h3>
+      <p>Case Study 02 is the second in a recurring series from Me. Each case study uses a single user's compiled data to demonstrate one specific reading of the human body, the kind of pattern that becomes visible when biomarkers, annotations, and context live in the same compile.</p>
+      <p>Upcoming case studies will cover the relationship between training load and resting heart rate, and how subjective check-ins predict objective biomarkers.</p>
+      <div class="series-cross">
+        <a class="cross-card" href="01-hrv-crashes.html"><div class="cc-dir">Earlier in the series</div><div class="cc-title">Three crashes. Same signal. Three different causes.</div><span class="cc-go">Read Case Study 01 &rarr;</span></a>
+        <div class="cross-card soon"><div class="cc-dir">Case Study 03</div><div class="cc-title">Coming soon</div></div>
+      </div>
+      <p class="series-about">Me. is a personal health data app that compiles Apple Health data and user-added context into structured reports designed for analysis. It does not interpret, score, or advise. To understand what any reading means for you, take it to your GP or compile it for analysis. Not medical advice.</p>
+    </div>
+  </section>
+</main>
+<footer class="foot"><div class="foot-in">
+  <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
+  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS June 2026</span>
+  <div class="sublab">iOS only · No account required · Free to download</div>
+  <div class="foot-links">
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../case-studies/index.html">Case studies</a>
+    <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
+  </div>
+  <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>
+</div></footer>
+<script>
+/* shared shell scripts: nav blur on scroll, scroll reveals, obfuscated contact */
+(function(){
+  var nav=document.getElementById('nav');
+  if(nav){
+    var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>24);};
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){io.observe(el);});
+  }
+  /* obfuscated contact: literal address never in static DOM */
+  document.querySelectorAll('.contact-link').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var user='info',domain='meapp.health';
+      window.location.href='mailto:'+user+'@'+domain;
+    });
+  });
+})();
+(function(){var links=[].slice.call(document.querySelectorAll('.cs-toc a'));if(!links.length)return;var map=links.map(function(a){return {a:a,el:document.querySelector(a.getAttribute('href'))};}).filter(function(m){return m.el;});function onScroll(){var best=null;map.forEach(function(m){if(m.el.getBoundingClientRect().top<=150)best=m;});links.forEach(function(a){a.classList.remove('active');});if(best)best.a.classList.add('active');}window.addEventListener('scroll',onScroll,{passive:true});onScroll();})();
+
+</script>
+</body>
+</html>

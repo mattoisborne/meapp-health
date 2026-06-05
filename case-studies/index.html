@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy · Me.</title>
-<meta name="description" content="Me. is built so your health data stays yours. No account, no server, nothing to sell.">
+<title>Case studies · Me.</title>
+<meta name="description" content="Real data. Real patterns. What becomes visible when biomarkers and context live together.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Privacy · Me.">
-<meta property="og:description" content="Me. is built so your health data stays yours. No account, no server, nothing to sell.">
+<meta property="og:title" content="Case studies · Me.">
+<meta property="og:description" content="Real data. Real patterns. What becomes visible when biomarkers and context live together.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
@@ -206,96 +206,80 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .related a .arr{transition:transform .2s var(--ease-settle)}
 .related a:hover .arr{transform:translateX(3px)}
 
-/* ===== legal pages (privacy / terms) ===== */
-.legal-top{padding:120px 0 0}
-@media(max-width:760px){.legal-top{padding:100px 0 0}}
-.legal-top .backlink{margin-bottom:30px}
-.legal-article{max-width:720px;margin:0 auto;padding:0 32px}
-.legal-article h1{font-size:44px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.08}
-@media(max-width:760px){.legal-article h1{font-size:32px}}
-.legal-updated{font-size:13px;color:var(--color-faint);margin-top:16px}
-.legal-lede{font-size:18px;line-height:1.6;color:var(--color-muted);margin-top:24px}
-.legal-body{padding:40px 0 8px}
-.legal-body h2{font-size:24px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:44px 0 14px;line-height:1.2}
-.legal-body h2:first-child{margin-top:0}
-.legal-body p{font-size:16px;line-height:1.7;color:var(--color-ink);margin-bottom:18px}
-.legal-body ul{margin:0 0 18px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.legal-body ul li{font-size:16px;line-height:1.6;color:var(--color-ink);padding-left:24px;position:relative}
-.legal-body ul li::before{content:"";position:absolute;left:3px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--color-green)}
-.legal-body a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px}
-.legal-note{margin:8px auto 64px;max-width:720px;padding:0 32px}
-.legal-note .box{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:20px 24px;font-size:14px;color:var(--color-muted);line-height:1.6}
+/* ===== case study index ===== */
+.cs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:8px;align-items:stretch}
+@media(max-width:980px){.cs-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:680px){.cs-grid{grid-template-columns:1fr}}
+.cs-grid .cs-card,.cs-grid .cs-soon{height:100%}
+.cs-grid .cs-card{padding:34px}
+.cs-grid .cs-card h3{font-size:23px}
+.cs-grid .cs-card .spacer{flex:1;min-height:8px;width:100%}
+.cs-grid .cs-soon .spacer{flex:1;min-height:8px;width:100%}
+.cs-grid .cs-soon{justify-content:flex-start}
 </style>
 </head>
 <body>
 <nav class="nav" id="nav"><div class="nav-in">
-  <a class="wm nav-brand" href="index.html">Me<span class="wm-stop">.</span></a>
+  <a class="wm nav-brand" href="../index.html">Me<span class="wm-stop">.</span></a>
   <div class="nav-links">
-    <a href="index.html">Home</a>
-    <a href="case-studies/index.html">Case studies</a>
-    <a href="guides/index.html">Guides</a>
+    <a href="../index.html">Home</a>
+    <a href="../case-studies/index.html">Case studies</a>
+    <a href="../guides/index.html">Guides</a>
     <span class="coming-tag"><span class="dot"></span>Coming to iOS June 2026</span>
   </div>
 </div></nav>
 <main>
-  <div class="legal-article legal-top">
-    <a class="backlink" href="index.html">Me. home</a>
-  </div>
-  <article class="legal-article">
-    <h1>Privacy<span class="h-stop">.</span></h1>
-    <div class="legal-updated">Last updated 29 May 2026</div>
-    <p class="legal-lede">Me. is built so your health data stays yours. There is no account, no Me. server, and nothing to sell. This page explains what that means in practice.</p>
-    <!-- ============================================================
-         BRAND WRAPPER. The copy below is a faithful draft consistent
-         with the product (no account, on-device, no servers). Replace
-         with the final reviewed legal copy at deploy. Structure, type,
-         and the obfuscated contact link stay as built.
-         ============================================================ -->
-    <div class="legal-body">
-      <h2>The short version</h2>
-      <p>Me. reads your Apple Health data on your device, lets you add your own context, and compiles structured outputs that you choose to share. Your data is stored on your iPhone. It does not pass through a Me. server, because there is no Me. server.</p>
-
-      <h2>No account, no identity</h2>
-      <p>Me. works without signing up. There is no email, no profile, and no identity tied to your use of the app. We do not ask who you are, and we have no way to link your data to you.</p>
-
-      <h2>What stays on your device</h2>
-      <p>Everything you put into Me. and everything Me. reads from Apple Health stays on your iPhone:</p>
-      <ul>
-        <li>The health data Apple Health shares with Me. when you grant permission.</li>
-        <li>Your daily check-ins, notes, and Health Profile.</li>
-        <li>The compilations you generate.</li>
-      </ul>
-      <p>Me. only reads the Apple Health categories you permit, and only when you grant access. You can change or revoke that access at any time in the iOS Health settings.</p>
-
-      <h2>iCloud backup</h2>
-      <p>If you enable iCloud backup, your Me. data is included in your device backup and stored through your own iCloud account, under your Apple account and your encryption. That is your choice and your control. Me. cannot read your iCloud backup.</p>
-
-      <h2>What moves, and when</h2>
-      <p>Data only leaves your device when you compile and choose where it goes. A compilation is plain text that you copy or share deliberately, into an AI tool, to a GP, or to a coach. Me. does not transmit your data anywhere on its own.</p>
-
-      <h2>Never sold</h2>
-      <p>Me. earns through the app, not through your data. We do not sell, rent, or share your health data with advertisers, data brokers, or anyone else. There is no analytics profile built from your health information.</p>
-
-      <h2>Deleting the app</h2>
-      <p>Because your data lives on your device, deleting the app removes it. If you have iCloud backup enabled, your data can be restored when you reinstall. Me. holds no copy on a server, so there is nothing to request or erase from us.</p>
-
-      <h2>Contact</h2>
-      <p>Questions about privacy can be sent to us using the <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a> link. Me. is made by Oi Studios, Hobart, Tasmania, Australia.</p>
+  <section class="wrap page-head">
+    <span class="eyebrow">Case studies</span>
+    <h1>What becomes visible when data and context live together<span class="h-stop">.</span></h1>
+    <p class="intro">Each case study uses real, anonymised user data to demonstrate one specific reading of the human body. These are the patterns that only become visible when biomarkers, notes, and daily context are compiled in one place.</p>
+  </section>
+  <section class="section" style="padding-top:48px">
+    <div class="wrap">
+      <div class="cs-grid">
+        <article class="cs-card reveal">
+          <span class="tag tag-sleep">Case Study 01</span>
+          <h3>Three crashes. Same signal. Three different causes.</h3>
+          <div class="dek">HRV detects the stress. Annotations explain it. The difference is in what you do next.</div>
+          <div class="spacer"></div>
+          <div class="meta">~6 min read</div>
+          <a class="cs-link" href="01-hrv-crashes.html">Read the case study <span class="arr">&rarr;</span></a>
+        </article>
+        <article class="cs-card reveal d1">
+          <span class="tag tag-sleep">Case Study 02</span>
+          <h3>The body keeps score of your life, not just your training.</h3>
+          <div class="dek">431 nights of one person's sleep data. The biggest lever on deep sleep was not how hard they trained.</div>
+          <div class="spacer"></div>
+          <div class="meta">~8 min read</div>
+          <a class="cs-link" href="02-sleep-architecture.html">Read the case study <span class="arr">&rarr;</span></a>
+        </article>
+        <article class="cs-card reveal d2">
+          <span class="tag tag-sleep">Case Study 03</span>
+          <h3>The plan that knew who it was for.</h3>
+          <div class="dek">A Hyrox block ends. A half marathon target takes shape. What happens when the AI already knows your constraints before you ask.</div>
+          <div class="spacer"></div>
+          <div class="meta">~7 min read</div>
+          <a class="cs-link" href="03-training-plan.html">Read the case study <span class="arr">&rarr;</span></a>
+        </article>
+        <article class="cs-soon reveal d3">
+          <span class="tag tag-faint">Coming soon</span>
+          <h3>More case studies in progress.</h3>
+          <div class="spacer"></div>
+          <p>Future case studies will cover training load and resting heart rate, and how subjective check-ins predict objective biomarkers.</p>
+        </article>
+      </div>
     </div>
-  </article>
-  <div class="legal-note">
-    <div class="box">This page is the brand wrapper for the final privacy policy. The reviewed legal copy is dropped into the article above without changing the layout, type, or the obfuscated contact link.</div>
-  </div>
+  </section>
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
   <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS June 2026</span>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
-    <a href="privacy.html">Privacy</a>
-    <a href="terms.html">Terms</a>
-    <a href="guides/index.html">Guides</a>
-    <a href="case-studies/index.html">Case studies</a>
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../case-studies/index.html">Case studies</a>
     <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
   </div>
   <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>

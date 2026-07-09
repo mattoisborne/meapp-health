@@ -286,6 +286,10 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .dev-pill{background:var(--color-paper);border:1px solid var(--color-line);border-radius:var(--radius-pill);padding:9px 18px;font-size:14px;letter-spacing:var(--track-body-tight);white-space:nowrap;box-shadow:var(--shadow-sm)}
 .dev-more{flex-basis:100%;display:flex;justify-content:center;margin-top:26px}
 .dev-more .dev-pill{background:rgba(0,200,150,0.08);border-color:rgba(0,200,150,0.32);color:var(--color-green-dark);font-weight:500;box-shadow:none}
+/* per-group metric tint: wrapper passes --mc through without touching flex layout */
+.dev-group{display:contents}
+.dev-cloud .dev-cat{color:color-mix(in srgb,var(--mc,var(--color-green-dark)) 78%,var(--color-ink))}
+.dev-group .dev-pill{border-color:color-mix(in srgb,var(--mc,var(--color-line)) 38%,var(--color-line));background:color-mix(in srgb,var(--mc,#FBF8F1) 6%,var(--color-paper))}
 .dev-close{font-size:20px;font-weight:500;color:var(--color-ink);margin:46px auto 0;letter-spacing:var(--track-h3);max-width:34ch;line-height:1.3;text-align:center}
 .dev-gap{font-size:14px;color:var(--color-muted);margin:34px auto 0;max-width:62ch;line-height:1.6;text-align:center}
 .dev-gap a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px;transition:color .15s var(--ease-settle)}
@@ -480,14 +484,14 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <p class="sec-intro">Me. reads from Apple Health. That single connection reaches every device and app that writes there: wearables, health monitors, fitness platforms, sleep trackers. There are hundreds of them. If yours is one, you are already set up.</p>
     </div>
     <div class="dev-cloud reveal">
-      <span class="dev-cat">Wearables</span>
-      <span class="dev-pill">Apple Watch</span><span class="dev-pill">Oura Ring</span><span class="dev-pill">Whoop</span><span class="dev-pill">Garmin</span><span class="dev-pill">Fitbit</span>
-      <span class="dev-cat">Health devices</span>
-      <span class="dev-pill">Blood pressure monitors</span><span class="dev-pill">Digital scales</span><span class="dev-pill">Dexcom CGM</span><span class="dev-pill">Abbott Libre</span>
-      <span class="dev-cat">Fitness and training</span>
-      <span class="dev-pill">Strava</span><span class="dev-pill">MyFitnessPal</span><span class="dev-pill">Nike Run Club</span><span class="dev-pill">Hevy</span>
-      <span class="dev-cat">Sleep</span>
-      <span class="dev-pill">AutoSleep</span><span class="dev-pill">Sleep Cycle</span><span class="dev-pill">Pillow</span><span class="dev-pill">Sleep++</span>
+      <span class="dev-cat" style="--mc:var(--color-m-restinghr)">Wearables</span>
+      <span class="dev-group" style="--mc:var(--color-m-restinghr)"><span class="dev-pill">Apple Watch</span><span class="dev-pill">Oura Ring</span><span class="dev-pill">Whoop</span><span class="dev-pill">Garmin</span><span class="dev-pill">Fitbit</span></span>
+      <span class="dev-cat" style="--mc:var(--color-cyan)">Health devices</span>
+      <span class="dev-group" style="--mc:var(--color-cyan)"><span class="dev-pill">Blood pressure monitors</span><span class="dev-pill">Digital scales</span><span class="dev-pill">Dexcom CGM</span><span class="dev-pill">Abbott Libre</span></span>
+      <span class="dev-cat" style="--mc:var(--color-m-steps)">Fitness and training</span>
+      <span class="dev-group" style="--mc:var(--color-m-steps)"><span class="dev-pill">Strava</span><span class="dev-pill">MyFitnessPal</span><span class="dev-pill">Nike Run Club</span><span class="dev-pill">Hevy</span></span>
+      <span class="dev-cat" style="--mc:var(--color-m-sleep)">Sleep</span>
+      <span class="dev-group" style="--mc:var(--color-m-sleep)"><span class="dev-pill">AutoSleep</span><span class="dev-pill">Sleep Cycle</span><span class="dev-pill">Pillow</span><span class="dev-pill">Sleep++</span></span>
       <div class="dev-more"><span class="dev-pill">+ hundreds more</span></div>
     </div>
     <p class="dev-gap reveal">Some devices need a bridge app to write all their data to Apple Health.<br>If something's missing, apps like Health Sync and HRV Sync can fill the gap.<br>They're separate apps, not part of Me.</p>
@@ -648,28 +652,35 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     while(svg.firstChild)svg.removeChild(svg.firstChild);
     paths=[];
     svg.setAttribute('viewBox','0 0 '+sc.clientWidth+' '+sc.clientHeight);
-    var pts=[].slice.call(sc.querySelectorAll('.chip'))
-      .filter(function(c){return c.offsetWidth>0;})
-      .map(function(c){return {x:c.offsetLeft+c.offsetWidth/2,y:c.offsetTop+c.offsetHeight/2};});
+    var chips=[].slice.call(sc.querySelectorAll('.chip'))
+      .filter(function(c){return c.offsetWidth>0;});
+    var names=chips.map(function(c){return c.textContent.trim();});
+    var pts=chips.map(function(c){return {x:c.offsetLeft+c.offsetWidth/2,y:c.offsetTop+c.offsetHeight/2};});
     var seen={};
+    function link(i,j){
+      var key=Math.min(i,j)+'-'+Math.max(i,j);
+      if(seen[key])return;seen[key]=1;
+      var p=pts[i],q=pts[j],d=Math.hypot(q.x-p.x,q.y-p.y);
+      /* bow each thread perpendicular to its chord so the web reads organic, not ruled */
+      var nx=-(q.y-p.y),ny=q.x-p.x,nl=Math.hypot(nx,ny)||1;
+      var amp=d*0.18*((i+j)%2?1:-1);
+      var cx=(p.x+q.x)/2+nx/nl*amp,cy=(p.y+q.y)/2+ny/nl*amp;
+      var path=document.createElementNS(NS,'path');
+      path.setAttribute('d','M'+p.x+' '+p.y+' Q'+cx+' '+cy+' '+q.x+' '+q.y);
+      path.setAttribute('class','myco-thread');
+      svg.appendChild(path);
+      paths.push(path);
+    }
     pts.forEach(function(p,i){
       pts.map(function(q,j){return {j:j,d:Math.hypot(q.x-p.x,q.y-p.y)};})
         .filter(function(o){return o.j!==i;})
         .sort(function(a,b){return a.d-b.d;}).slice(0,2)
-        .forEach(function(o){
-          var key=Math.min(i,o.j)+'-'+Math.max(i,o.j);
-          if(seen[key])return;seen[key]=1;
-          var q=pts[o.j];
-          /* bow each thread perpendicular to its chord so the web reads organic, not ruled */
-          var nx=-(q.y-p.y),ny=q.x-p.x,nl=Math.hypot(nx,ny)||1;
-          var amp=o.d*0.18*((i+o.j)%2?1:-1);
-          var cx=(p.x+q.x)/2+nx/nl*amp,cy=(p.y+q.y)/2+ny/nl*amp;
-          var path=document.createElementNS(NS,'path');
-          path.setAttribute('d','M'+p.x+' '+p.y+' Q'+cx+' '+cy+' '+q.x+' '+q.y);
-          path.setAttribute('class','myco-thread');
-          svg.appendChild(path);
-          paths.push(path);
-        });
+        .forEach(function(o){link(i,o.j);});
+    });
+    /* guaranteed pairings on top of nearest-neighbour */
+    [['Sleep','HRV']].forEach(function(pair){
+      var a=names.indexOf(pair[0]),b=names.indexOf(pair[1]);
+      if(a>-1&&b>-1)link(a,b);
     });
     if(animate&&!grown){
       paths.forEach(function(p){var L=p.getTotalLength();p.style.strokeDasharray=L+' '+L;p.style.strokeDashoffset=L;});

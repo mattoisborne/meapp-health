@@ -739,6 +739,17 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   });
 })();
 if(window.lucide){lucide.createIcons();}
+/* hero video: reset to poster on end so Vimeo's related-videos end screen never shows */
+(function(){
+  var frame=document.querySelector('.hero-video iframe');if(!frame)return;
+  var s=document.createElement('script');
+  s.src='https://player.vimeo.com/api/player.js';
+  s.onload=function(){
+    var player=new Vimeo.Player(frame);
+    player.on('ended',function(){player.unload();});
+  };
+  document.body.appendChild(s);
+})();
 </script>
 </body>
 </html>

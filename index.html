@@ -641,7 +641,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 (function(){
   var sc=document.getElementById('chipScatter');if(!sc)return;
   var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var animate=!reduced&&window.innerWidth>=840;
+  var animate=!reduced;
   var NS='http://www.w3.org/2000/svg';
   var svg=document.createElementNS(NS,'svg');
   svg.setAttribute('class','myco-svg');svg.setAttribute('aria-hidden','true');
@@ -691,10 +691,10 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     grown=true;
     /* hold the chips in isolation first — the copy's point — then weave them together */
     paths.forEach(function(p,i){
-      p.style.transitionDelay=(1500+i*240)+'ms';
+      p.style.transitionDelay=(5000+i*240)+'ms';
       p.style.strokeDashoffset='0';
     });
-    setTimeout(startPulses,1500+paths.length*240+1700);
+    setTimeout(startPulses,5000+paths.length*240+1700);
   }
 
   function firePulse(){

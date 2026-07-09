@@ -97,6 +97,9 @@ img,svg{display:block}
 .wm{font-family:var(--font-sans);font-weight:600;letter-spacing:var(--track-wordmark)}
 .stop,.wm-stop,.h-stop{color:var(--color-green)}
 .eyebrow{display:inline-block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark)}
+/* vertical colour bar before main headings, echoing the app's section accents */
+.eyebrow.barred{position:relative;padding-left:13px}
+.eyebrow.barred::before{content:"";position:absolute;left:0;top:50%;transform:translateY(-50%);width:3px;height:12px;border-radius:2px;background:var(--bar,var(--color-green))}
 .muted{color:var(--color-muted)}
 h1{font-size:52px;font-weight:600;letter-spacing:var(--track-display);line-height:1.04}
 h2{font-size:36px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.05}
@@ -243,6 +246,12 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .chip-scatter{position:relative;min-height:300px}
 .chip{position:absolute;background:rgba(251,248,241,0.72);border:1px solid var(--color-clay);border-radius:var(--radius-pill);padding:10px 17px;font-size:14px;box-shadow:var(--shadow-sm);white-space:nowrap;letter-spacing:var(--track-body-tight);transition:transform .6s var(--ease-settle),opacity .6s var(--ease-settle)}
 @media(max-width:840px){.chip-scatter{min-height:200px;margin-top:8px}.chip:nth-child(n+5){display:none}}
+/* V6Pill treatment: metric-coloured text + border + ~9% tinted fill */
+.chip-scatter .chip{color:var(--mc,var(--color-ink));border-color:color-mix(in srgb,var(--mc,var(--color-clay)) 55%,transparent);background:color-mix(in srgb,var(--mc,#FBF8F1) 9%,#FBF8F1)}
+/* mycelium threads between chips */
+.myco-svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.myco-thread{fill:none;stroke:var(--color-clay);stroke-width:1.2;opacity:.85;transition:stroke-dashoffset 1.1s var(--ease-settle)}
+.myco-pulse{fill:var(--color-green)}
 
 /* steps */
 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:50px}
@@ -353,18 +362,10 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     </div>
     <div class="hero-media">
       <div class="hero-video">
-        <!-- ===== HERO VIDEO ============================================
-             At go-live, delete the .video-placeholder div below and
-             uncomment the iframe. Set VIMEO_ID (deploy token).
-        <iframe src="https://player.vimeo.com/video/VIMEO_ID?background=1&autopause=0&muted=1&loop=1&autoplay=1&dnt=1"
+        <iframe src="https://player.vimeo.com/video/1208310129?background=1&autopause=0&muted=1&loop=1&autoplay=1&dnt=1&badge=0"
           style="position:absolute;inset:0;width:100%;height:100%;border:0;"
           allow="autoplay; fullscreen; picture-in-picture"
-          title="Me. how it works" loading="lazy"></iframe>
-        ============================================================== -->
-        <div class="video-placeholder">
-          <div class="play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M7 4.5l12 7.5-12 7.5z"/></svg></div>
-          <small>Video coming soon</small>
-        </div>
+          title="Me." loading="lazy"></iframe>
       </div>
     </div>
   </div>
@@ -374,19 +375,19 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <section class="section">
   <div class="wrap two-col">
     <div class="problem reveal">
-      <span class="eyebrow">The gap</span>
+      <span class="eyebrow barred" style="--bar:var(--color-m-restinghr)">The gap</span>
       <h2>Your data is everywhere.<br>Your health picture is nowhere.</h2>
       <p>You are generating more health data than any generation before you. Sleep, heart rate, HRV, blood oxygen, activity, menstrual health, even time in daylight. It accumulates quietly in Apple Health, read by the device that collected it, used by no one.</p>
       <p>The data is not the problem. What is missing is structure. Context. A way to bring it together so it can actually be used: by a GP who needs the full picture, by a coach who needs the numbers, by an AI that can reason across all of it.</p>
       <p class="close">That is the gap Me. closes.</p>
     </div>
     <div class="chip-scatter reveal" id="chipScatter" aria-hidden="true">
-      <span class="chip" style="top:5%;left:8%">Sleep</span>
-      <span class="chip" style="top:23%;left:50%">HRV</span>
-      <span class="chip" style="top:43%;left:16%">Steps</span>
-      <span class="chip" style="top:40%;left:60%">Workouts</span>
-      <span class="chip" style="top:64%;left:38%">Glucose</span>
-      <span class="chip" style="top:80%;left:10%">Notes</span>
+      <span class="chip" style="top:5%;left:8%;--mc:var(--color-m-sleep)">Sleep</span>
+      <span class="chip" style="top:23%;left:50%;--mc:var(--color-m-restinghr)">HRV</span>
+      <span class="chip" style="top:43%;left:16%;--mc:var(--color-m-steps)">Steps</span>
+      <span class="chip" style="top:40%;left:60%;--mc:var(--color-m-energy)">Workouts</span>
+      <span class="chip" style="top:64%;left:38%;--mc:var(--color-cyan)">Glucose</span>
+      <span class="chip" style="top:80%;left:10%;--mc:var(--color-stone)">Notes</span>
     </div>
   </div>
 </section>
@@ -395,7 +396,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <section class="section paper-band" id="how-it-works">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">How it works</span>
+      <span class="eyebrow barred" style="--bar:var(--color-m-resprate)">How it works</span>
       <h2>Three steps. One picture<span class="h-stop" style="color:inherit">.</span></h2>
     </div>
     <div class="steps">
@@ -425,7 +426,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <section class="section">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Use cases</span>
+      <span class="eyebrow barred" style="--bar:var(--color-m-steps)">Use cases</span>
       <h2>Your data. Your questions<span class="h-stop" style="color:inherit">.</span></h2>
       <p class="sec-intro">Me. does not decide what you do with your health data. It makes sure you can do anything with it.</p>
     </div>
@@ -474,7 +475,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <section class="section paper-band">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Works with everything</span>
+      <span class="eyebrow barred" style="--bar:var(--color-m-energy)">Works with everything</span>
       <h2>One permission. Every device you already use<span class="h-stop" style="color:inherit">.</span></h2>
       <p class="sec-intro">Me. reads from Apple Health. That single connection reaches every device and app that writes there: wearables, health monitors, fitness platforms, sleep trackers. There are hundreds of them. If yours is one, you are already set up.</p>
     </div>
@@ -497,7 +498,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <section class="section">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Privacy architecture</span>
+      <span class="eyebrow barred" style="--bar:var(--color-m-sleep)">Privacy architecture</span>
       <h2>No account. You control the output. Stored your way.</h2>
     </div>
     <div class="priv-grid priv-grid-3">
@@ -512,7 +513,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <section class="section paper-band">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Free and Pro</span>
+      <span class="eyebrow barred" style="--bar:var(--color-green)">Free and Pro</span>
       <h2>Start for free. Upgrade when you need more<span class="h-stop" style="color:inherit">.</span></h2>
     </div>
     <div class="price-grid">
@@ -537,7 +538,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <section class="section">
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="eyebrow">Case studies</span>
+      <span class="eyebrow barred" style="--bar:var(--color-cyan)">Case studies</span>
       <h2>What becomes visible when data and context live together<span class="h-stop" style="color:inherit">.</span></h2>
       <p class="sec-intro">Real user data. Real patterns. The kind of reading that only becomes possible when biomarkers, annotations, and daily context are compiled in one place.</p>
     </div>
@@ -632,6 +633,99 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   });
 })();
 (function(){if(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;if(window.innerWidth<840)return;var sc=document.getElementById('chipScatter');if(!sc)return;var chips=[].slice.call(sc.querySelectorAll('.chip'));chips.forEach(function(c,i){var dx=(Math.random()*16-8),dy=(Math.random()*14-12);c.style.transform='translate('+dx+'px,'+dy+'px)';c.style.opacity='0';c.style.transitionDelay=(i*60)+'ms';});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){chips.forEach(function(c){c.style.transform='none';c.style.opacity='1';});io.disconnect();}});},{threshold:0.3});io.observe(sc);})();
+/* mycelium threads: grow between chips on scroll-in, then fire synapse pulses */
+(function(){
+  var sc=document.getElementById('chipScatter');if(!sc)return;
+  var reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var animate=!reduced&&window.innerWidth>=840;
+  var NS='http://www.w3.org/2000/svg';
+  var svg=document.createElementNS(NS,'svg');
+  svg.setAttribute('class','myco-svg');svg.setAttribute('aria-hidden','true');
+  sc.insertBefore(svg,sc.firstChild);
+  var paths=[],grown=false,pulseTimer=null;
+
+  function build(){
+    while(svg.firstChild)svg.removeChild(svg.firstChild);
+    paths=[];
+    svg.setAttribute('viewBox','0 0 '+sc.clientWidth+' '+sc.clientHeight);
+    var pts=[].slice.call(sc.querySelectorAll('.chip'))
+      .filter(function(c){return c.offsetWidth>0;})
+      .map(function(c){return {x:c.offsetLeft+c.offsetWidth/2,y:c.offsetTop+c.offsetHeight/2};});
+    var seen={};
+    pts.forEach(function(p,i){
+      pts.map(function(q,j){return {j:j,d:Math.hypot(q.x-p.x,q.y-p.y)};})
+        .filter(function(o){return o.j!==i;})
+        .sort(function(a,b){return a.d-b.d;}).slice(0,2)
+        .forEach(function(o){
+          var key=Math.min(i,o.j)+'-'+Math.max(i,o.j);
+          if(seen[key])return;seen[key]=1;
+          var q=pts[o.j];
+          /* bow each thread perpendicular to its chord so the web reads organic, not ruled */
+          var nx=-(q.y-p.y),ny=q.x-p.x,nl=Math.hypot(nx,ny)||1;
+          var amp=o.d*0.18*((i+o.j)%2?1:-1);
+          var cx=(p.x+q.x)/2+nx/nl*amp,cy=(p.y+q.y)/2+ny/nl*amp;
+          var path=document.createElementNS(NS,'path');
+          path.setAttribute('d','M'+p.x+' '+p.y+' Q'+cx+' '+cy+' '+q.x+' '+q.y);
+          path.setAttribute('class','myco-thread');
+          svg.appendChild(path);
+          paths.push(path);
+        });
+    });
+    if(animate&&!grown){
+      paths.forEach(function(p){var L=p.getTotalLength();p.style.strokeDasharray=L+' '+L;p.style.strokeDashoffset=L;});
+    }
+  }
+
+  function grow(){
+    grown=true;
+    paths.forEach(function(p,i){
+      p.style.transitionDelay=(300+i*110)+'ms';
+      p.style.strokeDashoffset='0';
+    });
+    setTimeout(startPulses,300+paths.length*110+900);
+  }
+
+  function firePulse(){
+    if(!paths.length)return;
+    var p=paths[Math.floor(Math.random()*paths.length)];
+    var L=p.getTotalLength();
+    var dot=document.createElementNS(NS,'circle');
+    dot.setAttribute('r','2.5');dot.setAttribute('class','myco-pulse');
+    svg.appendChild(dot);
+    var t0=performance.now(),dur=1400+Math.random()*600;
+    (function step(t){
+      var k=(t-t0)/dur;
+      if(k>=1){svg.removeChild(dot);return;}
+      var pt=p.getPointAtLength(L*Math.min(Math.max(k,0),1));
+      dot.setAttribute('cx',pt.x);dot.setAttribute('cy',pt.y);
+      dot.setAttribute('opacity',String(k<0.15?k/0.15:k>0.85?(1-k)/0.15:1));
+      requestAnimationFrame(step);
+    })(t0);
+  }
+
+  function startPulses(){
+    if(pulseTimer)return;
+    firePulse();
+    pulseTimer=setInterval(function(){if(document.visibilityState==='visible')firePulse();},2200);
+  }
+
+  build();
+  if(animate){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){grow();io.disconnect();}});},{threshold:0.3});
+    io.observe(sc);
+  }else{
+    grown=true;
+  }
+  window.addEventListener('load',function(){if(!grown)build();});
+  var rt=null;
+  window.addEventListener('resize',function(){
+    clearTimeout(rt);
+    rt=setTimeout(function(){
+      build();
+      if(grown)paths.forEach(function(p){p.style.transition='none';});
+    },150);
+  });
+})();
 if(window.lucide){lucide.createIcons();}
 </script>
 </body>

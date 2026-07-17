@@ -144,7 +144,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 
 /* ===== Apple App Store badge ===== */
 .applebadge{display:inline-flex;text-decoration:none;border-radius:9px;overflow:hidden}
-.applebadge svg{height:46px;width:auto}
+.applebadge svg,.applebadge img{height:46px;width:auto;display:block}
 .applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 
 /* ===== App Store badge / download link (post-launch) ===== */
@@ -166,7 +166,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
 .foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
 @media(max-width:760px){.foot-brand{font-size:20px}}
-.foot .applebadge svg{height:40px}
+.foot .applebadge svg,.foot .applebadge img{height:40px}
 .foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
 .foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
 .foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
@@ -311,13 +311,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
-  <a class="applebadge" href="https://apps.apple.com/app/id6761247668" target="_blank" rel="noopener" aria-label="Download Me. on the App Store">
-    <svg viewBox="0 0 155 46" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
-      <rect width="155" height="46" fill="#F0F0F0"/>
-      <text x="15" y="20" font-family="Inter,system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="500" letter-spacing="0.6" fill="#151716">DOWNLOAD ON THE</text>
-      <text x="15" y="37" font-family="Inter,system-ui,-apple-system,sans-serif" font-size="18" font-weight="600" fill="#151716">App Store</text>
-    </svg>
-  </a>
+  <a class="applebadge" href="https://apps.apple.com/app/id6761247668" target="_blank" rel="noopener"><img src="/assets/app-store-badge.svg" alt="Download on the App Store"></a>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
     <a href="../privacy.html">Privacy</a>

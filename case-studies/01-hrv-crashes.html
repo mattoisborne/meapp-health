@@ -129,6 +129,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   .nav-links a:not(.pill){display:block;font-size:16px;color:var(--color-ink);padding:13px 14px;border-radius:12px;transition:background .15s var(--ease-settle)}
   .nav-links a:not(.pill):active,.nav-links a:not(.pill):hover{background:rgba(0,200,150,0.07)}
   .nav-links .coming-tag{align-self:flex-start;margin:8px 6px 6px;font-size:13px}
+  .nav-links .pill{align-self:flex-start;margin:8px 6px 6px;white-space:nowrap}
 }
 
 /* shared index page header (guides + case studies) */
@@ -147,12 +148,14 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .applebadge svg{height:46px;width:auto}
 .applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 
-/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
+/* ===== App Store badge / download link (post-launch) ===== */
 .coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
 .coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
 .coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
 .nav .coming-tag{font-size:14px;padding:8px 16px}
 @media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
+.nav .pill{font-size:14px;padding:8px 16px}
+@media(max-width:760px){.nav .pill{font-size:13px;padding:7px 13px}}
 
 /* text link with arrow */
 .textlink{color:var(--color-ink);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;transition:color .15s var(--ease-settle)}
@@ -359,7 +362,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <a href="../index.html">Home</a>
     <a href="../case-studies/index.html">Case studies</a>
     <a href="../guides/index.html">Guides</a>
-    <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
+    <a class="pill" href="https://apps.apple.com/app/id6761247668" target="_blank" rel="noopener">Download on the App Store</a>
   </div>
 </div></nav>
 <main>
@@ -540,7 +543,13 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
-  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
+  <a class="applebadge" href="https://apps.apple.com/app/id6761247668" target="_blank" rel="noopener" aria-label="Download Me. on the App Store">
+    <svg viewBox="0 0 155 46" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+      <rect width="155" height="46" fill="#F0F0F0"/>
+      <text x="15" y="20" font-family="Inter,system-ui,-apple-system,sans-serif" font-size="8.5" font-weight="500" letter-spacing="0.6" fill="#151716">DOWNLOAD ON THE</text>
+      <text x="15" y="37" font-family="Inter,system-ui,-apple-system,sans-serif" font-size="18" font-weight="600" fill="#151716">App Store</text>
+    </svg>
+  </a>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
     <a href="../privacy.html">Privacy</a>

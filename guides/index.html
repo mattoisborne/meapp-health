@@ -269,6 +269,20 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .next-link:hover .nl-title .arr{transform:translateX(4px)}
 .guide-related{margin-top:8px;margin-bottom:64px}
 
+
+/* inline capture form (Netlify Forms), replaces the Tally link-out */
+.capture-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.capture-input{font:inherit;font-size:15px;padding:10px 16px;border:1px solid var(--color-line);border-radius:var(--radius-pill);background:#fff;color:var(--color-ink);min-width:260px}
+.capture-input:focus{outline:2px solid var(--color-green);outline-offset:1px;border-color:var(--color-green)}
+.capture-cta{border:0;cursor:pointer;font:inherit}
+.foot-capture-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:100%}
+.foot-capture-input{font:inherit;font-size:14px;padding:9px 14px;border:1px solid var(--color-d-border);border-radius:var(--radius-pill);background:rgba(255,255,255,0.06);color:var(--color-d-text);min-width:200px;flex:1}
+.foot-capture-input::placeholder{color:var(--color-d-faint)}
+.foot-capture-input:focus{outline:2px solid var(--color-green);outline-offset:1px}
+.foot-capture-cta{border:0;cursor:pointer;font:inherit}
+.hp-field{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+@media(max-width:520px){.capture-input,.foot-capture-input{min-width:0;width:100%}}
+
 /* footer email capture variant (dark, sits inside .foot) */
 .foot-capture{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 24px;border:1px solid var(--color-d-border);border-radius:var(--radius-sm);background:rgba(255,255,255,0.03);max-width:420px;width:100%}
 .foot-capture-lab{font-size:15px;color:var(--color-d-text);line-height:1.5}
@@ -360,7 +374,12 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-capture">
     <span class="foot-capture-lab">Leave your email and hear when Me. lands on iOS.</span>
-    <a class="foot-capture-cta" href="https://tally.so/r/lbWjPX" target="_blank" rel="noopener noreferrer">Leave your email <span class="arr">&rarr;</span></a>
+    <form class="foot-capture-form" name="launch-notify" method="POST" action="/thanks.html" data-netlify="true" netlify-honeypot="company">
+      <p class="hp-field"><label>Leave this field empty: <input name="company"></label></p>
+      <input type="hidden" name="form-name" value="launch-notify">
+      <input class="foot-capture-input" type="email" name="email" required placeholder="you@example.com" aria-label="Your email address">
+      <button class="foot-capture-cta" type="submit">Leave your email <span class="arr">&rarr;</span></button>
+    </form>
     <span class="foot-capture-note">No list-selling. One email at launch, maybe two ever.</span>
   </div>
   <div class="foot-links">

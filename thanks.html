@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're on the list · Me.</title>
+<meta name="description" content="Thanks. You will hear when Me. lands on iOS.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="You're on the list · Me.">
+<meta property="og:description" content="You will hear when it lands. One email at launch, maybe two ever. No list-selling. Thanks for the trust.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://meapp.health/assets/og-card.png">
+<meta name="twitter:image" content="https://meapp.health/assets/og-card.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Me. website: shared shell + tokens + components
+   Inlined into every page. Tokens copied verbatim from the
+   Me. Design System v2.1 colors_and_type.css. Token names
+   kept identical so future edits map back to the system.
+   WEB DARK SURFACE IS CHARCOAL #2A2D2C (never the product
+   near-black, which is product UI only). Ruling 6.
+   ========================================================= */
+:root{
+  /* cream surface family (default) */
+  --color-bg:#F4F0E8; --color-paper:#FBF8F1; --color-paper-cool:#F1F0EC;
+  --color-line:#DED8CC; --color-soft-line:#EBE5DC;
+  --color-ink:#151716; --color-charcoal:#2A2D2C;
+  --color-muted:#646866; --color-faint:#8D9088;
+  /* charcoal-surface text tones */
+  --color-d-text:#F0F0F0; --color-d-border:#2A2A2A;
+  --color-d-muted:#C2C6C2; --color-d-faint:#8B8F8B;
+  /* signal accent (one accent, ~2% of any frame) */
+  --color-green:#00C896; --color-green-dark:#0F8F73;
+  --color-green-light:#46E0BD; --color-green-text:#003D2E;
+  /* metric palette (brand colours v2.1) */
+  --color-m-restinghr:#DC6C84; --color-m-resprate:#57B1F0;
+  --color-m-energy:#BE9924; --color-m-steps:#62CC82; --color-m-sleep:#8371DF;
+  /* support tones */
+  --color-sage:#C9D8CF; --color-clay:#D8C7B8; --color-stone:#B8B8B2; --color-grey-cool:#AEB6B0;
+  /* state */
+  --color-destructive:#E24B4A; --color-destructive-dim:rgba(226,75,74,0.10);
+  /* case-study data line, distinct cyan (Ruling 5), tuned from 2BA8C4 for cream legibility */
+  --color-cyan:#1E93B0;
+  /* type */
+  --font-sans:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono','Fira Code',ui-monospace,Menlo,monospace;
+  --track-display:-0.06em; --track-h2:-0.045em; --track-h3:-0.02em;
+  --track-body:-0.015em; --track-body-tight:-0.005em; --track-caps:0.13em; --track-wordmark:-0.045em;
+  /* radii */
+  --radius-xs:6px; --radius-sm:18px; --radius-md:24px; --radius:28px;
+  --radius-pill:999px; --radius-media:12px;
+  /* spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px;
+  /* shadows: cream depth only; no shadows on charcoal */
+  --shadow-sm:0 10px 30px rgba(20,20,18,0.06);
+  --shadow-md:0 24px 80px rgba(35,35,32,0.09);
+  --shadow-lg:0 28px 90px rgba(30,32,30,0.12);
+  --shadow-media:0 15px 38px rgba(30,32,30,0.12);
+  /* motion */
+  --ease-settle:cubic-bezier(0.22,1,0.36,1);
+  --ease-glide:cubic-bezier(0.65,0,0.35,1);
+  --ease-soft-arrival:cubic-bezier(0.34,1.4,0.5,1);
+  --ease-intent-exit:cubic-bezier(0.40,0,1,1);
+  --ease-reveal:cubic-bezier(0,0,0.2,1);
+  --dur-micro:180ms; --dur-entrance:420ms; --dur-travel:750ms; --dur-settle:1200ms; --dur-line:1000ms;
+  --maxw:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--color-bg);
+  color:var(--color-ink);
+  font-feature-settings:'tnum' 1,'ss01' 1,'cv11' 1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  letter-spacing:var(--track-body);
+  /* one subtle radial warmth on cream, never a hard gradient */
+  background-image:radial-gradient(120% 80% at 15% 0%, rgba(255,255,255,0.5) 0%, rgba(244,240,232,0) 55%);
+  background-attachment:fixed;
+}
+a{color:inherit}
+img,svg{display:block}
+
+/* shared layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.reading{max-width:720px;margin:0 auto;padding:0 32px}
+.section{padding:92px 0}
+.paper-band{background:var(--color-paper)}
+@media(max-width:760px){.section{padding:60px 0}}
+
+/* wordmark + green stops */
+.wm{font-family:var(--font-sans);font-weight:600;letter-spacing:var(--track-wordmark)}
+.stop,.wm-stop,.h-stop{color:var(--color-green)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark)}
+.muted{color:var(--color-muted)}
+h1{font-size:52px;font-weight:600;letter-spacing:var(--track-display);line-height:1.04}
+h2{font-size:36px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.05}
+h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.25}
+@media(max-width:760px){h1{font-size:36px}h2{font-size:28px}}
+::selection{background:rgba(0,200,150,0.22);color:var(--color-ink)}
+:focus-visible{outline:2px solid var(--color-green);outline-offset:3px;border-radius:3px}
+
+/* ===== NAV (identical on every page) ===== */
+.nav{position:sticky;top:0;z-index:60;border-bottom:0.5px solid transparent;transition:background .2s var(--ease-settle),border-color .2s var(--ease-settle)}
+.nav.scrolled{background:rgba(244,240,232,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:0.5px solid var(--color-line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:17px 32px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.nav-brand{font-size:35px;text-decoration:none;color:var(--color-ink)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a:not(.pill){color:var(--color-muted);text-decoration:none;font-size:15px;transition:color .15s var(--ease-settle)}
+.nav-links a:not(.pill):hover{color:var(--color-ink)}
+.pill{display:inline-block;background:var(--color-green);color:var(--color-green-text);font-weight:500;font-size:15px;padding:9px 19px;border-radius:var(--radius-pill);text-decoration:none;transition:background .15s var(--ease-settle)}
+.pill:hover,.pill:focus-visible{background:var(--color-green-dark);color:#fff}
+/* hamburger (mobile only) */
+.nav-toggle{display:none;width:44px;height:44px;border:0;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;margin-right:-8px;border-radius:10px}
+.nav-toggle span{display:block;width:23px;height:2px;background:var(--color-ink);border-radius:2px;transition:transform .22s var(--ease-settle),opacity .18s var(--ease-settle)}
+.nav.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav.open .nav-toggle span:nth-child(2){opacity:0}
+.nav.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:760px){
+  .nav-brand{font-size:28px}
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:calc(100% + 6px);right:0;flex-direction:column;align-items:stretch;gap:0;min-width:224px;background:var(--color-paper);border:1px solid var(--color-line);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);padding:8px;overflow:hidden;max-height:0;opacity:0;pointer-events:none;transform:translateY(-6px);transition:max-height .26s var(--ease-settle),opacity .2s var(--ease-settle),transform .2s var(--ease-settle)}
+  .nav.open .nav-links{max-height:360px;opacity:1;pointer-events:auto;transform:none}
+  .nav-links a:not(.pill){display:block;font-size:16px;color:var(--color-ink);padding:13px 14px;border-radius:12px;transition:background .15s var(--ease-settle)}
+  .nav-links a:not(.pill):active,.nav-links a:not(.pill):hover{background:rgba(0,200,150,0.07)}
+  .nav-links .coming-tag{align-self:flex-start;margin:8px 6px 6px;font-size:13px}
+}
+
+/* back link (subpages, eyebrow position) */
+.backlink{display:inline-block;color:var(--color-muted);font-size:13px;text-decoration:none;letter-spacing:var(--track-body-tight);transition:color .15s var(--ease-settle)}
+.backlink:hover{color:var(--color-ink)}
+
+/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
+.coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
+.coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
+.nav .coming-tag{font-size:14px;padding:8px 16px}
+@media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
+
+/* text link with arrow */
+.textlink{color:var(--color-ink);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;transition:color .15s var(--ease-settle)}
+.textlink .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.textlink:hover .arr{transform:translateX(3px)}
+
+/* ===== consolidated footer (every page) ===== */
+.foot{background:var(--color-charcoal);color:var(--color-d-text);padding:56px 32px 36px}
+.foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
+@media(max-width:760px){.foot-brand{font-size:20px}}
+.foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
+.foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
+.foot-links a:hover{color:var(--color-d-text);text-decoration:underline;text-underline-offset:3px}
+.foot-cred{color:#5d615e;font-size:12px;letter-spacing:var(--track-body-tight)}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .42s var(--ease-reveal),transform .42s var(--ease-reveal)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+/* ===== 404 ===== */
+.notfound{padding-top:180px;padding-bottom:140px;text-align:center}
+.notfound .code{font-family:var(--font-mono);font-size:14px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin-bottom:18px;display:block}
+.notfound h1{max-width:16ch;margin:0 auto}
+.notfound p{font-size:17px;color:var(--color-muted);line-height:1.6;max-width:48ch;margin:20px auto 34px}
+@media(max-width:760px){.notfound{padding-top:130px;padding-bottom:90px}}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="wm nav-brand" href="index.html">Me<span class="wm-stop">.</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="navLinks">
+    <a href="index.html">Home</a>
+    <a href="case-studies/index.html">Case studies</a>
+    <a href="guides/index.html">Guides</a>
+    <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
+  </div>
+</div></nav>
+<main>
+  <section class="wrap notfound reveal">
+    <span class="code">Done.</span>
+    <h1>You will hear when it lands<span class="h-stop">.</span></h1>
+    <p>One email at launch, maybe two ever. No list-selling. Thanks for the trust.</p>
+    <a class="pill" href="index.html">Back to Me. home</a>
+  </section>
+</main>
+<footer class="foot"><div class="foot-in">
+  <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
+  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
+  <div class="sublab">iOS only · No account required · Free to download</div>
+  <div class="foot-links">
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="guides/index.html">Guides</a>
+    <a href="case-studies/index.html">Case studies</a>
+    <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
+  </div>
+  <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>
+</div></footer>
+<script>
+/* shared shell scripts: nav blur on scroll, scroll reveals, obfuscated contact */
+(function(){
+  var nav=document.getElementById('nav');
+  if(nav){
+    var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>24);};
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    var toggle=document.getElementById('navToggle');
+    if(toggle){
+      toggle.addEventListener('click',function(e){
+        e.stopPropagation();
+        var open=nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded',open?'true':'false');
+        toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+      });
+      document.addEventListener('click',function(e){
+        if(nav.classList.contains('open')&&!nav.contains(e.target)){
+          nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open menu');
+        }
+      });
+      nav.querySelectorAll('.nav-links a').forEach(function(a){
+        a.addEventListener('click',function(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');});
+      });
+    }
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    reveals.forEach(function(el){io.observe(el);});
+  }
+  /* obfuscated contact: literal address never in static DOM */
+  document.querySelectorAll('.contact-link').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var user='info',domain='meapp.health';
+      window.location.href='mailto:'+user+'@'+domain;
+    });
+  });
+})();
+</script>
+</body>
+</html>

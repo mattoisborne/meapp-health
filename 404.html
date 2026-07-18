@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How Me. works. · Me.</title>
-<meta name="description" content="Your devices are collecting more health data than you probably realise. Me. changes what you can do with it.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="How Me. works. · Me.">
-<meta property="og:description" content="Your devices are collecting more health data than you probably realise. Me. changes what you can do with it.">
+<title>Page not found · Me.</title>
+<meta name="description" content="This page does not exist. The data you are looking for might start at the home page.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Page not found · Me.">
+<meta property="og:description" content="This page does not exist. The data you are looking for might start at the home page.">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://meapp.health/assets/og-card.png">
 <meta name="twitter:image" content="https://meapp.health/assets/og-card.png">
@@ -135,21 +135,9 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   .nav-links .coming-tag{align-self:flex-start;margin:8px 6px 6px;font-size:13px}
 }
 
-/* shared index page header (guides + case studies) */
-.page-head{padding-top:128px;padding-bottom:8px}
-.page-head .eyebrow{margin-bottom:16px}
-.page-head h1{font-size:46px;letter-spacing:var(--track-h2);line-height:1.05;max-width:18ch}
-.page-head .intro{font-size:17px;color:var(--color-muted);line-height:1.6;margin-top:20px;max-width:60ch}
-@media(max-width:760px){.page-head{padding-top:104px}.page-head h1{font-size:34px}}
-
 /* back link (subpages, eyebrow position) */
 .backlink{display:inline-block;color:var(--color-muted);font-size:13px;text-decoration:none;letter-spacing:var(--track-body-tight);transition:color .15s var(--ease-settle)}
 .backlink:hover{color:var(--color-ink)}
-
-/* ===== Apple App Store badge ===== */
-.applebadge{display:inline-flex;text-decoration:none;border-radius:9px;overflow:hidden}
-.applebadge svg{height:46px;width:auto}
-.applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 
 /* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
 .coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
@@ -168,7 +156,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
 .foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
 @media(max-width:760px){.foot-brand{font-size:20px}}
-.foot .applebadge svg{height:40px}
 .foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
 .foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
 .foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
@@ -178,148 +165,44 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* ===== reveal ===== */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .42s var(--ease-reveal),transform .42s var(--ease-reveal)}
 .reveal.in{opacity:1;transform:none}
-.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
-.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.3s}
-@media(prefers-reduced-motion:reduce){.reveal,.reveal.d1,.reveal.d2,.reveal.d3,.reveal.d4,.reveal.d5{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-/* ===== shared card primitives ===== */
-.card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
-.card:hover{border-color:var(--color-line)}
-
-/* tag pill */
-.tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-pill);line-height:1}
-.tag-green{background:var(--color-green);color:var(--color-green-text)}
-.tag-sleep{background:var(--color-m-sleep);color:#fff}
-.tag-faint{background:transparent;border:1px solid var(--color-line);color:var(--color-faint)}
-
-/* dark case-study card */
-.cs-card{background:var(--color-charcoal);color:var(--color-d-text);border-radius:var(--radius);padding:38px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.cs-card h3{font-size:26px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.12;color:var(--color-d-text)}
-.cs-card .dek{color:var(--color-d-muted);font-size:16px;line-height:1.5}
-.cs-card .meta{color:var(--color-d-faint);font-size:13px}
-.cs-card .cs-link{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
-.cs-card .cs-link .arr{transition:transform .2s var(--ease-settle)}
-.cs-card .cs-link:hover .arr{transform:translateX(3px)}
-
-/* coming-soon card */
-.cs-soon{background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.cs-soon h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-faint)}
-.cs-soon p{font-size:14px;color:var(--color-faint);line-height:1.5}
-
-/* guide card */
-.guide-card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:flex-start;gap:12px;text-decoration:none;color:inherit;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
-.guide-card:hover{border-color:var(--color-line);background:#fff}
-.guide-card .num{white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:4px 11px;border-radius:var(--radius-pill)}
-.guide-card h3{font-size:21px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2}
-.guide-card p{font-size:15px;color:var(--color-muted);line-height:1.5}
-.guide-card .read{color:var(--color-green);font-size:14px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
-.guide-card .read .arr{transition:transform .2s var(--ease-settle)}
-.guide-card:hover .read .arr{transform:translateX(3px)}
-
-/* related case-study callout (reusable) */
-.related{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
-.related h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3)}
-.related p{font-size:15px;color:var(--color-muted);line-height:1.55}
-.related a{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px}
-.related a .arr{transition:transform .2s var(--ease-settle)}
-.related a:hover .arr{transform:translateX(3px)}
-
-/* ===== guides index ===== */
-.guides-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:8px 0 0}
-@media(max-width:760px){.guides-grid{grid-template-columns:1fr}}
-
-.faq-wrap{max-width:720px;margin:0 auto;padding:24px 32px 0;border-top:1px solid var(--color-line)}
-.faq-wrap h2{margin-bottom:36px}
-.faq-item{padding:24px 0;border-bottom:0.5px solid var(--color-soft-line)}
-.faq-item:last-child{border-bottom:0}
-.faq-item h3{font-size:17px;font-weight:600;letter-spacing:var(--track-body);color:var(--color-ink);margin-bottom:10px}
-.faq-item p{font-size:17px;color:var(--color-muted);line-height:1.6}
-.faq-item p + p{margin-top:12px}
-.faq-item a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px;transition:color .15s var(--ease-settle)}
-.faq-item a:hover{color:var(--color-ink)}
-
-/* ===== individual guide (long-read) ===== */
-.guide-article{max-width:720px;margin:0 auto;padding:0 32px}
-.guide-top{padding-top:120px}
-@media(max-width:760px){.guide-top{padding-top:100px}}
-.guide-top .backlink{margin-bottom:34px}
-.guide-tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:5px 13px;border-radius:var(--radius-pill);margin-bottom:20px}
-.guide-article h1{font-size:44px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.08}
-@media(max-width:760px){.guide-article h1{font-size:32px}}
-.guide-meta{font-size:13px;color:var(--color-faint);margin-top:16px}
-.guide-body{padding:40px 0 8px}
-.guide-body p{font-size:18px;line-height:1.7;color:var(--color-ink);letter-spacing:var(--track-body);margin-bottom:26px}
-.guide-body h4{font-size:20px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:38px 0 16px}
-.guide-body .promptquote{background:var(--color-paper-cool);border:1px solid var(--color-line);border-left:3px solid var(--color-green);border-radius:var(--radius-sm);padding:20px 22px;font-family:var(--font-mono);font-size:14.5px;line-height:1.6;color:var(--color-ink);letter-spacing:-0.01em;margin:0 0 26px}
-.guide-body .examples{margin:0 0 26px}
-.guide-body .ex-cat{font-size:11px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin:22px 0 12px}
-.guide-body .ex-list{display:flex;flex-direction:column;gap:8px}
-.guide-body .ex-list span{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-sm);padding:11px 16px;font-family:var(--font-mono);font-size:13.5px;color:var(--color-muted);line-height:1.5}
-.guide-body ul{margin:0 0 26px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:14px}
-.guide-body ul li{font-size:18px;line-height:1.6;color:var(--color-ink);padding-left:26px;position:relative}
-.guide-body ul li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--color-green)}
-.guide-body .tier{display:block;margin-bottom:6px}
-.guide-body .tier b{color:var(--color-ink)}
-
-.guide-foot{max-width:720px;margin:0 auto;padding:8px 32px 0}
-.next-link{display:flex;flex-direction:column;gap:6px;padding:30px 0;border-top:1px solid var(--color-line);text-decoration:none}
-.next-link .nl-lab{font-size:13px;color:var(--color-muted);letter-spacing:var(--track-body-tight)}
-.next-link .nl-title{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);display:inline-flex;align-items:center;gap:10px}
-.next-link .nl-title .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
-.next-link:hover .nl-title .arr{transform:translateX(4px)}
-.guide-related{margin-top:8px;margin-bottom:64px}
+/* ===== 404 ===== */
+.notfound{padding-top:180px;padding-bottom:140px;text-align:center}
+.notfound .code{font-family:var(--font-mono);font-size:14px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin-bottom:18px;display:block}
+.notfound h1{max-width:16ch;margin:0 auto}
+.notfound p{font-size:17px;color:var(--color-muted);line-height:1.6;max-width:48ch;margin:20px auto 34px}
+@media(max-width:760px){.notfound{padding-top:130px;padding-bottom:90px}}
 </style>
 </head>
 <body>
 <nav class="nav" id="nav"><div class="nav-in">
-  <a class="wm nav-brand" href="../index.html">Me<span class="wm-stop">.</span></a>
+  <a class="wm nav-brand" href="index.html">Me<span class="wm-stop">.</span></a>
   <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
   <div class="nav-links" id="navLinks">
-    <a href="../index.html">Home</a>
-    <a href="../case-studies/index.html">Case studies</a>
-    <a href="../guides/index.html">Guides</a>
+    <a href="index.html">Home</a>
+    <a href="case-studies/index.html">Case studies</a>
+    <a href="guides/index.html">Guides</a>
     <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
   </div>
 </div></nav>
 <main>
-  <div class="guide-article guide-top">
-    <a class="backlink" href="index.html">Guides</a>
-  </div>
-  <article class="guide-article">
-    <span class="guide-tag">Guide 1</span>
-    <h1>How Me<span class="wm-stop">.</span> works<span class="h-stop">.</span></h1>
-    <div class="guide-meta">4 min read</div>
-    <div class="guide-body">
-      <p>Your devices are collecting more health data than you probably realise. The problem is you have no way to do anything with it. Me. changes that.</p>
-      <h4>Where the data comes from</h4>
-      <p>Me. reads from Apple Health, which works as the central hub for health data on your iPhone. Any device that shares data with it works with Me.: Apple Watch, Oura Ring, Garmin, Whoop, Withings, CGMs, and hundreds more. If it writes to Apple Health, you are already set up.</p>
-      <p>Worth knowing: not every device shares everything with Apple Health. Some write a full picture, some write selectively. Me. works with whatever your devices have shared, so if something seems missing, that is usually the reason.</p>
-      <h4>What you see every day</h4>
-      <p>The Days tab shows you a full picture of any given day: your key metrics against your 28-day average, your sleep broken down by stage, and your workouts. If you have a training plan loaded, your prescribed session sits right next to what you actually did, your RPE rating, and any notes you added. Plan versus reality, in one view, every day.</p>
-      <h4>What you add</h4>
-      <p>Device data tells you what happened. Me. gives you a place to record how it felt. A five-point check-in takes under 15 seconds: sleep quality, energy, mood, stress, and soreness. Add a note after a hard session, a rough night, a week of travel. Even a sentence is enough. It matters more than it seems at the time.</p>
-      <p>You also build a Health Profile inside Me.: ten sections covering your conditions, medications, test results, lifestyle, and a doctrine layer where you capture your health values and preferences. Start with the sections that matter most to you and fill the rest over time. Your training plan lives here too, whether you build one in Me., load your own, or import one from a coach.</p>
-      <h4>What you get out</h4>
-      <p>When you are ready to use your data, you compile. Pick a time range, choose what to include, and Me. produces a structured plain-text document: your numbers, your notes, your profile context, all in one place.</p>
-      <p>From there, paste it into an AI tool and start asking questions. Take the relevant sections to a GP appointment. Send a training block to your coach. Me. does not score you or tell you what your results mean. That conversation belongs with the people and tools that can actually act on it, and now they have everything they need to do that well.</p>
-      <h4>Why it gets better over time</h4>
-      <p>The longer you use Me., the more useful it becomes. A week of data already gives you something to work with. Over months, patterns emerge that no single appointment would ever surface. Free compiles cover the last 7 days; Pro opens up longer windows, 14 days, 28 days, 90 days, and all time, which is where the deeper patterns live. Either way, it compounds. That is the whole point.</p>
-    </div>
-  </article>
-  <div class="guide-foot">
-    
-    <a class="next-link" href="building-your-profile.html"><span class="nl-lab">Next</span><span class="nl-title">Building your profile <span class="arr">&rarr;</span></span></a>
-  </div>
+  <section class="wrap notfound reveal">
+    <span class="code">404</span>
+    <h1>This page does not exist<span class="h-stop">.</span></h1>
+    <p>The data you are looking for might start at the home page.</p>
+    <a class="pill" href="index.html">Back to Me. home</a>
+  </section>
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
   <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
-    <a href="../privacy.html">Privacy</a>
-    <a href="../terms.html">Terms</a>
-    <a href="../guides/index.html">Guides</a>
-    <a href="../case-studies/index.html">Case studies</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
+    <a href="guides/index.html">Guides</a>
+    <a href="case-studies/index.html">Case studies</a>
     <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
   </div>
   <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>

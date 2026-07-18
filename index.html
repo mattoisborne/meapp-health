@@ -9,6 +9,11 @@
 <meta property="og:title" content="Me. Your data, your context, your decision.">
 <meta property="og:description" content="Me. reads your Apple Health data, adds the context only you can provide, and compiles a structured output ready for your GP, your coach, or any AI.">
 <meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://meapp.health/assets/og-card.png">
+<meta name="twitter:image" content="https://meapp.health/assets/og-card.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -337,6 +342,24 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 
 /* steps flow connector (desktop only, optional) */
 @media(max-width:840px){.flow-line{display:none}}
+
+/* ===== email capture (pre-launch, launch readiness pass) ===== */
+.capture{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:48px;box-shadow:var(--shadow-sm);text-align:center;max-width:640px;margin:0 auto}
+.capture h2{margin:14px 0 12px}
+.capture-sub{font-size:14px;color:var(--color-faint);margin-bottom:26px}
+.capture-cta{display:inline-flex;align-items:center;gap:8px}
+.capture-cta .arr{transition:transform .2s var(--ease-settle)}
+.capture-cta:hover .arr{transform:translateX(3px)}
+@media(max-width:760px){.capture{padding:36px 28px}}
+
+/* footer email capture variant (dark, sits inside .foot) */
+.foot-capture{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 24px;border:1px solid var(--color-d-border);border-radius:var(--radius-sm);background:rgba(255,255,255,0.03);max-width:420px;width:100%}
+.foot-capture-lab{font-size:15px;color:var(--color-d-text);line-height:1.5}
+.foot-capture-cta{display:inline-flex;align-items:center;gap:7px;background:var(--color-green);color:var(--color-green-text);font-weight:500;font-size:14px;padding:9px 18px;border-radius:var(--radius-pill);text-decoration:none;transition:background .15s var(--ease-settle)}
+.foot-capture-cta:hover,.foot-capture-cta:focus-visible{background:var(--color-green-dark);color:#fff}
+.foot-capture-cta .arr{transition:transform .2s var(--ease-settle)}
+.foot-capture-cta:hover .arr{transform:translateX(3px)}
+.foot-capture-note{font-size:12px;color:var(--color-d-faint);letter-spacing:var(--track-body-tight)}
 </style>
 </head>
 <body>
@@ -374,6 +397,18 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     </div>
   </div>
 </header>
+
+<!-- 02b · EMAIL CAPTURE -->
+<section class="section paper-band" id="notify">
+  <div class="wrap">
+    <div class="capture reveal">
+      <span class="eyebrow barred" style="--bar:var(--color-green)">Before launch</span>
+      <h2>Me. is coming to iOS. Leave your email and hear when it lands.</h2>
+      <p class="capture-sub">No list-selling. One email at launch, maybe two ever.</p>
+      <a class="pill capture-cta" href="https://tally.so/r/lbWjPX" target="_blank" rel="noopener noreferrer">Leave your email <span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
 
 <!-- 03 · THE PROBLEM -->
 <section class="section">
@@ -583,6 +618,11 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
   <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
   <div class="sublab">iOS only · No account required · Free to download</div>
+  <div class="foot-capture">
+    <span class="foot-capture-lab">Leave your email and hear when Me. lands on iOS.</span>
+    <a class="foot-capture-cta" href="https://tally.so/r/lbWjPX" target="_blank" rel="noopener noreferrer">Leave your email <span class="arr">&rarr;</span></a>
+    <span class="foot-capture-note">No list-selling. One email at launch, maybe two ever.</span>
+  </div>
   <div class="foot-links">
     <a href="privacy.html">Privacy</a>
     <a href="terms.html">Terms</a>

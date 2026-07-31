@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Terms · Me.</title>
-<meta name="description" content="The terms that cover your use of the Me. app.">
+<title>You're on the list · Me.</title>
+<meta name="description" content="Thanks. You will hear when Me. lands on iOS.">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Terms · Me.">
-<meta property="og:description" content="The terms that cover your use of the Me. app.">
+<meta property="og:title" content="You're on the list · Me.">
+<meta property="og:description" content="You will hear when it lands. One email at launch, maybe two ever. No list-selling. Thanks for the trust.">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://meapp.health/assets/og-card.png">
 <meta name="twitter:image" content="https://meapp.health/assets/og-card.png">
@@ -135,29 +135,14 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   .nav-links .coming-tag{align-self:flex-start;margin:8px 6px 6px;font-size:13px}
 }
 
-/* shared index page header (guides + case studies) */
-.page-head{padding-top:128px;padding-bottom:8px}
-.page-head .eyebrow{margin-bottom:16px}
-.page-head h1{font-size:46px;letter-spacing:var(--track-h2);line-height:1.05;max-width:18ch}
-.page-head .intro{font-size:17px;color:var(--color-muted);line-height:1.6;margin-top:20px;max-width:60ch}
-@media(max-width:760px){.page-head{padding-top:104px}.page-head h1{font-size:34px}}
-
 /* back link (subpages, eyebrow position) */
 .backlink{display:inline-block;color:var(--color-muted);font-size:13px;text-decoration:none;letter-spacing:var(--track-body-tight);transition:color .15s var(--ease-settle)}
 .backlink:hover{color:var(--color-ink)}
 
-/* ===== Apple App Store badge ===== */
-.applebadge{display:inline-flex;text-decoration:none;border-radius:9px;overflow:hidden}
-.applebadge svg{height:46px;width:auto}
-.applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
-
-/* ===== App status tag: a live App Store link since 1.0 released 30 Jul 2026 ===== */
-.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap;text-decoration:none;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
 .coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
 .coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
-.coming-tag:hover{border-color:rgba(0,200,150,0.70);background:rgba(0,200,150,0.12)}
-.coming-tag.on-dark:hover{border-color:rgba(0,200,150,0.72);background:rgba(0,200,150,0.18)}
-.coming-tag:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 .nav .coming-tag{font-size:14px;padding:8px 16px}
 @media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
 
@@ -171,7 +156,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
 .foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
 @media(max-width:760px){.foot-brand{font-size:20px}}
-.foot .applebadge svg{height:40px}
 .foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
 .foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
 .foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
@@ -181,71 +165,14 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* ===== reveal ===== */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .42s var(--ease-reveal),transform .42s var(--ease-reveal)}
 .reveal.in{opacity:1;transform:none}
-.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
-.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.3s}
-@media(prefers-reduced-motion:reduce){.reveal,.reveal.d1,.reveal.d2,.reveal.d3,.reveal.d4,.reveal.d5{opacity:1;transform:none;transition:none}}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
 
-/* ===== shared card primitives ===== */
-.card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
-.card:hover{border-color:var(--color-line)}
-
-/* tag pill */
-.tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-pill);line-height:1}
-.tag-green{background:var(--color-green);color:var(--color-green-text)}
-.tag-sleep{background:var(--color-m-sleep);color:#fff}
-.tag-faint{background:transparent;border:1px solid var(--color-line);color:var(--color-faint)}
-
-/* dark case-study card */
-.cs-card{background:var(--color-charcoal);color:var(--color-d-text);border-radius:var(--radius);padding:38px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.cs-card h3{font-size:26px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.12;color:var(--color-d-text)}
-.cs-card .dek{color:var(--color-d-muted);font-size:16px;line-height:1.5}
-.cs-card .meta{color:var(--color-d-faint);font-size:13px}
-.cs-card .cs-link{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
-.cs-card .cs-link .arr{transition:transform .2s var(--ease-settle)}
-.cs-card .cs-link:hover .arr{transform:translateX(3px)}
-
-/* coming-soon card */
-.cs-soon{background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
-.cs-soon h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-faint)}
-.cs-soon p{font-size:14px;color:var(--color-faint);line-height:1.5}
-
-/* guide card */
-.guide-card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:flex-start;gap:12px;text-decoration:none;color:inherit;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
-.guide-card:hover{border-color:var(--color-line);background:#fff}
-.guide-card .num{white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:4px 11px;border-radius:var(--radius-pill)}
-.guide-card h3{font-size:21px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2}
-.guide-card p{font-size:15px;color:var(--color-muted);line-height:1.5}
-.guide-card .read{color:var(--color-green);font-size:14px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
-.guide-card .read .arr{transition:transform .2s var(--ease-settle)}
-.guide-card:hover .read .arr{transform:translateX(3px)}
-
-/* related case-study callout (reusable) */
-.related{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
-.related h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3)}
-.related p{font-size:15px;color:var(--color-muted);line-height:1.55}
-.related a{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px}
-.related a .arr{transition:transform .2s var(--ease-settle)}
-.related a:hover .arr{transform:translateX(3px)}
-
-/* ===== legal pages (privacy / terms) ===== */
-.legal-top{padding-top:120px}
-@media(max-width:760px){.legal-top{padding-top:100px}}
-.legal-top .backlink{margin-bottom:30px}
-.legal-article{max-width:720px;margin:0 auto;padding:0 32px}
-.legal-article h1{font-size:44px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.08}
-@media(max-width:760px){.legal-article h1{font-size:32px}}
-.legal-updated{font-size:13px;color:var(--color-faint);margin-top:16px}
-.legal-lede{font-size:18px;line-height:1.6;color:var(--color-muted);margin-top:24px}
-.legal-body{padding:40px 0 8px}
-.legal-body h2{font-size:24px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:44px 0 14px;line-height:1.2}
-.legal-body h2:first-child{margin-top:0}
-.legal-body p{font-size:16px;line-height:1.7;color:var(--color-ink);margin-bottom:18px}
-.legal-body ul{margin:0 0 18px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
-.legal-body ul li{font-size:16px;line-height:1.6;color:var(--color-ink);padding-left:24px;position:relative}
-.legal-body ul li::before{content:"";position:absolute;left:3px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--color-green)}
-.legal-body a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px}
-.legal-note{margin:8px auto 64px;max-width:720px;padding:0 32px}
-.legal-note .box{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:20px 24px;font-size:14px;color:var(--color-muted);line-height:1.6}
+/* ===== 404 ===== */
+.notfound{padding-top:180px;padding-bottom:140px;text-align:center}
+.notfound .code{font-family:var(--font-mono);font-size:14px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin-bottom:18px;display:block}
+.notfound h1{max-width:16ch;margin:0 auto}
+.notfound p{font-size:17px;color:var(--color-muted);line-height:1.6;max-width:48ch;margin:20px auto 34px}
+@media(max-width:760px){.notfound{padding-top:130px;padding-bottom:90px}}
 </style>
 </head>
 <body>
@@ -256,54 +183,20 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <a href="index.html">Home</a>
     <a href="case-studies/index.html">Case studies</a>
     <a href="guides/index.html">Guides</a>
-    <a class="coming-tag" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
+    <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
   </div>
 </div></nav>
 <main>
-  <div class="legal-article legal-top">
-    <a class="backlink" href="index.html">Me. home</a>
-  </div>
-  <article class="legal-article">
-    <h1>Terms<span class="h-stop">.</span></h1>
-    <div class="legal-updated">Last updated 16 July 2026</div>
-    <p class="legal-lede">These terms cover your use of the Me. app. By downloading and using Me., you agree to them.</p>
-    <div class="legal-body">
-      <h2>What Me. is</h2>
-      <p>Me. is a personal health data app for iOS. It reads your Apple Health data on your device, lets you add your own context, and compiles structured outputs you can take wherever you choose. Me. organises and compiles; it does not interpret, score, or advise.</p>
-
-      <h2>Not medical advice</h2>
-      <p>Me. is not a medical device and does not provide medical advice, diagnosis, or treatment. The data and compilations Me. produces are for your own use and for sharing with qualified people and tools. Always take clinical questions to your GP or a qualified professional. Do not rely on Me. for decisions about your health in place of professional care.</p>
-
-      <h2>Your responsibilities</h2>
-      <ul>
-        <li>You are responsible for the accuracy of the context you add.</li>
-        <li>You decide what to include in a compilation and where to send it.</li>
-        <li>You are responsible for how you use any output, including in third-party AI tools.</li>
-      </ul>
-
-      <h2>Free and Pro</h2>
-      <p>Me. is free to download and includes the complete app. Me. Pro is an optional subscription that adds longer history ranges, unlimited compilations, and profile change history. Pro is offered with a 7-day free trial. Subscriptions are billed through your Apple account, and pricing is shown in the App Store for your region. Manage or cancel a subscription in your App Store account settings.</p>
-
-      <h2>Third-party tools</h2>
-      <p>When you paste a compilation into an AI tool or share it with a professional, that service operates under its own terms and privacy policy, not ours. Me. has no control over how a third party handles data you choose to share with it.</p>
-
-      <h2>Intellectual property</h2>
-      <p>The Me. app, its design, and its brand are owned by Oi Studios. The data you create and compile is yours. Using Me. does not transfer any rights in your data to us.</p>
-
-      <h2>Availability and changes</h2>
-      <p>Me. is provided as is. We work to keep it reliable, but we do not guarantee uninterrupted or error-free operation. We may update the app and these terms over time; material changes will be reflected on this page with a new date.</p>
-
-      <h2>Liability</h2>
-      <p>To the extent permitted by law, Oi Studios is not liable for decisions made on the basis of the app or its outputs. Nothing in these terms limits rights you have under the Australian Consumer Law.</p>
-
-      <h2>Governing law and contact</h2>
-      <p>These terms are governed by the laws of Tasmania, Australia. Me. is made by Oi Studios, a trading name of Osborne Images Pty Ltd (ABN 69 635 493 319), Hobart, Tasmania. Questions can be sent using the <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a> link.</p>
-    </div>
-  </article>
+  <section class="wrap notfound reveal">
+    <span class="code">Done.</span>
+    <h1>You will hear when it lands<span class="h-stop">.</span></h1>
+    <p>One email at launch, maybe two ever. No list-selling. Thanks for the trust.</p>
+    <a class="pill" href="index.html">Back to Me. home</a>
+  </section>
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
-  <a class="coming-tag on-dark" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
+  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
     <a href="privacy.html">Privacy</a>
@@ -312,7 +205,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <a href="case-studies/index.html">Case studies</a>
     <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
   </div>
-  <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026 Osborne Images Pty Ltd, trading as Me. Health Intelligence.</div>
+  <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026</div>
 </div></footer>
 <script>
 /* shared shell scripts: nav blur on scroll, scroll reveals, obfuscated contact */

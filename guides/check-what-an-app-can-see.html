@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Building your profile. · Me.</title>
-<meta name="description" content="Your data tells part of the story. Your profile tells the rest.">
+<title>How to check what an app can see, and change it. · Me.</title>
+<meta name="description" content="Health permissions on iPhone are more precise than most people realise, and every one of them can be changed later. Here is how to read them and how to change them.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Building your profile. · Me.">
-<meta property="og:description" content="Your data tells part of the story. Your profile tells the rest.">
+<meta property="og:title" content="How to check what an app can see, and change it. · Me.">
+<meta property="og:description" content="Health permissions on iPhone are more precise than most people realise, and every one of them can be changed later. Here is how to read them and how to change them.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -284,31 +284,39 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <a class="backlink" href="index.html">Guides</a>
   </div>
   <article class="guide-article">
-    <span class="guide-tag">Guide 2</span>
-    <h1>Building your profile<span class="h-stop">.</span></h1>
-    <div class="guide-meta">5 min read</div>
+    <span class="guide-tag">Your data</span>
+    <h1>How to check what an app can see, and change it<span class="h-stop">.</span></h1>
+    <div class="guide-meta">6 min read</div>
     <div class="guide-body">
-      <p>The difference between a useful AI conversation and a generic one is context. Your data tells part of the story. Your profile tells the rest. A complete profile means every compilation you run carries your full picture: not just numbers, but the conditions, medications, history, and preferences that make those numbers mean something.</p>
-      <h4>What the profile covers</h4>
-      <p>Ten sections in total. Personal context, conditions and diagnoses, medications and supplements, test results, hormonal health, mental health context, procedures, diet, lifestyle, and the doctrine layer. Together they build a health picture that no wearable can capture on its own. You decide how much detail to add and when.</p>
-      <h4>The doctrine layer</h4>
-      <p>This is the most distinctive part of the profile and the one most worth taking seriously. It is where you capture your health values and preferences in your own words. What trade-offs you are willing to make. What has worked for you and what has not. What you want any GP, coach, or AI tool to understand about you before they say anything.</p>
-      <p>It is also where you tell the AI how you want it to respond to you. Whether you want direct answers or detailed explanations. Whether you prefer recommendations or options. Whether you want it to challenge your assumptions or work within them. A well-written doctrine layer shapes not just what the AI knows about you, but how it talks to you.</p>
-      <p>A good doctrine layer is not a list of goals. It is a genuine statement of your health values and how you want to be spoken to. It takes a little thought to write well, but once it is there it travels with every compilation.</p>
-      <h4>A useful shortcut</h4>
-      <p>Not sure where to start? Use an AI tool to help you write it. Paste this prompt into ChatGPT, Claude, or Gemini and work through it conversationally:</p>
-      <div class="promptquote">"I want to write a personal health doctrine for use with AI. Ask me questions one at a time to help me articulate my health values, what I want from my care, how I like to receive information, and what I want any doctor, coach, or AI to understand about me before we begin."</div>
-      <p>Take the output, refine it in your own words, and paste it into the doctrine layer. It will be the most useful thing in your profile.</p>
-      <h4>How to approach it</h4>
-      <p>The profile does not need to be complete to be useful. Start with the sections most relevant to your situation and fill the rest over time. If you are managing a condition, start there. If training is the main reason you are here, start with lifestyle and the doctrine layer. There is no wrong entry point.</p>
-      <p>What you want to avoid is leaving it empty. An empty profile means every compilation starts from scratch. Even a partially complete profile changes the quality of what comes back significantly.</p>
-      <h4>It is not set and forget</h4>
-      <p>Your health picture changes. A new medication. A diagnosis. A shift in how you are training. The profile tracks these changes over time so your compilations always reflect where you are now. When something changes, update it. The record of what changed and when becomes part of your history, and that history is often where the most useful questions live.</p>
+      <p>Every so often an app asks for something, and the prompt is written so the answer feels obvious. That is a good moment to slow down. On iOS, health permissions are more precise than most people realise, and every one of them can be changed afterwards.</p>
+      <h4>What the permission actually is</h4>
+      <p>Health access is not one switch. Apps are granted access separately for reading and for writing, and separately for each type of health data. An app can be allowed to write workouts without ever being able to read your sleep.</p>
+      <p>Two consequences are worth carrying with you. An app allowed to write a data type can also read the data it wrote. An app allowed to read a data type can read what every other source wrote into it, not only its own records.</p>
+      <h4>What you can check before you install anything</h4>
+      <p>An app's App Store page carries privacy information the developer has to supply: the types of data the app may collect, and whether that data is linked to you or used to track you. Reading it takes about twenty seconds and it is the cheapest check available.</p>
+      <p>Apple also requires any app that touches Health data to give people a privacy policy detailing its use of that data, and health data may not be used for advertising. A policy that is hard to find, or vague about what leaves your phone, is itself an answer.</p>
+      <h4>See what you have already granted</h4>
+      <ul>
+        <li>Open the Health app.</li>
+        <li>Tap Summary, then tap your picture or initials at the top right.</li>
+        <li>Below Privacy, tap Apps or Devices. The screen lists everything that has requested access.</li>
+        <li>Tap an item, then turn permission to write data to, or read data from, Health on or off.</li>
+      </ul>
+      <p>To look at it the other way round, by data type rather than by app, open the health categories, tap the category you care about, then below Options tap Data Sources &amp; Access.</p>
+      <p>There is a wider view too. In the Settings app, go to Privacy &amp; Security, then App Privacy Report. It shows how apps are using the permissions you granted them, and their network activity.</p>
+      <h4>What turning it off does, and what it does not</h4>
+      <p>Revoking read access does not announce itself to the app. Its queries simply return nothing, the same response an empty database would give. That is deliberate. It stops an app working out your health status from the types of data you do and do not track.</p>
+      <p>Turning access off also does not remove data an app has already written into Health. That stays until you delete it. To delete it, open the category, tap Show All Data below Options, then swipe left on a record and tap Delete. To clear a whole data type, tap Edit, then Delete All.</p>
+      <p>Deleting is permanent, so if there is any chance you will want that history later, take an export first.</p>
+      <h4>On consent prompts in general</h4>
+      <p>If a prompt asks you to agree to something and tells you what happens if you decline, the useful move is to find the same claim written down somewhere the company is accountable for it: the privacy policy, the terms, or a published help article.</p>
+      <p>A prompt is a piece of interface design and it can be rewritten next week. A policy is a commitment. When the two do not say the same thing, that gap is the thing to ask about before you agree to anything.</p>
+
+      <p class="muted" style="font-size:15px">Steps verified against Apple's iPhone User Guide (iOS 26) and the Apple Platform Security guide, July 2026. Apple changes its interface from time to time, so if a screen does not match, the wording here is what Apple documented at the time of writing.</p>
     </div>
   </article>
   <div class="guide-foot">
-    
-    <a class="next-link" href="your-context-layer.html"><span class="nl-lab">Next</span><span class="nl-title">Your context layer <span class="arr">&rarr;</span></span></a>
+    <a class="next-link" href="keep-your-health-history.html"><span class="nl-lab">Next</span><span class="nl-title">How to keep your health history <span class="arr">&rarr;</span></span></a>
   </div>
 </main>
 <footer class="foot"><div class="foot-in">

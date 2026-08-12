@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Me. Health intelligence.</title>
-<meta name="description" content="Me. reads your Apple Health data, adds the context only you can provide, and compiles a structured output ready for your GP, your coach, or any AI.">
+<meta name="description" content="The best health record you will ever have is already yours, scattered across devices, accounts and records. Me. is where it comes together.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Me. Your data, your context, your decision.">
-<meta property="og:description" content="Me. reads your Apple Health data, adds the context only you can provide, and compiles a structured output ready for your GP, your coach, or any AI.">
+<meta property="og:description" content="The best health record you will ever have is already yours, scattered across devices, accounts and records. Me. is where it comes together.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <script src="https://unpkg.com/lucide@latest"></script>
@@ -150,10 +150,13 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .applebadge svg{height:46px;width:auto}
 .applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 
-/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
-.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
+/* ===== App status tag: a live App Store link since 1.0 released 30 Jul 2026 ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap;text-decoration:none;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
 .coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
 .coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
+.coming-tag:hover{border-color:rgba(0,200,150,0.70);background:rgba(0,200,150,0.12)}
+.coming-tag.on-dark:hover{border-color:rgba(0,200,150,0.72);background:rgba(0,200,150,0.18)}
+.coming-tag:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 .nav .coming-tag{font-size:14px;padding:8px 16px}
 @media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
 
@@ -229,7 +232,8 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .hero-grid{display:grid;grid-template-columns:0.86fr 1.14fr;gap:60px;align-items:center}
 @media(max-width:900px){.hero-grid{grid-template-columns:1fr;gap:36px}}
 .hero h1{margin-top:20px}
-.hero .sub{font-size:17px;color:var(--color-muted);line-height:1.5;margin:24px 0 30px;max-width:48ch}
+.hero .sub{font-size:17px;color:var(--color-muted);line-height:1.5;margin:24px 0 16px;max-width:48ch}
+.sub:last-of-type{margin-bottom:30px}
 .hero-cta{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
 .hero-video{position:relative;padding-top:56.25%;border-radius:var(--radius-media);overflow:hidden;box-shadow:var(--shadow-media);border:1px solid var(--color-soft-line);background:var(--color-paper-cool)}
 .video-placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;color:var(--color-faint)}
@@ -347,7 +351,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <a href="index.html">Home</a>
     <a href="case-studies/index.html">Case studies</a>
     <a href="guides/index.html">Guides</a>
-    <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
+    <a class="coming-tag" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
   </div>
 </div></nav>
 <main>
@@ -358,17 +362,19 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <div class="hero-copy">
       <span class="eyebrow barred" style="--bar:var(--color-green)">Health intelligence<span class="h-stop">.</span></span>
       <h1>Your data<span class="h-stop">.</span><br>Your context<span class="h-stop">.</span><br>Your decision<span class="h-stop">.</span></h1>
-      <p class="sub">Me. reads and displays your Apple Health data, adds the context only you can provide, and compiles a structured output ready for your GP, your coach, or any AI to reason from.</p>
+      <p class="sub">The best health record you will ever have is already yours, scattered across devices, accounts and records.</p>
+      <p class="sub">Me. is where it comes together: everything Apple Health holds, plus the conditions, medications, training context and preferences you add. One record, ready for your GP, your coach, any AI, or a tool that doesn't exist yet.</p>
       <div class="hero-cta">
-        <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
+        <a class="coming-tag" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
         <a href="#how-it-works" class="textlink">See how it works <span class="arr">&rarr;</span></a>
       </div>
     </div>
     <div class="hero-media">
       <div class="hero-video">
-        <iframe src="https://player.vimeo.com/video/1208310129?badge=0&autopause=0&dnt=1&byline=0&portrait=0&title=0&autoplay=1&muted=1"
+        <iframe src="https://player.vimeo.com/video/1208310129?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479&amp;autoplay=1&amp;muted=1&amp;loop=1&amp;dnt=1&amp;byline=0&amp;portrait=0&amp;title=0"
           style="position:absolute;inset:0;width:100%;height:100%;border:0;"
-          allow="autoplay; fullscreen; picture-in-picture; encrypted-media"
+          allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
           allowfullscreen title="Me." loading="lazy"></iframe>
       </div>
     </div>
@@ -413,8 +419,8 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <div class="card step reveal d1">
         <div class="bignum">02</div>
         <div class="lab">02 · Context added</div>
-        <h3>30 seconds a day. The layer that changes everything.</h3>
-        <p>A five-point daily check-in. A freeform note. The details no device can capture: how you felt, what changed, what you noticed. This is the data that makes the rest of it useful.</p>
+        <h3>The layer that changes every conversation.</h3>
+        <p>Ten profile sections, from conditions and medications to a doctrine layer for how you want an AI to respond. Your training plan sits alongside. A check-in takes 15 seconds.</p>
       </div>
       <div class="card step reveal d2">
         <div class="bignum">03</div>
@@ -507,14 +513,28 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     </div>
     <div class="priv-grid priv-grid-3">
       <div class="priv reveal"><div class="ic"><i data-lucide="user-x"></i></div><h3>No account, no server</h3><p>Me. works without signing up. No email, no profile, no identity. Everything stays on your iPhone. There is no Me. server and your data is never sold.</p></div>
-      <div class="priv reveal d1"><div class="ic"><i data-lucide="send"></i></div><h3>You control the output</h3><p>Data only moves when you compile and choose where it goes. Me. earns through the app, not through your data.</p></div>
+      <div class="priv reveal d1"><div class="ic"><i data-lucide="send"></i></div><h3>You control the output</h3><p>Data moves when you compile it and not before. There is no standing connection and nothing has continuous access. You choose the range, the contents, and where it goes, every time.</p></div>
       <div class="priv reveal d2"><div class="ic"><i data-lucide="cloud"></i></div><h3>Your data, your storage</h3><p>Everything stays on your device. If you choose to back up via iCloud, your Me. data is included. Your Apple account, your encryption, your call.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 08 · PRICING -->
+<!-- 08 · YOUR RECORD, NOT A CONNECTION -->
 <section class="section paper-band">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow barred" style="--bar:var(--color-m-energy)">Your record, not a connection</span>
+      <h2>AI tools change. Your record should not<span class="h-stop" style="color:inherit">.</span></h2>
+    </div>
+    <div class="problem reveal" style="max-width:62ch;margin-top:32px">
+      <p>A connector reads what is in Apple Health. It cannot read your medications, your test results, your training plan, or the doctrine layer you wrote, because those live in Me.</p>
+      <p class="close">Nothing is plugged into anything. You compile what you choose, when you choose, and take it to whichever AI you are using this year.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 · PRICING -->
+<section class="section">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-green)">Free and Pro</span>
@@ -525,21 +545,21 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
         <div class="amt">Free</div>
         <p>Everything you need to start. Read your Apple Health data, build your profile and context, and compile the last 7 days, up to 5 times a month.</p>
         <div class="spacer"></div>
-        <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
+        <a class="coming-tag" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
       </div>
       <div class="price pro reveal d1">
         <div class="amt">Pro</div>
         <p>Full history compilation, unlimited compiles, and profile change history. Everything in the free tier, plus more.</p>
         <div class="trial">Try Pro free for 7 days</div>
         <div class="spacer"></div>
-        <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
+        <a class="coming-tag on-dark" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 09 · CASE STUDY TEASER -->
-<section class="section">
+<!-- 10 · CASE STUDY TEASER -->
+<section class="section paper-band">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-cyan)">Case studies</span>
@@ -581,7 +601,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
-  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
+  <a class="coming-tag on-dark" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
     <a href="privacy.html">Privacy</a>

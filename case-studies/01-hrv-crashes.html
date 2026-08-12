@@ -147,10 +147,13 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .applebadge svg{height:46px;width:auto}
 .applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 
-/* ===== "Coming to iOS" status tag (replaces download controls pre-launch) ===== */
-.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap}
+/* ===== App status tag: a live App Store link since 1.0 released 30 Jul 2026 ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap;text-decoration:none;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
 .coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
 .coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
+.coming-tag:hover{border-color:rgba(0,200,150,0.70);background:rgba(0,200,150,0.12)}
+.coming-tag.on-dark:hover{border-color:rgba(0,200,150,0.72);background:rgba(0,200,150,0.18)}
+.coming-tag:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
 .nav .coming-tag{font-size:14px;padding:8px 16px}
 @media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
 
@@ -359,7 +362,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <a href="../index.html">Home</a>
     <a href="../case-studies/index.html">Case studies</a>
     <a href="../guides/index.html">Guides</a>
-    <span class="coming-tag"><span class="dot"></span>Coming to iOS July 2026</span>
+    <a class="coming-tag" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
   </div>
 </div></nav>
 <main>
@@ -532,7 +535,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <p>Upcoming case studies will cover sleep architecture across a training block, the relationship between training load and resting heart rate, and how subjective check-ins predict objective biomarkers.</p>
       <div class="series-cross">
         <a class="cross-card" href="02-sleep-architecture.html"><div class="cc-dir">Next in the series</div><div class="cc-title">The body keeps score of your life, not just your training.</div><span class="cc-go">Read Case Study 02 &rarr;</span></a>
-        <div class="cross-card soon"><div class="cc-dir">Case Study 03</div><div class="cc-title">Coming soon</div></div>
+        <a class="cross-card" href="03-training-plan.html"><div class="cc-dir">Case Study 03</div><div class="cc-title">The plan that knew who it was for.</div><span class="cc-go">Read Case Study 03 &rarr;</span></a>
       </div>
       <p class="series-about">Me. is a personal health data app that compiles Apple Health data and user-added context into structured reports designed for analysis. It does not interpret, score, or advise. To understand what any reading means for you, take it to your GP or compile it for analysis. Not medical advice.</p>
     </div>
@@ -540,7 +543,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
-  <span class="coming-tag on-dark"><span class="dot"></span>Coming to iOS July 2026</span>
+  <a class="coming-tag on-dark" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
   <div class="sublab">iOS only · No account required · Free to download</div>
   <div class="foot-links">
     <a href="../privacy.html">Privacy</a>

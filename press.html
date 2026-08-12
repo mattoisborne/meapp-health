@@ -193,14 +193,14 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .sec-intro{font-size:17px;color:var(--color-muted);margin-top:16px;max-width:62ch;line-height:1.55}
 
 /* ===== long-form article body (fact sheet, Q&A, boilerplate) ===== */
-.article-body{max-width:720px}
+.article-body{max-width:820px}
 .article-body h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:40px 0 12px;line-height:1.2}
 .article-body h3:first-child{margin-top:0}
 .article-body p{font-size:16px;line-height:1.7;color:var(--color-ink);margin-bottom:14px}
 .article-body a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px}
 
 /* note box (draft-sourcing disclosure, honest placeholders) */
-.notebox{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:16px 20px;font-size:14px;color:var(--color-muted);line-height:1.6;margin-bottom:28px}
+.notebox{max-width:820px;background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:16px 20px;font-size:14px;color:var(--color-muted);line-height:1.6;margin-bottom:28px}
 
 /* ===== press page: depth, per DESIGN.md "Elevation & Depth" =====
    A radial cream backdrop, warm highlight top-left and cooler at the
@@ -249,12 +249,12 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* The article aligns to the hero's left edge and runs to the page
    measure, so it reads as the same page rather than an inset block.
    Text keeps a readable line length; figures sit outside it. */
-.longform{max-width:1000px}
+.longform{max-width:100%}
 .longform > p,.longform > h3,.longform > blockquote,.longform > .standfirst,
-.longform > .lf-angle,.longform > .kicker{max-width:660px}
+.longform > .lf-angle,.longform > .kicker{max-width:820px}
 .longform .standfirst{font-size:15px;line-height:1.6;color:var(--color-muted);font-style:italic;
   padding-bottom:26px;margin-bottom:34px;border-bottom:1px solid var(--color-soft-line)}
-.longform p{font-size:17px;line-height:1.75;color:var(--color-ink);margin-bottom:19px}
+.longform p{font-size:18px;line-height:1.72;color:var(--color-ink);margin-bottom:19px}
 .longform h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3);margin:6px 0 16px}
 .longform .lf-angle{display:block;margin-top:46px;font-size:11px;font-weight:500;
   letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-faint);
@@ -279,18 +279,18 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .lf-figure img{width:100%;height:auto;border-radius:var(--radius-media);box-shadow:var(--shadow-media);
   border:1px solid var(--color-soft-line)}
 .lf-figure .vid{border-radius:var(--radius-media);overflow:hidden;box-shadow:var(--shadow-media);background:var(--color-charcoal)}
-.lf-figure figcaption{margin-top:12px;max-width:660px;font-size:14px;line-height:1.5;color:var(--color-faint)}
+.lf-figure figcaption{margin-top:12px;max-width:820px;font-size:14px;line-height:1.5;color:var(--color-faint)}
 
 /* ===== fact sheet as a spec list =====
    A press fact sheet is quoted, not read. Labels left, facts right,
    hairline between, so a journalist can find a price or a date without
    parsing a paragraph. */
-.spec{margin-top:36px;border-top:1px solid var(--color-soft-line)}
-.spec-row{display:grid;grid-template-columns:172px 1fr;gap:28px;padding:22px 0;
+.spec{margin-top:36px;border-top:1px solid var(--color-soft-line);max-width:1000px}
+.spec-row{display:grid;grid-template-columns:172px minmax(0,1fr);gap:36px;padding:22px 0;max-width:1000px;
   border-bottom:1px solid var(--color-soft-line)}
 .spec-row dt{font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;
   color:var(--color-faint);padding-top:4px}
-.spec-row dd{margin:0;font-size:16px;line-height:1.65;color:var(--color-ink);max-width:60ch}
+.spec-row dd{margin:0;font-size:17px;line-height:1.65;color:var(--color-ink);max-width:72ch}
 .spec-row dd .sub{display:block;margin-top:7px;color:var(--color-muted);font-size:15px}
 @media(max-width:640px){.spec-row{grid-template-columns:1fr;gap:8px}.spec-row dt{padding-top:0}}
 
@@ -339,8 +339,8 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* ===== founder Q&A ===== */
 .qa{margin-bottom:34px}
 .qa:last-child{margin-bottom:0}
-.qa .q{font-size:17px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin-bottom:10px;line-height:1.35}
-.qa .a{font-size:16px;line-height:1.7;color:var(--color-muted)}
+.qa .q{max-width:820px;font-size:18px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin-bottom:10px;line-height:1.35}
+.qa .a{font-size:17px;line-height:1.7;color:var(--color-muted);max-width:820px}
 </style>
 </head>
 <body>
@@ -481,7 +481,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </section>
 
 <section class="section" id="fact-sheet">
-  <div class="wrap reading">
+  <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-m-resprate)">Fact sheet</span>
       <h2>The short version<span class="h-stop">.</span></h2>
@@ -535,7 +535,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
      answer from the signed kit is deliberately NOT here: it is marked
      "only if asked, never volunteered", and a public page volunteers it. -->
 <section class="section paper-band" id="founder-qa">
-  <div class="wrap reading">
+  <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-m-sleep)">Founder Q&amp;A</span>
       <h2>From the founder<span class="h-stop">.</span></h2>
@@ -705,7 +705,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 
 <!-- FOUNDER Q&A -->
 <section class="section paper-band" id="boilerplate">
-  <div class="wrap reading">
+  <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-cyan)">Boilerplate</span>
       <h2>About<span class="h-stop">.</span></h2>

@@ -258,17 +258,20 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   border-top:1px solid var(--color-soft-line)}
 @media(max-width:760px){.longform blockquote{font-size:19px}.longform p{font-size:16px}}
 
-/* ===== suggested angles =====
-   A press-kit convention worth keeping: name the stories available so a
-   reporter picks one rather than inventing a worse one. */
-.angles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
-@media(max-width:760px){.angles{grid-template-columns:1fr}}
-.angle{background:var(--color-paper);border:1px solid var(--color-soft-line);
-  border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:24px 26px}
-.angle .an-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:var(--track-caps);
-  text-transform:uppercase;color:var(--color-faint);margin-bottom:11px}
-.angle h3{font-size:18px;font-weight:600;letter-spacing:var(--track-h3);margin-bottom:9px;line-height:1.3}
-.angle p{font-size:15px;line-height:1.6;color:var(--color-muted);margin:0}
+/* ===== story angles, in the hero =====
+   Named rather than carded. A reporter wants to know which stories are
+   here before they read anything, and it belongs beside the contact and
+   the assets rather than as a section of its own. */
+.angle-strip{margin-top:20px;padding:24px 32px;border:1px solid var(--color-soft-line);
+  border-radius:var(--radius);background:transparent}
+.angle-strip .as-label{display:block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);
+  text-transform:uppercase;color:var(--color-faint);margin-bottom:16px}
+.angle-strip ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr);gap:18px 32px}
+.angle-strip li{font-size:15px;line-height:1.45;color:var(--color-ink);padding-left:13px;position:relative}
+.angle-strip li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3px;border-radius:50%;
+  background:var(--color-green)}
+@media(max-width:860px){.angle-strip ul{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.angle-strip ul{grid-template-columns:1fr}}
 
 /* ===== fact sheet as a spec list =====
    A press fact sheet is quoted, not read. Labels left, facts right,
@@ -370,6 +373,16 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <span class="cs-value">12 August 2026<br><a href="https://apps.apple.com/app/id6761247668">On the App Store</a></span>
     </div>
   </div>
+
+  <div class="angle-strip reveal">
+    <span class="as-label">Four stories here</span>
+    <ul>
+      <li>The morning question he could not answer</li>
+      <li>Thirty years advising, then building</li>
+      <li>No account, no server, nothing to sell</li>
+      <li>What AI needs from you that it does not have</li>
+    </ul>
+  </div>
 </section>
 
 <!-- FACT SHEET -->
@@ -383,14 +396,21 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   <div class="wrap reading">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-m-restinghr)">In his own words</span>
-      <h2>Why he built it<span class="h-stop">.</span></h2>
+      <h2>Why Me. exists<span class="h-stop">.</span></h2>
     </div>
     <div class="longform reveal" style="margin-top:34px">
-      <p class="standfirst">Matt Osborne on why he built Me. Drawn from a recorded conversation, 19 July 2026. Quotes may be used freely.</p>
+      <p class="standfirst">Matt Osborne on why Me. exists. Drawn from a recorded conversation, 19 July 2026. Quotes may be used freely.</p>
 
       <p>Matt Osborne turned forty and, by his own account, could have bought a motorbike. He built a health app instead.</p>
       <p>&ldquo;It may be the most productive midlife crisis I could have chosen,&rdquo; he says.</p>
-      <p>He was already good at collecting. Workouts, sleep, health metrics, about three years of it, spread across Apple Health and a handful of other apps that each held a piece of the picture and occasionally disagreed with one another. His own record now runs past 31 million data points.</p>
+      <p>Strictly, his studio built it. Me. is the first product from Oi Studios, an independent studio of ten in Hobart that has been working for thirty years, and it was made by that team rather than by one person in the evenings. Osborne is its founder. The app is what happened when a studio that spends its days making complicated things clear turned that habit on something of its own.</p>
+
+      <h3>A collector already</h3>
+      <p>He is a collector by disposition. Records, mostly. A record collection is not a pile of records: it is built slowly, filed properly, and the point of it is not how many you own but that you can reach for the one you want and find it.</p>
+      <p>He collected his health the same way, and with the same appetite. Workouts, sleep, health metrics, about three years of it, spread across Apple Health and a handful of other apps that each held a piece of the picture and occasionally disagreed with one another. His own record now runs past 31 million data points.</p>
+      <p>The difference was that the records were in order and the health data was not. Thirty-one million data points, and no way to pull out the one he wanted.</p>
+
+      <h3>The question he could not answer</h3>
       <p>What he could not do was answer the question he put to himself every morning. Am I getting better. Am I recovering well enough. Is the session I planned still the right decision.</p>
       <p>&ldquo;I could make assumptions from experience, but I could not answer with confidence.&rdquo;</p>
       <p>The gap turned out not to be more data.</p>
@@ -416,7 +436,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <p>&ldquo;Your health data is not something you should have to keep paying to keep using.&rdquo;</p>
 
       <h3>Built in Hobart</h3>
-      <p>Me. is the first product from Oi Studios, an independent studio of ten people that has been operating for thirty years, and it ships from Tasmania to every App Store storefront except mainland China.</p>
+      <p>The studio ships it from Tasmania to every App Store storefront except mainland China.</p>
       <p>&ldquo;We are a team of about ten people on a small island at the bottom of the world, building something we want anyone with an iPhone to use. That is slightly ridiculous. It is also completely possible now.&rdquo;</p>
       <p>He uses it daily. The morning check-in takes about fifteen seconds. The most useful thing he has done with it is a sleep study on himself: months of logging late meals, screens, training and night-time disruptions alongside the sleep data, until the picture of what actually helps him sleep became clear.</p>
       <p>&ldquo;Me. becomes most valuable when life is not perfect and the plan needs to change. The main result is clarity. I am not waking up confused about what to do.&rdquo;</p>
@@ -424,38 +444,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <blockquote><p>&ldquo;Me. gives your data a place to live, and your story the power to shape what comes next.&rdquo;</p></blockquote>
 
       <p class="kicker">Quotes may be used freely. The founder is available for interview. Full Q&amp;A below.</p>
-    </div>
-  </div>
-</section>
-
-<!-- SUGGESTED ANGLES -->
-<section class="section paper-band" id="angles">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow barred" style="--bar:var(--color-m-energy)">Angles</span>
-      <h2>Four stories in here<span class="h-stop">.</span></h2>
-    </div>
-    <div class="angles reveal">
-      <div class="angle">
-        <span class="an-tag">The founder</span>
-        <h3>The morning question he could not answer</h3>
-        <p>Three years of diligent tracking and still no confident answer to whether today&rsquo;s session was the right call. The fix turned out to be context, not more data.</p>
-      </div>
-      <div class="angle">
-        <span class="an-tag">The studio</span>
-        <h3>Thirty years advising, then building</h3>
-        <p>A Hobart studio that lived through film to digital and the arrival of the internet decided this shift was big enough to stop commenting on it and ship something. Me. is its first product.</p>
-      </div>
-      <div class="angle">
-        <span class="an-tag">The architecture</span>
-        <h3>No account, no server, nothing to sell</h3>
-        <p>The data never leaves the device, which is a product decision with commercial consequences rather than a privacy policy. One-time pricing follows from the same logic.</p>
-      </div>
-      <div class="angle">
-        <span class="an-tag">The moment</span>
-        <h3>What AI needs from you that it does not have</h3>
-        <p>Access to metrics is not the same as knowing the person. As health assistants arrive on every platform, the missing layer is the context only the individual holds.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -627,7 +615,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
           <div class="on-dark"><img src="press-assets/wordmark-dark.svg" alt="Me. wordmark, light letters with green full stop"></div>
         </div>
         <span class="a-name">Wordmark</span>
-        <span class="a-meta">Outlined SVG, so it renders without Inter installed. The full stop is part of the name and is always green.</span>
         <span class="dual">
           <a href="press-assets/wordmark-light.svg" download>Light <span class="arr">&darr;</span></a>
           <a href="press-assets/wordmark-dark.svg" download>Dark <span class="arr">&darr;</span></a>

@@ -287,6 +287,12 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .asset-card .a-name{font-size:15px;font-weight:500;color:var(--color-ink)}
 .asset-card .a-meta{font-size:13px;color:var(--color-faint)}
 .asset-card img{width:100%;height:auto;border-radius:12px;border:1px solid var(--color-soft-line)}
+.wm-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wm-pair div{border-radius:12px;border:1px solid var(--color-soft-line);padding:22px 16px;display:flex;align-items:center;justify-content:center}
+.wm-pair .on-light{background:var(--color-bg)}
+.wm-pair .on-dark{background:var(--color-charcoal);border-color:var(--color-charcoal)}
+.wm-pair img{height:34px;width:auto;border:0;border-radius:0}
+.asset-card .dual{display:flex;gap:16px;flex-wrap:wrap}
 .asset-card a{color:var(--color-green-dark);font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;letter-spacing:var(--track-body-tight)}
 .asset-card a:hover{text-decoration:underline;text-underline-offset:2px}
 .asset-all{margin-top:26px;padding:20px 24px;background:var(--color-paper);border:1px solid var(--color-soft-line);
@@ -597,7 +603,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <div class="asset-card">
         <img src="press-assets/matt-offduty-web.jpg" alt="Matt Osborne with his family outside a country pub" loading="lazy">
         <span class="a-name">Matt Osborne, off duty</span>
-        <span class="a-meta">With family. The baby in this photograph is the one in the sleep quote.</span>
+        <span class="a-meta">With family.</span>
         <a href="press-assets/Matt_Nindigully.jpg" download>Download <span class="arr">&darr;</span></a>
       </div>
       <div class="asset-card">
@@ -606,10 +612,17 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
         <span class="a-meta">1024 x 1024 master.</span>
         <a href="press-assets/me-app-icon-1024.png" download>Download <span class="arr">&darr;</span></a>
       </div>
-      <div class="asset-slot">
-        <span class="s-tag">Pending</span>
-        <span class="s-name">Wordmark, SVG and PNG</span>
-        <span class="s-note">Light and dark lockups. Highest-value missing file: the full stop is part of the name and always accent green, so a journalist without a correct lockup will retype it and break the rule.</span>
+      <div class="asset-card">
+        <div class="wm-pair">
+          <div class="on-light"><img src="press-assets/wordmark-light.svg" alt="Me. wordmark, dark letters with green full stop"></div>
+          <div class="on-dark"><img src="press-assets/wordmark-dark.svg" alt="Me. wordmark, light letters with green full stop"></div>
+        </div>
+        <span class="a-name">Wordmark</span>
+        <span class="a-meta">Outlined SVG, so it renders without Inter installed. The full stop is part of the name and is always green.</span>
+        <span class="dual">
+          <a href="press-assets/wordmark-light.svg" download>Light <span class="arr">&darr;</span></a>
+          <a href="press-assets/wordmark-dark.svg" download>Dark <span class="arr">&darr;</span></a>
+        </span>
       </div>
       <div class="asset-slot">
         <span class="s-tag">Pending</span>

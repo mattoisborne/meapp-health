@@ -9,11 +9,11 @@ uploads/
 # roughly 5MB to over 100MB permanently, and git keeps every version.
 press-assets/*.mp4
 
-# Oi BTS 3 and 4 are held out of the public kit by ruling, 12 Aug 2026.
-# Oi_Press_3 has client footage legible on the monitors; Oi_Press_4 is a
-# cast-and-crew wrap shot including people who read as talent rather than
-# crew. Talent releases usually cover the client's campaign, not Oi's own
-# PR in perpetuity, and that needs checking before either is published.
-# The files stay where they were put; they simply do not enter git.
-press-assets/Oi_Press_3.jpg
+# Oi_Press_4 is held out of the public kit by ruling, 12 Aug 2026: it is a
+# cast-and-crew wrap shot and several faces read as talent rather than crew.
+# Talent releases normally cover the client's campaign, not Oi's own PR in
+# perpetuity, and the press page grants free republication. Oi_Press_3 was
+# held for the same reason and released on 12 Aug: the approver confirms Oi
+# has permission to use that shot. The file stays where it was put; it
+# simply does not enter git.
 press-assets/Oi_Press_4.jpg

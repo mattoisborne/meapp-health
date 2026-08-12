@@ -223,10 +223,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 
 /* ===== press hero ===== */
 .press-hero{padding-top:132px;padding-bottom:12px}
-.hero-top{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:end}
-.hero-thumb{width:210px;height:auto;border-radius:var(--radius-media);box-shadow:var(--shadow-media);
-  border:1px solid var(--color-soft-line)}
-@media(max-width:900px){.hero-top{grid-template-columns:1fr}.hero-thumb{display:none}}
 .press-hero h1{font-size:52px;letter-spacing:var(--track-display);line-height:1.06;max-width:24ch;margin-top:18px;text-wrap:balance}
 .press-hero .lede{font-size:19px;line-height:1.55;color:var(--color-muted);margin-top:22px;max-width:46ch}
 .press-hero .cta-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin-top:34px}
@@ -267,17 +263,17 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   border-top:1px solid var(--color-soft-line)}
 @media(max-width:760px){.longform blockquote{font-size:19px}.longform p{font-size:16px}}
 
-/* ===== grabs: liftable quotes, above the piece ===== */
-.grab-list{margin-top:26px;display:grid;gap:20px}
-.grab{margin:0;padding-left:22px;border-left:2px solid var(--color-green);
-  font-size:21px;line-height:1.45;letter-spacing:var(--track-h3);color:var(--color-ink)}
-.grab p{margin:0}
-.grab-attr{margin-top:6px;font-size:14px;color:var(--color-faint)}
-@media(max-width:760px){.grab{font-size:18px}}
-
-/* ===== film ===== */
-.film-frame{border-radius:var(--radius-media);overflow:hidden;box-shadow:var(--shadow-media);background:var(--color-charcoal)}
-.film-cap{margin-top:14px;font-size:14px;color:var(--color-faint)}
+/* ===== figures inside the article =====
+   Editorial, not decorative: each one sits against the passage it
+   illustrates rather than standing alone above the piece. */
+.lf-figure{margin:36px 0}
+/* A portrait frame at full measure is over a thousand pixels tall and
+   stops the article dead. Narrower, so it sits in the reading. */
+.lf-figure.portrait{max-width:430px}
+.lf-figure img{width:100%;height:auto;border-radius:var(--radius-media);box-shadow:var(--shadow-media);
+  border:1px solid var(--color-soft-line)}
+.lf-figure .vid{border-radius:var(--radius-media);overflow:hidden;box-shadow:var(--shadow-media);background:var(--color-charcoal)}
+.lf-figure figcaption{margin-top:12px;font-size:14px;line-height:1.5;color:var(--color-faint)}
 
 /* ===== fact sheet as a spec list =====
    A press fact sheet is quoted, not read. Labels left, facts right,
@@ -357,8 +353,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 <div class="press-ground" aria-hidden="true"></div>
 
 <section class="wrap press-hero reveal">
- <div class="hero-top">
-  <div class="hero-copy">
   <span class="eyebrow barred" style="--bar:var(--color-green)">Press</span>
   <h1>Me. is where your health data becomes an actionable profile of you<span class="h-stop">.</span></h1>
   <p class="lede">Ready to take wherever you need it... Now, and into the future.</p>
@@ -366,9 +360,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
     <a class="pill" href="#assets">Download the assets</a>
     <a class="ghost" href="#fact-sheet">Read the fact sheet</a>
   </div>
-  </div>
-  <img class="hero-thumb" src="press-assets/matt-hyrox-thumb.jpg" alt="Matt Osborne carrying kettlebells during a Hyrox race, wearing a heart rate strap and watch" loading="eager">
- </div>
 
   <div class="contact-strip">
     <div class="cs-item">
@@ -388,34 +379,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </section>
 
 <!-- FACT SHEET -->
-<section class="section" id="grabs">
-  <div class="wrap reading">
-    <span class="eyebrow barred" style="--bar:var(--color-m-restinghr)">Quotes</span>
-    <div class="grab-list reveal">
-      <blockquote class="grab"><p>&ldquo;It might sound philosophical, but being able to remember the past helps me make good decisions about the future.&rdquo;</p></blockquote>
-      <blockquote class="grab"><p>&ldquo;The problem is not collection. It is context.&rdquo;</p></blockquote>
-      <blockquote class="grab"><p>&ldquo;My watch knew I slept badly. It had no idea a baby was involved.&rdquo;</p></blockquote>
-      <blockquote class="grab"><p>&ldquo;A perfect use is long-term pattern recognition, and being able to highlight cause and effect from your own data.&rdquo;</p></blockquote>
-      <blockquote class="grab"><p>&ldquo;The sooner you invest a small piece of time, the sooner that investment starts compounding.&rdquo;</p></blockquote>
-      <p class="grab-attr">Matt Osborne, founder, Oi Studios. Free to use, no approval needed.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="film">
-  <div class="wrap reading">
-    <div class="film-frame reveal">
-      <div style="padding:56.25% 0 0 0;position:relative;">
-        <iframe src="https://player.vimeo.com/video/1208310129?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
-          frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Me."></iframe>
-      </div>
-    </div>
-    <p class="film-cap reveal">The explainer. Both cuts are downloadable in the assets below.</p>
-  </div>
-</section>
-
 <!-- IN HIS OWN WORDS -->
 <!-- Source of truth: me-research pr/press-kit/in-his-own-words.md.
 
@@ -460,6 +423,10 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <p>He collected his health the same way. About three years of workouts, sleep and metrics, spread across Apple Health and a handful of other apps that each held a piece of the picture and occasionally disagreed with one another. His own record now runs past 31 million data points.</p>
       <p>There was a reason it mattered more than tidiness.</p>
       <p>&ldquo;I am a hybrid athlete. I run, and I lift. Collecting the data to manage that around my work and my family schedule has been imperative. It is how I balance those stresses, mentally and physically. Me. has allowed me to self-coach based on everything I have learned over the last few years. I essentially could not have done it without Me.&rdquo;</p>
+      <figure class="lf-figure portrait">
+        <img src="press-assets/matt-hyrox-web.jpg" alt="Matt Osborne carrying kettlebells during a Hyrox race, wearing a heart rate strap and a watch" loading="lazy">
+        <figcaption>Hyrox. The chest strap and the watch are the collecting, happening while the work does.</figcaption>
+      </figure>
       <p>The difference was that the records were in order and the health data was not. Every morning the same question, and no confident answer: am I recovering well enough, is the session I planned still the right one.</p>
       <blockquote><p>&ldquo;The problem is not collection. It is context.&rdquo;</p></blockquote>
       <p>And the gap is not only his.</p>
@@ -474,6 +441,15 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <blockquote><p>&ldquo;A perfect use is long-term pattern recognition, and being able to highlight cause and effect from your own data.&rdquo;</p></blockquote>
       <p>That only works if the record is complete. An AI reading numbers alone can describe what happened. An AI reading those numbers with the context around them can help a person see why.</p>
       <p>Me. reads the Apple Health data someone already has, lets them add the context only they hold, and compiles it into one structured document they can hand to a GP, a coach, or an AI they choose to trust. It will tell you a resting heart rate has moved twelve beats and that three readings sit outside the usual range. It will not tell you what that means, and that is deliberate.</p>
+      <figure class="lf-figure">
+        <div class="vid" style="padding:56.25% 0 0 0;position:relative;">
+          <iframe src="https://player.vimeo.com/video/1208310129?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479"
+            frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Me."></iframe>
+        </div>
+        <figcaption>The explainer film. Both cuts are downloadable in the assets below.</figcaption>
+      </figure>
       <p>&ldquo;Algorithms can work well, but they can also create the impression of certainty without having the full picture. I did not build Me. to make that call itself, quietly, from the outside.&rdquo;</p>
       <p>&ldquo;Me. is a catalyst in that process.&rdquo;</p>
 
@@ -493,7 +469,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <p>&ldquo;We are not trying to complicate something that does not need to be complicated. The concept is simple. The sooner you invest a small piece of time, the sooner that investment starts compounding.&rdquo;</p>
       <blockquote><p>&ldquo;Me. gives your data a place to live, and your story the power to shape what comes next.&rdquo;</p></blockquote>
 
-      <p class="kicker">Quotes may be used freely. The founder is available for interview. Full Q&amp;A below.</p>
+      <p class="kicker">Every quote above may be used freely, no approval needed. The founder is available for interview. The full Q&amp;A follows.</p>
     </div>
   </div>
 </section>

@@ -96,7 +96,7 @@ img,svg{display:block}
    it read as a narrow column floating in a wide window with the nav
    stranded above it. The token block above is the design system's and is
    left untouched; this overrides it for this page only. */
-:root{--maxw:1400px}
+:root{--maxw:1300px}
 
 /* shared layout */
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
@@ -201,14 +201,14 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .sec-intro{font-size:17px;color:var(--color-muted);margin-top:16px;max-width:62ch;line-height:1.55}
 
 /* ===== long-form article body (fact sheet, Q&A, boilerplate) ===== */
-.article-body{max-width:900px}
+.article-body{max-width:100%}
 .article-body h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:40px 0 12px;line-height:1.2}
 .article-body h3:first-child{margin-top:0}
 .article-body p{font-size:16px;line-height:1.7;color:var(--color-ink);margin-bottom:14px}
 .article-body a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px}
 
 /* note box (draft-sourcing disclosure, honest placeholders) */
-.notebox{max-width:900px;background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:16px 20px;font-size:14px;color:var(--color-muted);line-height:1.6;margin-bottom:28px}
+.notebox{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius-sm);padding:16px 20px;font-size:14px;color:var(--color-muted);line-height:1.6;margin-bottom:28px}
 
 /* ===== press page: depth, per DESIGN.md "Elevation & Depth" =====
    A radial cream backdrop, warm highlight top-left and cooler at the
@@ -258,8 +258,8 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
    measure, so it reads as the same page rather than an inset block.
    Text keeps a readable line length; figures sit outside it. */
 .longform{max-width:100%}
-.longform > p,.longform > h3,.longform > blockquote,.longform > .standfirst,
-.longform > .lf-angle,.longform > .kicker{max-width:900px}
+/* Deliberately uncapped. A float only wraps text if the text is allowed
+   to fill the container and be pushed by it. */
 .longform .standfirst{font-size:15px;line-height:1.6;color:var(--color-muted);font-style:italic;
   padding-bottom:26px;margin-bottom:34px;border-bottom:1px solid var(--color-soft-line)}
 .longform p{font-size:18px;line-height:1.72;color:var(--color-ink);margin-bottom:19px}
@@ -282,12 +282,12 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .lf-figure{margin:36px 0;clear:both}
 /* Portrait frames sit to one side with the text running past, rather
    than stopping the article for a thousand pixels of vertical. */
-.lf-figure.portrait{float:right;width:348px;margin:8px 0 26px 56px}
+.lf-figure.portrait{float:right;width:380px;margin:10px 0 28px 56px}
 @media(max-width:900px){.lf-figure.portrait{float:none;width:100%;max-width:330px;margin:32px 0}}
 .lf-figure img{width:100%;height:auto;border-radius:var(--radius-media);box-shadow:var(--shadow-media);
   border:1px solid var(--color-soft-line)}
 .lf-figure .vid{border-radius:var(--radius-media);overflow:hidden;box-shadow:var(--shadow-media);background:var(--color-charcoal)}
-.lf-figure figcaption{margin-top:12px;max-width:900px;font-size:14px;line-height:1.5;color:var(--color-faint)}
+.lf-figure figcaption{margin-top:12px;font-size:14px;line-height:1.5;color:var(--color-faint)}
 
 /* ===== fact sheet as a spec list =====
    A press fact sheet is quoted, not read. Labels left, facts right,
@@ -347,8 +347,8 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* ===== founder Q&A ===== */
 .qa{margin-bottom:34px}
 .qa:last-child{margin-bottom:0}
-.qa .q{max-width:900px;font-size:18px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin-bottom:10px;line-height:1.35}
-.qa .a{font-size:17px;line-height:1.7;color:var(--color-muted);max-width:900px}
+.qa .q{font-size:18px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin-bottom:10px;line-height:1.35}
+.qa .a{font-size:17px;line-height:1.7;color:var(--color-muted)}
 </style>
 </head>
 <body>

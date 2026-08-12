@@ -96,7 +96,7 @@ img,svg{display:block}
    it read as a narrow column floating in a wide window with the nav
    stranded above it. The token block above is the design system's and is
    left untouched; this overrides it for this page only. */
-:root{--maxw:1560px}
+:root{--maxw:1400px}
 
 /* shared layout */
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 48px}
@@ -257,7 +257,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* The article aligns to the hero's left edge and runs to the page
    measure, so it reads as the same page rather than an inset block.
    Text keeps a readable line length; figures sit outside it. */
-.longform{max-width:1300px}
+.longform{max-width:100%}
 .longform > p,.longform > h3,.longform > blockquote,.longform > .standfirst,
 .longform > .lf-angle,.longform > .kicker{max-width:900px}
 .longform .standfirst{font-size:15px;line-height:1.6;color:var(--color-muted);font-style:italic;
@@ -282,7 +282,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .lf-figure{margin:36px 0;clear:both}
 /* Portrait frames sit to one side with the text running past, rather
    than stopping the article for a thousand pixels of vertical. */
-.lf-figure.portrait{float:right;width:340px;margin:8px 0 26px 56px}
+.lf-figure.portrait{float:right;width:348px;margin:8px 0 26px 56px}
 @media(max-width:900px){.lf-figure.portrait{float:none;width:100%;max-width:330px;margin:32px 0}}
 .lf-figure img{width:100%;height:auto;border-radius:var(--radius-media);box-shadow:var(--shadow-media);
   border:1px solid var(--color-soft-line)}
@@ -293,8 +293,8 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
    A press fact sheet is quoted, not read. Labels left, facts right,
    hairline between, so a journalist can find a price or a date without
    parsing a paragraph. */
-.spec{margin-top:36px;border-top:1px solid var(--color-soft-line);max-width:1200px}
-.spec-row{display:grid;grid-template-columns:172px minmax(0,1fr);gap:44px;padding:22px 0;max-width:1200px;
+.spec{margin-top:36px;border-top:1px solid var(--color-soft-line)}
+.spec-row{display:grid;grid-template-columns:172px minmax(0,1fr);gap:44px;padding:22px 0;
   border-bottom:1px solid var(--color-soft-line)}
 .spec-row dt{font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;
   color:var(--color-faint);padding-top:4px}
@@ -303,7 +303,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 @media(max-width:640px){.spec-row{grid-template-columns:1fr;gap:8px}.spec-row dt{padding-top:0}}
 
 /* ===== assets ===== */
-.asset-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px}
+.asset-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
 @media(max-width:900px){.asset-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.asset-grid{grid-template-columns:1fr}}
 .asset-card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-sm);
@@ -335,7 +335,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   border-radius:var(--radius-pill);padding:3px 9px}
 
 /* ===== press screenshots grid ===== */
-.press-shots{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:36px}
+.press-shots{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:36px}
 @media(max-width:900px){.press-shots{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:520px){.press-shots{grid-template-columns:1fr}}
 .press-shot{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-sm);padding:14px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px}

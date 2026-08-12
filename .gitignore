@@ -3,3 +3,17 @@
 _build/
 _review/
 uploads/
+
+# Press video cuts live in the shared Drive folder, not in git. The 4x5 is
+# 77MB and the 16x9 is 18.5MB; committing them would take this repo from
+# roughly 5MB to over 100MB permanently, and git keeps every version.
+press-assets/*.mp4
+
+# Oi_Press_4 is held out of the public kit by ruling, 12 Aug 2026: it is a
+# cast-and-crew wrap shot and several faces read as talent rather than crew.
+# Talent releases normally cover the client's campaign, not Oi's own PR in
+# perpetuity, and the press page grants free republication. Oi_Press_3 was
+# held for the same reason and released on 12 Aug: the approver confirms Oi
+# has permission to use that shot. The file stays where it was put; it
+# simply does not enter git.
+press-assets/Oi_Press_4.jpg

@@ -3,3 +3,8 @@
 _build/
 _review/
 uploads/
+
+# Press video cuts live in the shared Drive folder, not in git. The 4x5 is
+# 77MB and the 16x9 is 18.5MB; committing them would take this repo from
+# roughly 5MB to over 100MB permanently, and git keeps every version.
+press-assets/*.mp4

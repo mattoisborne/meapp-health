@@ -286,6 +286,12 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   padding:14px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px}
 .asset-card .a-name{font-size:15px;font-weight:500;color:var(--color-ink)}
 .asset-card .a-meta{font-size:13px;color:var(--color-faint)}
+.asset-card img{width:100%;height:auto;border-radius:12px;border:1px solid var(--color-soft-line)}
+.asset-card a{color:var(--color-green-dark);font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;letter-spacing:var(--track-body-tight)}
+.asset-card a:hover{text-decoration:underline;text-underline-offset:2px}
+.asset-all{margin-top:26px;padding:20px 24px;background:var(--color-paper);border:1px solid var(--color-soft-line);
+  border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);font-size:15px;line-height:1.6;color:var(--color-ink)}
+.asset-all a{color:var(--color-green-dark);text-underline-offset:2px}
 
 /* Pending slot. Deliberately loud: this must never reach main unnoticed.
    Search the file for PENDING-ASSET to find every one. */
@@ -568,29 +574,37 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       <h2>Everything, no sign-up<span class="h-stop">.</span></h2>
     </div>
 
-    <!-- PENDING-ASSET slots. Every one of these is a real gap, not a design
-         device. None of this section ships to main while a slot is visible.
-         Raised at the press-page rebuild, 12 August 2026. -->
+    <div class="asset-all reveal">
+      Everything on this page, plus both cuts of the film, is in one folder:
+      <a href="https://drive.google.com/drive/folders/1Ef_II0ZO8YMSZZ-yDnZPQ8im5afApkMI?usp=sharing">download all assets</a>. No sign-up, no request form.
+    </div>
+
+    <!-- PENDING-ASSET: two slots remain. This page does not go to main while
+         either is visible. Raised 12 August 2026. -->
     <div class="asset-grid reveal">
-      <div class="asset-slot">
-        <span class="s-tag">Pending</span>
-        <span class="s-name">Explainer film</span>
-        <span class="s-note">Two cuts rendered 12 Aug (4x5 and 1x1). Around 77MB each, so they want a Vimeo embed rather than a file in the repo, matching the home page hero. Needs an upload and a call on public use.</span>
+      <div class="asset-card">
+        <img src="press-assets/explainer-poster.jpg" alt="Still from the Me. explainer film showing the app interface" loading="lazy">
+        <span class="a-name">Explainer film</span>
+        <span class="a-meta">16x9, 18.5MB. A 4x5 cut for vertical formats is in the same folder.</span>
+        <a href="https://drive.google.com/drive/folders/1Ef_II0ZO8YMSZZ-yDnZPQ8im5afApkMI?usp=sharing">Watch and download <span class="arr">&rarr;</span></a>
       </div>
-      <div class="asset-slot">
-        <span class="s-tag">Pending</span>
-        <span class="s-name">Founder portrait</span>
-        <span class="s-note">Formal portrait of Matt Osborne. The kit carries a fourteen-question founder Q&amp;A and no photograph of the person answering.</span>
+      <div class="asset-card">
+        <img src="press-assets/matt-portrait-web.jpg" alt="Matt Osborne, founder of Oi Studios" loading="lazy">
+        <span class="a-name">Matt Osborne, portrait</span>
+        <span class="a-meta">Founder. Studio portrait, 1122 x 1402.</span>
+        <a href="press-assets/Matt_Portrait.png" download>Download <span class="arr">&darr;</span></a>
       </div>
-      <div class="asset-slot">
-        <span class="s-tag">Pending</span>
-        <span class="s-name">Founder, off duty</span>
-        <span class="s-note">The family frame. Carries the "why I built this" half of the story that the formal portrait cannot.</span>
+      <div class="asset-card">
+        <img src="press-assets/matt-offduty-web.jpg" alt="Matt Osborne with his family outside a country pub" loading="lazy">
+        <span class="a-name">Matt Osborne, off duty</span>
+        <span class="a-meta">With family. The baby in this photograph is the one in the sleep quote.</span>
+        <a href="press-assets/Matt_Nindigully.jpg" download>Download <span class="arr">&darr;</span></a>
       </div>
-      <div class="asset-slot">
-        <span class="s-tag">Pending</span>
-        <span class="s-name">Studio on a shoot</span>
-        <span class="s-note">Team at work. The thirty-year-old-studio angle is the strongest hook in the beat 1 pitch and has no image behind it.</span>
+      <div class="asset-card">
+        <img src="press-assets/me-app-icon-1024.png" alt="Me. app icon" loading="lazy">
+        <span class="a-name">App icon</span>
+        <span class="a-meta">1024 x 1024 master.</span>
+        <a href="press-assets/me-app-icon-1024.png" download>Download <span class="arr">&darr;</span></a>
       </div>
       <div class="asset-slot">
         <span class="s-tag">Pending</span>
@@ -599,8 +613,8 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
       </div>
       <div class="asset-slot">
         <span class="s-tag">Pending</span>
-        <span class="s-name">App icon, 1024</span>
-        <span class="s-note">The master exists in the app repo at design/app-icon and has never been copied to the site. A straight file copy, not a design job.</span>
+        <span class="s-name">Studio on a shoot</span>
+        <span class="s-note">Team at work. The thirty-year-old-studio angle is the strongest hook in the beat 4 pitch and has no image behind it.</span>
       </div>
     </div>
 

@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Press · Me.</title>
-<meta name="description" content="Everything a journalist needs about Me. Health intelligence: fact sheet, screenshots, founder Q&A, and boilerplate.">
+<meta name="description" content="Me. Health intelligence press kit: the founder in his own words, suggested angles, fact sheet, full Q&amp;A, screenshots and boilerplate.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Press · Me.">
-<meta property="og:description" content="Everything a journalist needs about Me. Health intelligence: fact sheet, screenshots, founder Q&A, and boilerplate.">
+<meta property="og:description" content="Me. Health intelligence press kit: the founder in his own words, suggested angles, fact sheet, full Q&amp;A, screenshots and boilerplate.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
@@ -238,6 +238,33 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .contact-strip .cs-value{font-size:16px;line-height:1.5;color:var(--color-ink)}
 .contact-strip a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px}
 
+/* ===== longform: "In his own words" =====
+   The piece a journalist reads first. Measure stays near 65ch, type a
+   step up from body so it reads as an article rather than as page copy. */
+.longform{max-width:660px}
+.longform .standfirst{font-size:15px;line-height:1.6;color:var(--color-muted);font-style:italic;
+  padding-bottom:26px;margin-bottom:34px;border-bottom:1px solid var(--color-soft-line)}
+.longform p{font-size:17px;line-height:1.75;color:var(--color-ink);margin-bottom:19px}
+.longform h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3);margin:44px 0 16px}
+.longform blockquote{margin:30px 0;padding-left:22px;border-left:2px solid var(--color-green);
+  font-size:21px;line-height:1.5;letter-spacing:var(--track-h3);color:var(--color-ink)}
+.longform blockquote p{font-size:inherit;line-height:inherit;margin:0}
+.longform .kicker{font-size:14px;color:var(--color-faint);margin-top:34px;padding-top:20px;
+  border-top:1px solid var(--color-soft-line)}
+@media(max-width:760px){.longform blockquote{font-size:19px}.longform p{font-size:16px}}
+
+/* ===== suggested angles =====
+   A press-kit convention worth keeping: name the stories available so a
+   reporter picks one rather than inventing a worse one. */
+.angles{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:34px}
+@media(max-width:760px){.angles{grid-template-columns:1fr}}
+.angle{background:var(--color-paper);border:1px solid var(--color-soft-line);
+  border-radius:var(--radius-sm);box-shadow:var(--shadow-sm);padding:24px 26px}
+.angle .an-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:var(--track-caps);
+  text-transform:uppercase;color:var(--color-faint);margin-bottom:11px}
+.angle h3{font-size:18px;font-weight:600;letter-spacing:var(--track-h3);margin-bottom:9px;line-height:1.3}
+.angle p{font-size:15px;line-height:1.6;color:var(--color-muted);margin:0}
+
 /* ===== fact sheet as a spec list =====
    A press fact sheet is quoted, not read. Labels left, facts right,
    hairline between, so a journalist can find a price or a date without
@@ -329,6 +356,93 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </section>
 
 <!-- FACT SHEET -->
+<!-- IN HIS OWN WORDS -->
+<!-- Source of truth: me-research pr/press-kit/in-his-own-words.md.
+     Every quote is verbatim from the recorded founder pre-interview of
+     19 July 2026 or the signed founder Q&A. Nothing here is invented.
+     ATTRIBUTION: no byline but Oi Studios, no invented journalist, no
+     masthead, no date implying it ran anywhere. -->
+<section class="section" id="in-his-own-words">
+  <div class="wrap reading">
+    <div class="sec-head reveal">
+      <span class="eyebrow barred" style="--bar:var(--color-m-restinghr)">In his own words</span>
+      <h2>Why he built it<span class="h-stop">.</span></h2>
+    </div>
+    <div class="longform reveal" style="margin-top:34px">
+      <p class="standfirst">Matt Osborne on why he built Me. Drawn from a recorded conversation, 19 July 2026. Quotes may be used freely.</p>
+
+      <p>Matt Osborne turned forty and, by his own account, could have bought a motorbike. He built a health app instead.</p>
+      <p>&ldquo;It may be the most productive midlife crisis I could have chosen,&rdquo; he says.</p>
+      <p>He was already good at collecting. Workouts, sleep, health metrics, about three years of it, spread across Apple Health and a handful of other apps that each held a piece of the picture and occasionally disagreed with one another. His own record now runs past 31 million data points.</p>
+      <p>What he could not do was answer the question he put to himself every morning. Am I getting better. Am I recovering well enough. Is the session I planned still the right decision.</p>
+      <p>&ldquo;I could make assumptions from experience, but I could not answer with confidence.&rdquo;</p>
+      <p>The gap turned out not to be more data.</p>
+      <blockquote><p>&ldquo;The problem is not collection. It is context.&rdquo;</p></blockquote>
+
+      <h3>The thing a sensor cannot know</h3>
+      <p>The example he returns to is a night&rsquo;s sleep, and it is the reason Me. exists in the shape it does.</p>
+      <blockquote><p>&ldquo;My watch knew I slept badly. It had no idea a baby was involved.&rdquo;</p></blockquote>
+      <p>A sleep score of five hours is accurate and useless on its own. A workout that looks lighter than usual means one thing if you are tired and another if you are coming back from an injury. A blood pressure reading taken straight after a stressful meeting is a real number attached to a missing sentence. None of that context is in the data, and all of it is known to the person the data belongs to.</p>
+      <p>Me. is where the two meet. It reads the Apple Health data a person already has, lets them add the notes, conditions, medications and training context that only they hold, and compiles the result into one structured document they can hand to a GP, a coach, or an AI tool they choose to trust.</p>
+      <p>&ldquo;Me. is where your health data becomes an actionable profile of you. Ready to take wherever you need it. Now, and into the future.&rdquo;</p>
+
+      <h3>Why it does not tell you what it means</h3>
+      <p>Me. will tell you that your resting heart rate has moved twelve beats this month and that three readings sit outside your usual range. It will not tell you what that means about you, and that is deliberate.</p>
+      <p>&ldquo;Algorithms can work well, but they can also create the impression of certainty without having the full picture. I did not build Me. to make that call itself, quietly, from the outside.&rdquo;</p>
+      <p>The reading belongs to a GP, a coach, or an AI the person already trusts and can question directly. Me.&rsquo;s job is to make sure whoever that is arrives with the whole picture instead of a screenshot and a memory.</p>
+      <p>&ldquo;Me. is a catalyst in that process.&rdquo;</p>
+
+      <h3>The record stays yours</h3>
+      <p>There is no Me. account and no Me. server. The data stays on the device. An iCloud backup is available and controlled entirely from the user&rsquo;s own settings.</p>
+      <p>&ldquo;You are not trusting us with your health data. We are giving you a place to hold it yourself. It cannot be sold because we do not have it.&rdquo;</p>
+      <p>The pricing follows from the same idea. The free tier is complete, and Me. Pro can be bought once rather than rented, which he considers the honest arrangement for a record someone intends to keep.</p>
+      <p>&ldquo;Your health data is not something you should have to keep paying to keep using.&rdquo;</p>
+
+      <h3>Built in Hobart</h3>
+      <p>Me. is the first product from Oi Studios, an independent studio of ten people that has been operating for thirty years, and it ships from Tasmania to every App Store storefront except mainland China.</p>
+      <p>&ldquo;We are a team of about ten people on a small island at the bottom of the world, building something we want anyone with an iPhone to use. That is slightly ridiculous. It is also completely possible now.&rdquo;</p>
+      <p>He uses it daily. The morning check-in takes about fifteen seconds. The most useful thing he has done with it is a sleep study on himself: months of logging late meals, screens, training and night-time disruptions alongside the sleep data, until the picture of what actually helps him sleep became clear.</p>
+      <p>&ldquo;Me. becomes most valuable when life is not perfect and the plan needs to change. The main result is clarity. I am not waking up confused about what to do.&rdquo;</p>
+      <p>Asked what Me. can become, he does not describe a market.</p>
+      <blockquote><p>&ldquo;Me. gives your data a place to live, and your story the power to shape what comes next.&rdquo;</p></blockquote>
+
+      <p class="kicker">Quotes may be used freely. The founder is available for interview. Full Q&amp;A below.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SUGGESTED ANGLES -->
+<section class="section paper-band" id="angles">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow barred" style="--bar:var(--color-m-energy)">Angles</span>
+      <h2>Four stories in here<span class="h-stop">.</span></h2>
+    </div>
+    <div class="angles reveal">
+      <div class="angle">
+        <span class="an-tag">The founder</span>
+        <h3>The morning question he could not answer</h3>
+        <p>Three years of diligent tracking and still no confident answer to whether today&rsquo;s session was the right call. The fix turned out to be context, not more data.</p>
+      </div>
+      <div class="angle">
+        <span class="an-tag">The studio</span>
+        <h3>Thirty years advising, then building</h3>
+        <p>A Hobart studio that lived through film to digital and the arrival of the internet decided this shift was big enough to stop commenting on it and ship something. Me. is its first product.</p>
+      </div>
+      <div class="angle">
+        <span class="an-tag">The architecture</span>
+        <h3>No account, no server, nothing to sell</h3>
+        <p>The data never leaves the device, which is a product decision with commercial consequences rather than a privacy policy. One-time pricing follows from the same logic.</p>
+      </div>
+      <div class="angle">
+        <span class="an-tag">The moment</span>
+        <h3>What AI needs from you that it does not have</h3>
+        <p>Access to metrics is not the same as knowing the person. As health assistants arrive on every platform, the missing layer is the context only the individual holds.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="fact-sheet">
   <div class="wrap reading">
     <div class="sec-head reveal">
@@ -380,7 +494,74 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </section>
 
 <!-- SCREENSHOTS -->
-<section class="section paper-band" id="assets">
+<!-- FOUNDER Q&A: the full published set. The prepared cloud/account
+     answer from the signed kit is deliberately NOT here: it is marked
+     "only if asked, never volunteered", and a public page volunteers it. -->
+<section class="section paper-band" id="founder-qa">
+  <div class="wrap reading">
+    <div class="sec-head reveal">
+      <span class="eyebrow barred" style="--bar:var(--color-m-sleep)">Founder Q&amp;A</span>
+      <h2>From the founder<span class="h-stop">.</span></h2>
+    </div>
+    <div class="reveal" style="margin-top:36px">
+      <div class="notebox">The full Q&amp;A, from the recorded conversation of 19 July 2026. Quotes may be used freely.</div>
+      <div class="qa">
+        <div class="q">Why did you build this?</div>
+        <div class="a">Turning 40, I could have bought a motorbike. Instead, I built a health app. It may be the most productive midlife crisis I could have chosen. Me. came from about three years of trying to connect everything I was learning about health and training with the data I was already collecting. I was good at recording things: workouts, sleep, health metrics. The problem was that the data and the learning were disconnected. The data sat across Apple Health and a handful of other apps, each showing part of the picture, sometimes contradicting each other. The recurring moment was every morning: am I getting better, am I recovering well enough, is the planned session still the right decision? I could make assumptions from experience, but I could not answer with confidence. The problem is not collection. It is context. Me. became the support system underneath those decisions. And that gap is not just mine. Most people already have the data. They just cannot use it properly.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Why did a creative studio build a health app?</div>
+        <div class="a">We have seen more change in the past six months than in our previous thirty years, and we say that as a studio that lived through film to digital and the arrival of the internet. We have been learning this shift hands-on, in client work, every week. At some point the question stopped being what the change means for our industry and became what we could build with what it was teaching us. We chose the most important space there is: personal health. Everything we know about making complex material clear for a specific audience applies directly. A GP, a coach, and an AI are audiences. Your health data is the raw material. Me. is the work of getting it ready. The goal in the studio has never been to replace experienced judgment, it is to put judgment where it adds the most value. Me. is that same principle, applied to your health data.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Who is it for?</div>
+        <div class="a">Anyone who already has Apple Health data and wants it to be useful rather than just collected. Someone trying to make sense of six months of poor sleep. Someone managing several medications and appointments who does not want to walk into a specialist relying on memory. Someone training seriously who wants their coach working from the whole picture, not just a workout log. People who already talk to an AI about their health and want it starting from their real context instead of a blank page. Me. does not assume a diagnosis, a sport, or a particular device. It assumes you have data, and a GP, coach, or AI you trust to look at it.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Why does Me. refuse to interpret?</div>
+        <div class="a">Me. is the gateway to real interpretation: it compiles the structured picture so the reader you choose can interpret well. Algorithms can work well, but they can also create the impression of certainty without having the full picture. I did not build Me. to make that call itself, quietly, from the outside. That belongs to your GP, your coach, or an AI you already trust and can question directly. Me. stops at the document. It compiles your data and your own context into a structure that reader can actually use, then gets out of the way. That refusal is not a limitation I am working around, it is the reason you can trust what Me. hands over: nothing has been summarised, scored, or interpreted before it reaches you, so there is nothing standing between your data and whoever you chose to read it.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Why one-time pricing?</div>
+        <div class="a">Because your health data is not something you should have to keep paying to keep using. The easiest way to make a health app commercially aggressive would be subscriptions, engagement loops, scores, and constant notifications. Most of those things would make Me. a worse product. Me. is free to use fully: check-ins, notes, your complete profile, saved prompts, training plans, and compiling the last 7 days up to 5 times a month. Me. Pro adds full-history compilation, unlimited compiles, and profile change history, with a 7-day free trial. After that, AUD $4.99 a month if you would rather pay as you go, or AUD $29.99 once. The same tiers show as US $2.99 and US $19.99 on the US store, and each storefront shows its own. No subscription required. You pay once, and you have it. You can change providers, doctors, coaches, or AI tools without rebuilding your entire history.</div>
+      </div>
+      <div class="qa">
+        <div class="q">What about privacy?</div>
+        <div class="a">You are not trusting us with your health data. We are giving you a place to hold it yourself. We cannot access the health data stored in Me. It stays on your device. It cannot be sold because we do not have it. There is no Me. account and no Me. server. If you want a backup, optional iCloud backup is there, controlled entirely from your own settings. Me. uses TelemetryDeck for anonymous, privacy-first analytics, disclosed in-app with an opt-out toggle. And if Oi stopped operating tomorrow, your data would still be on your device. The record remains yours.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Where did Me. launch?</div>
+        <div class="a">Every App Store storefront except mainland China, from day one. Mainland China has its own rules for apps with AI features and we have not taken that on yet. Because Me. runs on your device with no Me. server behind it, there is no regional infrastructure to stage: the same app, handling your data the same way, ships internationally at once. We are a team of about ten people on a small island at the bottom of the world, building something we want anyone with an iPhone to use. That is slightly ridiculous. It is also completely possible now. We are fortunate to live somewhere with proof that ambitious ideas built locally can reach international audiences. MONA is an obvious example just down the road. A small team can move quickly: we can refine, respond to users, and improve the product without layers of delay.</div>
+      </div>
+      <div class="qa">
+        <div class="q">How do you use Me. yourself?</div>
+        <div class="a">Daily. Each morning the check-in takes about 15 seconds to capture how I am feeling. I usually train early, and after the workout I log what happened, how it felt, and anything that differed from a similar recent session. I have conducted a fairly unreasonable amount of research on myself. The most useful piece has been my own personal sleep study: months of logging eating close to bedtime, screens, training, and disruptions during the night alongside the sleep data itself, until the picture of what actually helps me sleep got clear. From a training perspective, I set a goal, build a plan with an external AI, bring it into Me., and keep adjusting based on how I feel, my current numbers, my doctrine, and what is happening in my life. When everything is humming, it is easy to wake up and go for a run. Me. becomes most valuable when life is not perfect and the plan needs to change. The main result is clarity. I am not waking up confused about what to do.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Why not just use the native Apple Health connector in ChatGPT?</div>
+        <div class="a">Use it if it works for you. Access to metrics is not the same as knowing the person. My watch knew I slept badly. It had no idea a baby was involved. Me. adds the information surrounding the numbers: your context, your conditions and medications, your notes about how things felt and what was happening in your life, compiled with the data into one structured document you can check before you hand it over. And Me. prepares that record for use beyond any one provider or conversation. Platforms change. Features close. A person should not lose their health context because one piece of infrastructure changes. The platforms connect your data. Me. prepares it, and keeps it yours.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Isn&rsquo;t Me. just an export tool?</div>
+        <div class="a">Exporting is one function, and an important one: your compiled record goes wherever you choose. But a filing cabinet does not just hold documents, it holds them in a way that makes them findable and useful. Me. does that for health data, context, notes, reports, and whatever else you choose to include, with a visualisation layer for seeing values and trends alongside the context you added. Before Me., the most advanced health system in my life was still largely me trying to remember what happened last Tuesday.</div>
+      </div>
+      <div class="qa">
+        <div class="q">What happens when Apple builds this?</div>
+        <div class="a">Apple may eventually build something similar. I do not know when, and that possibility does not stop us from building something useful now. A small team can move quickly and add focused functionality that a large company may take much longer to prioritise. Other applications will add similar functions too, and that validates the need. You start where you can make the product useful now. For us that is Apple&rsquo;s infrastructure, and over time Me. could move across platforms. Just because something might happen in the future does not mean we should stop trying to make a difference in the meantime.</div>
+      </div>
+      <div class="qa">
+        <div class="q">Why should anyone trust an app studio with health data?</div>
+        <div class="a">You should not have to, and with Me. you do not: the data never comes to us. What you are trusting is the tool, and the people behind it. Oi Studios has been operating for thirty years, and we intend to operate for another thirty. Many software startups cannot say that. We are not medical professionals, and we do not present ourselves as medical professionals. Our experience is in building reliable systems, managing information, and designing things people can actually use. The health expertise stays where it belongs: with your doctors, specialists, coaches, and the analysis tools you choose.</div>
+      </div>
+      <div class="qa">
+        <div class="q">What do you believe Me. can become?</div>
+        <div class="a">The app that anyone with an iPhone and an interest in their health owns. You pay for it once, and you have it. The second someone starts adding context, the value begins to compound: months or years of structured health context they can bring to a doctor, a coach, a specialist, or a future AI system that does not exist yet. My bet is that personal context becomes more valuable as AI becomes more capable. The data already exists. The models will improve. The missing layer is a clean, portable, user-owned record of the person. I believe owning and understanding your own health record should be ordinary, the same way keeping your own records and your own photos already is. There is a personal layer to this too. I work to live, not the other way around. A great life starts with balance, and for me balance starts with building and maintaining health. No one cares more about your health than you do. Me.&rsquo;s profile carries a doctrine layer for exactly that, the principles and preferences you hold and want adhered to whenever your data is read. If Me. helped one person make a positive change, that would matter. The ambition is larger than one person, but it starts there.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="assets">
   <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-m-sleep)">Assets</span>
@@ -443,35 +624,6 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 </section>
 
 <!-- FOUNDER Q&A -->
-<section class="section" id="founder-qa">
-  <div class="wrap reading">
-    <div class="sec-head reveal">
-      <span class="eyebrow barred" style="--bar:var(--color-m-sleep)">Founder Q&amp;A</span>
-      <h2>From the founder<span class="h-stop">.</span></h2>
-    </div>
-    <div class="reveal" style="margin-top:36px">
-      <div class="notebox">Selected answers; full Q&amp;A available on request.</div>
-      <div class="qa">
-        <div class="q">Why did you build this?</div>
-        <div class="a">Turning 40, I could have bought a motorbike. Instead, I built a health app. It may be the most productive midlife crisis I could have chosen. Me. came from about three years of trying to connect everything I was learning about health and training with the data I was already collecting. I was good at recording things: workouts, sleep, health metrics. The problem was that the data and the learning were disconnected. The data sat across Apple Health and a handful of other apps, each showing part of the picture, sometimes contradicting each other. The problem is not collection. It is context. Me. became the support system underneath those decisions. And that gap is not just mine. Most people already have the data. They just cannot use it properly.</div>
-      </div>
-      <div class="qa">
-        <div class="q">Why not just use the native Apple Health connector in ChatGPT?</div>
-        <div class="a">Use it if it works for you. Access to metrics is not the same as knowing the person. My watch knew I slept badly. It had no idea a baby was involved. Me. adds the information surrounding the numbers: your context, your conditions and medications, your notes about how things felt and what was happening in your life, compiled with the data into one structured document you can check before you hand it over. And Me. prepares that record for use beyond any one provider or conversation. Platforms change. Features close. A person should not lose their health context because one piece of infrastructure changes. The platforms connect your data. Me. prepares it, and keeps it yours.</div>
-      </div>
-      <div class="qa">
-        <div class="q">What about privacy?</div>
-        <div class="a">You are not trusting us with your health data. We are giving you a place to hold it yourself. We cannot access the health data stored in Me. It stays on your device. It cannot be sold because we do not have it. There is no Me. account and no Me. server. If you want a backup, optional iCloud backup is there, controlled entirely from your own settings. Me. uses TelemetryDeck for anonymous, privacy-first analytics, disclosed in-app with an opt-out toggle. And if Oi stopped operating tomorrow, your data would still be on your device. The record remains yours.</div>
-      </div>
-      <div class="qa">
-        <div class="q">Why one-time pricing?</div>
-        <div class="a">Because your health data is not something you should have to keep paying to keep using. Me. is free to use fully: check-ins, notes, your complete profile, saved prompts, training plans, and compiling the last 7 days up to 5 times a month. Me. Pro adds full-history compilation, unlimited compiles, and profile change history, with a 7-day free trial. After that, AUD $4.99 a month if you would rather pay as you go, or AUD $29.99 once. The same tiers show as US $2.99 and US $19.99 on the US store, and each storefront shows its own. No subscription required. You pay once, and you have it. You can change providers, doctors, coaches, or AI tools without rebuilding your entire history.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- BOILERPLATE -->
 <section class="section paper-band" id="boilerplate">
   <div class="wrap reading">
     <div class="sec-head reveal">

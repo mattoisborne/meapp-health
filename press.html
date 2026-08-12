@@ -246,7 +246,12 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* ===== longform: "In his own words" =====
    The piece a journalist reads first. Measure stays near 65ch, type a
    step up from body so it reads as an article rather than as page copy. */
-.longform{max-width:660px}
+/* The article aligns to the hero's left edge and runs to the page
+   measure, so it reads as the same page rather than an inset block.
+   Text keeps a readable line length; figures sit outside it. */
+.longform{max-width:1000px}
+.longform > p,.longform > h3,.longform > blockquote,.longform > .standfirst,
+.longform > .lf-angle,.longform > .kicker{max-width:660px}
 .longform .standfirst{font-size:15px;line-height:1.6;color:var(--color-muted);font-style:italic;
   padding-bottom:26px;margin-bottom:34px;border-bottom:1px solid var(--color-soft-line)}
 .longform p{font-size:17px;line-height:1.75;color:var(--color-ink);margin-bottom:19px}
@@ -266,14 +271,15 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 /* ===== figures inside the article =====
    Editorial, not decorative: each one sits against the passage it
    illustrates rather than standing alone above the piece. */
-.lf-figure{margin:36px 0}
-/* A portrait frame at full measure is over a thousand pixels tall and
-   stops the article dead. Narrower, so it sits in the reading. */
-.lf-figure.portrait{max-width:430px}
+.lf-figure{margin:36px 0;clear:both}
+/* Portrait frames sit to one side with the text running past, rather
+   than stopping the article for a thousand pixels of vertical. */
+.lf-figure.portrait{float:right;width:270px;margin:8px 0 26px 44px}
+@media(max-width:900px){.lf-figure.portrait{float:none;width:100%;max-width:330px;margin:32px 0}}
 .lf-figure img{width:100%;height:auto;border-radius:var(--radius-media);box-shadow:var(--shadow-media);
   border:1px solid var(--color-soft-line)}
 .lf-figure .vid{border-radius:var(--radius-media);overflow:hidden;box-shadow:var(--shadow-media);background:var(--color-charcoal)}
-.lf-figure figcaption{margin-top:12px;font-size:14px;line-height:1.5;color:var(--color-faint)}
+.lf-figure figcaption{margin-top:12px;max-width:660px;font-size:14px;line-height:1.5;color:var(--color-faint)}
 
 /* ===== fact sheet as a spec list =====
    A press fact sheet is quoted, not read. Labels left, facts right,
@@ -403,7 +409,7 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
      ATTRIBUTION: no byline but Oi Studios, no invented journalist, no
      masthead, no date implying it ran anywhere. -->
 <section class="section" id="in-his-own-words">
-  <div class="wrap reading">
+  <div class="wrap">
     <div class="sec-head reveal">
       <span class="eyebrow barred" style="--bar:var(--color-m-restinghr)">In his own words</span>
       <h2>Why Me. exists<span class="h-stop">.</span></h2>

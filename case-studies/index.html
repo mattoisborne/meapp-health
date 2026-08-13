@@ -340,7 +340,15 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   }else{
     var io=new IntersectionObserver(function(es){
       es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
-    },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
+    },{threshold:0,rootMargin:'0px 0px -12% 0px'});
+  /* threshold is 0, deliberately, not a proportion. An element taller than
+     the viewport can never reach a percentage threshold: the most of it that
+     can ever be on screen is viewportHeight/elementHeight. The founder Q&A on
+     press.html renders about 9,800px tall on a phone, so its ceiling was 8%
+     against a 12% threshold, the observer never fired, and the whole section
+     sat at opacity:0 on mobile while working fine on desktop. rootMargin sets
+     the reveal point instead, which is a distance and behaves the same at any
+     element height. */
     reveals.forEach(function(el){io.observe(el);});
   }
   /* obfuscated contact: literal address never in static DOM */

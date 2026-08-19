@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Me. works. · Me.</title>
+<meta name="description" content="290 Swift files, 58,996 lines, and no HTTP client. What it cost to build Me. with nowhere for your health data to go.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="We built a health app with no server · Me.">
+<meta property="og:description" content="290 Swift files, 58,996 lines, and no HTTP client. What it cost to build Me. with nowhere for your health data to go.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="https://meapp.health/assets/og-card.png">
+<meta name="twitter:image" content="https://meapp.health/assets/og-card.png">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* =========================================================
+   Me. website: shared shell + tokens + components
+   Inlined into every page. Tokens copied verbatim from the
+   Me. Design System v2.1 colors_and_type.css. Token names
+   kept identical so future edits map back to the system.
+   WEB DARK SURFACE IS CHARCOAL #2A2D2C (never the product
+   near-black, which is product UI only). Ruling 6.
+   ========================================================= */
+:root{
+  /* cream surface family (default) */
+  --color-bg:#F4F0E8; --color-paper:#FBF8F1; --color-paper-cool:#F1F0EC;
+  --color-line:#DED8CC; --color-soft-line:#EBE5DC;
+  --color-ink:#151716; --color-charcoal:#2A2D2C;
+  --color-muted:#646866; --color-faint:#8D9088;
+  /* charcoal-surface text tones */
+  --color-d-text:#F0F0F0; --color-d-border:#2A2A2A;
+  --color-d-muted:#C2C6C2; --color-d-faint:#8B8F8B;
+  /* signal accent (one accent, ~2% of any frame) */
+  --color-green:#00C896; --color-green-dark:#0F8F73;
+  --color-green-light:#46E0BD; --color-green-text:#003D2E;
+  /* metric palette (brand colours v2.1) */
+  --color-m-restinghr:#DC6C84; --color-m-resprate:#57B1F0;
+  --color-m-energy:#BE9924; --color-m-steps:#62CC82; --color-m-sleep:#8371DF;
+  /* support tones */
+  --color-sage:#C9D8CF; --color-clay:#D8C7B8; --color-stone:#B8B8B2; --color-grey-cool:#AEB6B0;
+  /* state */
+  --color-destructive:#E24B4A; --color-destructive-dim:rgba(226,75,74,0.10);
+  /* case-study data line, distinct cyan (Ruling 5), tuned from 2BA8C4 for cream legibility */
+  --color-cyan:#1E93B0;
+  /* type */
+  --font-sans:'Inter',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --font-mono:'JetBrains Mono','SF Mono','Fira Code',ui-monospace,Menlo,monospace;
+  --track-display:-0.06em; --track-h2:-0.045em; --track-h3:-0.02em;
+  --track-body:-0.015em; --track-body-tight:-0.005em; --track-caps:0.13em; --track-wordmark:-0.045em;
+  /* radii */
+  --radius-xs:6px; --radius-sm:18px; --radius-md:24px; --radius:28px;
+  --radius-pill:999px; --radius-media:12px;
+  /* spacing */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px;
+  /* shadows: cream depth only; no shadows on charcoal */
+  --shadow-sm:0 10px 30px rgba(20,20,18,0.06);
+  --shadow-md:0 24px 80px rgba(35,35,32,0.09);
+  --shadow-lg:0 28px 90px rgba(30,32,30,0.12);
+  --shadow-media:0 15px 38px rgba(30,32,30,0.12);
+  /* motion */
+  --ease-settle:cubic-bezier(0.22,1,0.36,1);
+  --ease-glide:cubic-bezier(0.65,0,0.35,1);
+  --ease-soft-arrival:cubic-bezier(0.34,1.4,0.5,1);
+  --ease-intent-exit:cubic-bezier(0.40,0,1,1);
+  --ease-reveal:cubic-bezier(0,0,0.2,1);
+  --dur-micro:180ms; --dur-entrance:420ms; --dur-travel:750ms; --dur-settle:1200ms; --dur-line:1000ms;
+  --maxw:1200px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-sans);
+  background:var(--color-bg);
+  color:var(--color-ink);
+  font-feature-settings:'tnum' 1,'ss01' 1,'cv11' 1;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.5;
+  letter-spacing:var(--track-body);
+  /* one subtle radial warmth on cream, never a hard gradient */
+  background-image:radial-gradient(120% 80% at 15% 0%, rgba(255,255,255,0.5) 0%, rgba(244,240,232,0) 55%);
+  background-attachment:fixed;
+}
+a{color:inherit}
+img,svg{display:block}
+
+/* shared layout */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.reading{max-width:720px;margin:0 auto;padding:0 32px}
+.section{padding:92px 0}
+.paper-band{background:var(--color-paper)}
+@media(max-width:760px){.section{padding:60px 0}}
+
+/* wordmark + green stops */
+.wm{font-family:var(--font-sans);font-weight:600;letter-spacing:var(--track-wordmark)}
+.stop,.wm-stop,.h-stop{color:var(--color-green)}
+.eyebrow{display:inline-block;font-size:11px;font-weight:500;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark)}
+.muted{color:var(--color-muted)}
+h1{font-size:52px;font-weight:600;letter-spacing:var(--track-display);line-height:1.04}
+h2{font-size:36px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.05}
+h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.25}
+@media(max-width:760px){h1{font-size:36px}h2{font-size:28px}}
+::selection{background:rgba(0,200,150,0.22);color:var(--color-ink)}
+:focus-visible{outline:2px solid var(--color-green);outline-offset:3px;border-radius:3px}
+
+/* ===== NAV (identical on every page) ===== */
+.nav{position:sticky;top:0;z-index:60;border-bottom:0.5px solid transparent;transition:background .2s var(--ease-settle),border-color .2s var(--ease-settle)}
+.nav.scrolled{background:rgba(244,240,232,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:0.5px solid var(--color-line)}
+.nav-in{max-width:var(--maxw);margin:0 auto;padding:17px 32px;display:flex;align-items:center;justify-content:space-between;position:relative}
+.nav-brand{font-size:35px;text-decoration:none;color:var(--color-ink)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a:not(.pill){color:var(--color-muted);text-decoration:none;font-size:15px;transition:color .15s var(--ease-settle)}
+.nav-links a:not(.pill):hover{color:var(--color-ink)}
+.pill{display:inline-block;background:var(--color-green);color:var(--color-green-text);font-weight:500;font-size:15px;padding:9px 19px;border-radius:var(--radius-pill);text-decoration:none;transition:background .15s var(--ease-settle)}
+.pill:hover,.pill:focus-visible{background:var(--color-green-dark);color:#fff}
+/* hamburger (mobile only) */
+.nav-toggle{display:none;width:44px;height:44px;border:0;background:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;margin-right:-8px;border-radius:10px}
+.nav-toggle span{display:block;width:23px;height:2px;background:var(--color-ink);border-radius:2px;transition:transform .22s var(--ease-settle),opacity .18s var(--ease-settle)}
+.nav.open .nav-toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav.open .nav-toggle span:nth-child(2){opacity:0}
+.nav.open .nav-toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:760px){
+  .nav-brand{font-size:28px}
+  .nav-toggle{display:flex}
+  .nav-links{position:absolute;top:calc(100% + 6px);right:0;flex-direction:column;align-items:stretch;gap:0;min-width:224px;background:var(--color-paper);border:1px solid var(--color-line);border-radius:var(--radius-sm);box-shadow:var(--shadow-md);padding:8px;overflow:hidden;max-height:0;opacity:0;pointer-events:none;transform:translateY(-6px);transition:max-height .26s var(--ease-settle),opacity .2s var(--ease-settle),transform .2s var(--ease-settle)}
+  .nav.open .nav-links{max-height:360px;opacity:1;pointer-events:auto;transform:none}
+  .nav-links a:not(.pill){display:block;font-size:16px;color:var(--color-ink);padding:13px 14px;border-radius:12px;transition:background .15s var(--ease-settle)}
+  .nav-links a:not(.pill):active,.nav-links a:not(.pill):hover{background:rgba(0,200,150,0.07)}
+  .nav-links .coming-tag{align-self:flex-start;margin:8px 6px 6px;font-size:13px}
+}
+
+/* shared index page header (guides + case studies) */
+.page-head{padding-top:128px;padding-bottom:8px}
+.page-head .eyebrow{margin-bottom:16px}
+.page-head h1{font-size:46px;letter-spacing:var(--track-h2);line-height:1.05;max-width:18ch}
+.page-head .intro{font-size:17px;color:var(--color-muted);line-height:1.6;margin-top:20px;max-width:60ch}
+@media(max-width:760px){.page-head{padding-top:104px}.page-head h1{font-size:34px}}
+
+/* back link (subpages, eyebrow position) */
+.backlink{display:inline-block;color:var(--color-muted);font-size:13px;text-decoration:none;letter-spacing:var(--track-body-tight);transition:color .15s var(--ease-settle)}
+.backlink:hover{color:var(--color-ink)}
+
+/* ===== Apple App Store badge ===== */
+.applebadge{display:inline-flex;text-decoration:none;border-radius:9px;overflow:hidden}
+.applebadge svg{height:46px;width:auto}
+.applebadge:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
+
+/* ===== App status tag: a live App Store link since 1.0 released 30 Jul 2026 ===== */
+.coming-tag{display:inline-flex;align-items:center;gap:9px;font-size:15px;font-weight:500;letter-spacing:var(--track-body-tight);color:var(--color-green-dark);border:1px solid rgba(0,200,150,0.40);background:rgba(0,200,150,0.06);border-radius:var(--radius-pill);padding:9px 18px;white-space:nowrap;text-decoration:none;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.coming-tag .dot{width:7px;height:7px;border-radius:50%;background:var(--color-green);flex:none}
+.coming-tag.on-dark{color:var(--color-green-light);border-color:rgba(0,200,150,0.42);background:rgba(0,200,150,0.10)}
+.coming-tag:hover{border-color:rgba(0,200,150,0.70);background:rgba(0,200,150,0.12)}
+.coming-tag.on-dark:hover{border-color:rgba(0,200,150,0.72);background:rgba(0,200,150,0.18)}
+.coming-tag:focus-visible{outline:2px solid var(--color-green);outline-offset:3px}
+.nav .coming-tag{font-size:14px;padding:8px 16px}
+@media(max-width:760px){.nav .coming-tag{font-size:13px;padding:7px 13px;gap:7px}}
+
+/* text link with arrow */
+.textlink{color:var(--color-ink);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;transition:color .15s var(--ease-settle)}
+.textlink .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.textlink:hover .arr{transform:translateX(3px)}
+
+/* ===== consolidated footer (every page) ===== */
+.foot{background:var(--color-charcoal);color:var(--color-d-text);padding:56px 32px 36px}
+.foot-in{max-width:var(--maxw);margin:0 auto;display:flex;flex-direction:column;gap:16px;align-items:center;text-align:center}
+.foot-brand{font-size:22px;color:var(--color-d-text);letter-spacing:var(--track-h2);font-weight:600}
+@media(max-width:760px){.foot-brand{font-size:20px}}
+.foot .applebadge svg{height:40px}
+.foot .sublab{color:var(--color-d-faint);font-size:13px;letter-spacing:var(--track-body-tight)}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-top:2px;padding-top:22px;border-top:0.5px solid var(--color-d-border);width:100%;max-width:580px}
+.foot-links a{color:var(--color-d-faint);text-decoration:none;font-size:14px;transition:color .15s var(--ease-settle)}
+.foot-links a:hover{color:var(--color-d-text);text-decoration:underline;text-underline-offset:3px}
+.foot-cred{color:#5d615e;font-size:12px;letter-spacing:var(--track-body-tight)}
+
+/* ===== reveal ===== */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .42s var(--ease-reveal),transform .42s var(--ease-reveal)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.06s}.reveal.d2{transition-delay:.12s}.reveal.d3{transition-delay:.18s}
+.reveal.d4{transition-delay:.24s}.reveal.d5{transition-delay:.3s}
+@media(prefers-reduced-motion:reduce){.reveal,.reveal.d1,.reveal.d2,.reveal.d3,.reveal.d4,.reveal.d5{opacity:1;transform:none;transition:none}}
+
+/* ===== shared card primitives ===== */
+.card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow-sm);transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.card:hover{border-color:var(--color-line)}
+
+/* tag pill */
+.tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:var(--radius-pill);line-height:1}
+.tag-green{background:var(--color-green);color:var(--color-green-text)}
+.tag-sleep{background:var(--color-m-sleep);color:#fff}
+.tag-faint{background:transparent;border:1px solid var(--color-line);color:var(--color-faint)}
+
+/* dark case-study card */
+.cs-card{background:var(--color-charcoal);color:var(--color-d-text);border-radius:var(--radius);padding:38px;box-shadow:var(--shadow-md);display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-card h3{font-size:26px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.12;color:var(--color-d-text)}
+.cs-card .dek{color:var(--color-d-muted);font-size:16px;line-height:1.5}
+.cs-card .meta{color:var(--color-d-faint);font-size:13px}
+.cs-card .cs-link{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.cs-card .cs-link .arr{transition:transform .2s var(--ease-settle)}
+.cs-card .cs-link:hover .arr{transform:translateX(3px)}
+
+/* coming-soon card */
+.cs-soon{background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:38px;display:flex;flex-direction:column;align-items:flex-start;gap:14px}
+.cs-soon h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-faint)}
+.cs-soon p{font-size:14px;color:var(--color-faint);line-height:1.5}
+
+/* guide card */
+.guide-card{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius);padding:30px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;align-items:flex-start;gap:12px;text-decoration:none;color:inherit;transition:border-color .15s var(--ease-settle),background .15s var(--ease-settle)}
+.guide-card:hover{border-color:var(--color-line);background:#fff}
+.guide-card .num{white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:4px 11px;border-radius:var(--radius-pill)}
+.guide-card h3{font-size:21px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2}
+.guide-card p{font-size:15px;color:var(--color-muted);line-height:1.5}
+.guide-card .read{color:var(--color-green);font-size:14px;display:inline-flex;align-items:center;gap:7px;margin-top:2px}
+.guide-card .read .arr{transition:transform .2s var(--ease-settle)}
+.guide-card:hover .read .arr{transform:translateX(3px)}
+
+/* related case-study callout (reusable) */
+.related{background:var(--color-paper-cool);border:1px solid var(--color-line);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.related h3{font-size:20px;font-weight:600;letter-spacing:var(--track-h3)}
+.related p{font-size:15px;color:var(--color-muted);line-height:1.55}
+.related a{color:var(--color-green);text-decoration:none;font-size:15px;display:inline-flex;align-items:center;gap:7px}
+.related a .arr{transition:transform .2s var(--ease-settle)}
+.related a:hover .arr{transform:translateX(3px)}
+
+/* ===== guides index ===== */
+.guides-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:8px 0 0}
+@media(max-width:760px){.guides-grid{grid-template-columns:1fr}}
+
+.faq-wrap{max-width:720px;margin:0 auto;padding:24px 32px 0;border-top:1px solid var(--color-line)}
+.faq-wrap h2{margin-bottom:36px}
+.faq-item{padding:24px 0;border-bottom:0.5px solid var(--color-soft-line)}
+.faq-item:last-child{border-bottom:0}
+.faq-item h3{font-size:17px;font-weight:600;letter-spacing:var(--track-body);color:var(--color-ink);margin-bottom:10px}
+.faq-item p{font-size:17px;color:var(--color-muted);line-height:1.6}
+.faq-item p + p{margin-top:12px}
+.faq-item a{color:var(--color-green-dark);text-decoration:underline;text-underline-offset:2px;transition:color .15s var(--ease-settle)}
+.faq-item a:hover{color:var(--color-ink)}
+
+/* ===== individual guide (long-read) ===== */
+.guide-article{max-width:720px;margin:0 auto;padding:0 32px}
+.guide-top{padding-top:120px}
+@media(max-width:760px){.guide-top{padding-top:100px}}
+.guide-top .backlink{margin-bottom:34px}
+.guide-tag{display:inline-block;white-space:nowrap;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;background:var(--color-green);color:var(--color-green-text);padding:5px 13px;border-radius:var(--radius-pill);margin-bottom:20px}
+.guide-article h1{font-size:44px;font-weight:600;letter-spacing:var(--track-h2);line-height:1.08}
+@media(max-width:760px){.guide-article h1{font-size:32px}}
+.guide-meta{font-size:13px;color:var(--color-faint);margin-top:16px}
+.guide-body{padding:40px 0 8px}
+.guide-body p{font-size:18px;line-height:1.7;color:var(--color-ink);letter-spacing:var(--track-body);margin-bottom:26px}
+.guide-body h4{font-size:20px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);margin:38px 0 16px}
+.guide-body .promptquote{background:var(--color-paper-cool);border:1px solid var(--color-line);border-left:3px solid var(--color-green);border-radius:var(--radius-sm);padding:20px 22px;font-family:var(--font-mono);font-size:14.5px;line-height:1.6;color:var(--color-ink);letter-spacing:-0.01em;margin:0 0 26px}
+.guide-body .examples{margin:0 0 26px}
+.guide-body .ex-cat{font-size:11px;font-weight:600;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-green-dark);margin:22px 0 12px}
+.guide-body .ex-list{display:flex;flex-direction:column;gap:8px}
+.guide-body .ex-list span{background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-sm);padding:11px 16px;font-family:var(--font-mono);font-size:13.5px;color:var(--color-muted);line-height:1.5}
+.guide-body ul{margin:0 0 26px;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:14px}
+.guide-body ul li{font-size:18px;line-height:1.6;color:var(--color-ink);padding-left:26px;position:relative}
+.guide-body ul li::before{content:"";position:absolute;left:4px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--color-green)}
+.guide-body .tier{display:block;margin-bottom:6px}
+.guide-body .tier b{color:var(--color-ink)}
+
+.guide-foot{max-width:720px;margin:0 auto;padding:8px 32px 0}
+.next-link{display:flex;flex-direction:column;gap:6px;padding:30px 0;border-top:1px solid var(--color-line);text-decoration:none}
+.next-link .nl-lab{font-size:13px;color:var(--color-muted);letter-spacing:var(--track-body-tight)}
+.next-link .nl-title{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);color:var(--color-ink);display:inline-flex;align-items:center;gap:10px}
+.next-link .nl-title .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
+.next-link:hover .nl-title .arr{transform:translateX(4px)}
+.guide-related{margin-top:8px;margin-bottom:64px}
+/* engineering article: the shared shell carries no code styling, so this
+   page adds it. Tokens only, nothing new invented. */
+.guide-body code{font-family:var(--font-mono);font-size:0.88em;background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius-xs);padding:0.1em 0.36em;white-space:nowrap}
+.guide-body pre{font-family:var(--font-mono);font-size:14px;line-height:1.6;background:var(--color-paper);border:1px solid var(--color-soft-line);border-left:3px solid var(--color-green);border-radius:var(--radius-xs);padding:18px 20px;margin:26px 0;overflow-x:auto}
+.guide-body pre code{background:none;border:0;padding:0;font-size:inherit;white-space:pre}
+.guide-body ul.facts{flex-direction:row;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
+.guide-body ul.facts li{flex:1 1 8rem;background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-xs);padding:13px 16px;padding-left:16px}
+.guide-body ul.facts li::before{content:none}
+.guide-body ul.facts .f-lab{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-muted);margin-bottom:4px;line-height:1.3}
+.guide-body ul.facts .f-val{display:block;font-family:var(--font-mono);font-size:22px;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--color-ink)}
+.guide-body ul.facts .f-val.zero{color:var(--color-green-dark)}
+.facts-note{font-family:var(--font-mono);font-size:12px;color:var(--color-faint);margin:0 0 30px}
+</style>
+</head>
+<body>
+<nav class="nav" id="nav"><div class="nav-in">
+  <a class="wm nav-brand" href="../index.html">Me<span class="wm-stop">.</span></a>
+  <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks"><span></span><span></span><span></span></button>
+  <div class="nav-links" id="navLinks">
+    <a href="../index.html">Home</a>
+    <a href="../case-studies/index.html">Case studies</a>
+    <a href="../guides/index.html">Guides</a>
+    <a class="coming-tag" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
+  </div>
+</div></nav>
+<main>
+  <div class="guide-article guide-top">
+    <a class="backlink" href="../index.html">Me.</a>
+  </div>
+  <article class="guide-article">
+    <span class="guide-tag">Engineering</span>
+    <h1>We built a health app with no server<span class="h-stop">.</span></h1>
+    <div class="guide-meta">8 min read &middot; Oi Studios</div>
+    <div class="guide-body">
+
+      <p>Me. brings your health data together, lets you add the context only you know, and turns it into one document you can hand to a GP, a coach or a model. It is 290 Swift files and 58,996 lines.</p>
+
+      <p>There is no HTTP client in any of them.</p>
+
+      <ul class="facts">
+        <li><span class="f-lab">Swift files</span><span class="f-val">290</span></li>
+        <li><span class="f-lab">Lines</span><span class="f-val">58,996</span></li>
+        <li><span class="f-lab">HTTP clients</span><span class="f-val zero">0</span></li>
+      </ul>
+      <p class="facts-note">Read from the app source, 20 August 2026.</p>
+
+      <p>We didn't set out to prove a point about privacy. We set out to avoid running a backend, because there are ten of us and none of us wanted to be woken up by a database. The privacy story turned out to be the easy consequence of that. The rest of it was harder than we expected.</p>
+
+      <h4>The claim, and how to check it in a minute</h4>
+      <p>To do that job the app holds medical history, medications, blood results and symptoms. The most sensitive category of personal data there is.</p>
+      <p>None of it reaches us, because there is nowhere for it to go.</p>
+      <p>You don't have to take that on trust:</p>
+      <pre><code>grep -r "URLSession\|URLRequest\|dataTask" Me/</code></pre>
+      <p>Nothing. No networking library either. The only <code>https://</code> strings anywhere in the codebase are six links that open in Safari: our guides, privacy and terms pages, and App Store links to ChatGPT and Claude for people who want to hand their compiled document to a model.</p>
+      <p>That is the entire network surface. One analytics SDK ships as a dependency, disclosed in the app with an opt-out, and we will come back to it, because it is the part that bit us.</p>
+      <p>Most of what you read about privacy is a promise. This is closer to a fact about the binary, and checking it takes less time than reading our privacy policy would.</p>
+
+      <h4>What you do not build</h4>
+      <p>The list is longer than we expected and it is most of a product:</p>
+      <p>No accounts. No sign-in, no password reset, no session handling, no account deletion flow, no support tickets from people locked out. No user table. No backend to deploy, monitor, patch or pay for. No database to breach. No server-side receipt validation. No region questions about where health data is stored, because it is stored where the person is standing.</p>
+      <p>And no privacy policy paragraph explaining what we do with your health data, because we never receive it. That paragraph is usually the hardest one to write honestly. We do not have to write it.</p>
+
+      <h4>Where the data lives, and the split that matters most</h4>
+      <p>HealthKit is the source. SwiftData on the device is the store. Neither is surprising. The decision worth writing down is that the store is split in two.</p>
+      <p><code>SyncPartition</code> divides every model into two lists: 35 user-created types and 5 local-only ones. They get separate <code>ModelConfiguration</code>s and separate stores. The user-created store flips between local and CloudKit when someone turns sync on. <strong>The local-only store never syncs, whatever the toggle says.</strong></p>
+      <p>What sits in local-only: <code>Baseline</code>, <code>ManualWorkout</code>, <code>HealthContextProfile</code>, <code>CuratedPrompt</code>, <code>ApiPushLog</code>. Anything derived from HealthKit.</p>
+      <p>HealthKit data is already on the device and already covered by Apple's own backup. Copying it into a CloudKit container would duplicate the most sensitive data in the app into a second place, to solve a problem that does not exist. Wipe your phone and your HealthKit history comes back on its own. Your check-ins, your notes and your health profile do not, which is exactly why those are the things that sync.</p>
+      <p>So sync carries what you wrote. It does not carry what your devices measured.</p>
+      <p>If you build on HealthKit, we'd put this near the top of the list. The default instinct is to sync everything, and everything is the wrong amount.</p>
+
+      <h4>iCloud is the user's, not ours</h4>
+      <p>When sync is on, it writes to the private database in the person's own iCloud account. We can't read it. We can't enumerate it, back it up, or restore it for them. It is not our sync service with their data in it, it is their storage with their data in it, and the difference shows up the first time someone asks us to recover something and the honest answer is that we can't.</p>
+      <p>One detail we are glad we built. When someone has opted in but sync cannot actually run, the app says paused rather than on. There is a flag for it, <code>cloudKitFallbackOccurred</code>, and the settings copy changes. A switch that reads on while nothing is syncing is worse than one that admits it is stuck, and health data is the last place to be reassuring about something you have not verified.</p>
+
+      <h4>Two traps, both expensive, both only visible on a real first launch</h4>
+      <p><strong>The directory that is not there yet.</strong> SwiftData's default store URL points into the App Group container, and on a genuinely first launch <code>Library/Application Support</code> does not exist. Core Data quietly recovers from that for a local store. Under CloudKit it does not: you get <code>NSCocoaError(512)</code>, "Failed to create file", raised all the way up through <code>try ModelContainer(...)</code>. Every first launch with sync enabled fell back to local. The fix is three lines, creating the directory synchronously before any container init, and finding it took considerably longer than that.</p>
+      <p><strong>The initialiser that traps instead of throwing.</strong> <code>CKContainer(identifier:)</code> does not return an error when the iCloud container entitlement is missing. It traps, and there is nothing to catch. So the app now checks the user's sync preference and the entitlement's presence before any CloudKit code runs at all. A <code>do/catch</code> around it is not protection, because the thing you are guarding against never becomes an error.</p>
+      <p>Neither of these appears on a simulator, on a second launch, or on a device that has run an earlier build.</p>
+
+      <h4>The hard part: with no server you are close to blind</h4>
+      <p>This is the cost nobody mentions in the local-first pitch.</p>
+      <p>You can't see what people do. No request logs, no session traces, no funnel, no way to ask the database a question you did not think of in advance. When someone reports that something did not work, you have their sentence and nothing else.</p>
+      <p>We use TelemetryDeck, disclosed in-app with an opt-out. It is a deliberately thin instrument, and we treated it as thicker than it was.</p>
+      <blockquote class="pullquote" style="border-left-color:#BE9924">We had an event whose name was a lie, and no second instrument to catch it.</blockquote>
+      <p>The event is called <code>notification_sent_checkin</code>. It doesn't fire when a notification is sent. The app books check-in reminders fourteen days ahead and rewrites that whole window every time the app comes to the foreground, and again on every tick of the time picker while someone drags it. The event fires once per rewrite. It counts scheduling passes.</p>
+      <p>For three months we read it as notifications sent. In August we divided it by the tap count and concluded that our reminders were being ignored 999 times out of 1,000. It went into a written report as the most important thing we had found that week. We came close to redesigning the feature on the strength of it.</p>
+      <p>It was never an open rate. The numerator counted taps on notifications and the denominator counted people opening the app. The two numbers have nothing to do with each other.</p>
+      <p>This is worse without a server than with one. With a backend you have a lot of instruments and the wrong ones get contradicted by the right ones. We have about nine events. Nothing cross-checks anything, so a badly named event isn't a small documentation problem, it's just wrong data that nobody can catch.</p>
+      <p>The rename is queued. We should have named it for where it fires instead of what we meant it to record, which sounds obvious written down.</p>
+
+      <h4>The boundary that shaped the code</h4>
+      <p>Me. does not interpret your data. It does not score you, grade you, or tell you what anything means. It gathers, structures, and hands over.</p>
+      <p>A named model may interpret, including inside the app, on the condition that it is named at the point it answers. You always know whose opinion you are reading.</p>
+      <p>That is a product decision, but it lands in the codebase as a constraint. There is no analysis layer to build, and every time it would be convenient to add a small helpful conclusion, the answer is no. The compile engine gathers. It does not conclude.</p>
+
+      <h4>What we would do differently</h4>
+      <p><strong>Partition the store on day one.</strong> Ours arrived later, as a correction. Deciding what is allowed to leave the device is a much easier conversation before there is a schema to migrate.</p>
+      <p><strong>Treat a clean first launch as a real test case, not a formality.</strong> We found both of the bugs above the way you would expect, which is to say from someone telling us it hadn't worked.</p>
+
+      <h4>Would we do it again</h4>
+      <p>Yes, and not mainly for the privacy story.</p>
+      <p>What we didn't anticipate is how much the constraint clarified the product. With no server there is nowhere to put a feature you haven't thought through. Every question turns into a question about what happens on this one device, in this one person's hands. A lot of ideas don't survive being asked that, and on balance that has been good for us, though it didn't feel like it at the time.</p>
+      <p>Me. is on the App Store. If you build local-first and want to compare notes on the HealthKit side of it, we are easy to find.</p>
+
+    </div>
+  </article>
+</main>
+<footer class="foot"><div class="foot-in">
+  <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>
+  <a class="coming-tag on-dark" href="https://apps.apple.com/app/id6761247668"><span class="dot"></span>Available now on iOS</a>
+  <div class="sublab">iOS only · No account required · Free to download</div>
+  <div class="foot-links">
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+    <a href="../guides/index.html">Guides</a>
+    <a href="../case-studies/index.html">Case studies</a>
+    <a href="../press.html">Press</a>
+    <a href="#" class="contact-link" aria-label="Email info at meapp dot health">Contact</a>
+  </div>
+  <div class="foot-cred">Me. by Oi Studios · Hobart, Tasmania · © 2026 Osborne Images Pty Ltd, trading as Me. Health Intelligence.</div>
+</div></footer>
+<script>
+/* shared shell scripts: nav blur on scroll, scroll reveals, obfuscated contact */
+(function(){
+  var nav=document.getElementById('nav');
+  if(nav){
+    var onScroll=function(){nav.classList.toggle('scrolled',window.scrollY>24);};
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    var toggle=document.getElementById('navToggle');
+    if(toggle){
+      toggle.addEventListener('click',function(e){
+        e.stopPropagation();
+        var open=nav.classList.toggle('open');
+        toggle.setAttribute('aria-expanded',open?'true':'false');
+        toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+      });
+      document.addEventListener('click',function(e){
+        if(nav.classList.contains('open')&&!nav.contains(e.target)){
+          nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open menu');
+        }
+      });
+      nav.querySelectorAll('.nav-links a').forEach(function(a){
+        a.addEventListener('click',function(){nav.classList.remove('open');toggle.setAttribute('aria-expanded','false');});
+      });
+    }
+  }
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var reveals=document.querySelectorAll('.reveal');
+  if(reduce||!('IntersectionObserver' in window)){
+    reveals.forEach(function(el){el.classList.add('in');});
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+    },{threshold:0,rootMargin:'0px 0px -12% 0px'});
+  /* threshold is 0, deliberately, not a proportion. An element taller than
+     the viewport can never reach a percentage threshold: the most of it that
+     can ever be on screen is viewportHeight/elementHeight. The founder Q&A on
+     press.html renders about 9,800px tall on a phone, so its ceiling was 8%
+     against a 12% threshold, the observer never fired, and the whole section
+     sat at opacity:0 on mobile while working fine on desktop. rootMargin sets
+     the reveal point instead, which is a distance and behaves the same at any
+     element height. */
+    reveals.forEach(function(el){io.observe(el);});
+  }
+  /* obfuscated contact: literal address never in static DOM */
+  document.querySelectorAll('.contact-link').forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      var user='info',domain='meapp.health';
+      window.location.href='mailto:'+user+'@'+domain;
+    });
+  });
+})();
+</script>
+</body>
+</html>

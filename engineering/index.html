@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>We built a health app with no server · Me.</title>
-<meta name="description" content="290 Swift files, 58,996 lines, and no HTTP client. What it cost to build Me. with nowhere for your health data to go.">
-<meta property="og:type" content="article">
-<meta property="og:title" content="We built a health app with no server · Me.">
-<meta property="og:description" content="290 Swift files, 58,996 lines, and no HTTP client. What it cost to build Me. with nowhere for your health data to go.">
+<title>Engineering · Me.</title>
+<meta name="description" content="How Me. is built. Field reports from shipping an iOS health app with no server.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Engineering · Me.">
+<meta property="og:description" content="How Me. is built. Field reports from shipping an iOS health app with no server.">
 <meta name="twitter:card" content="summary_large_image">
 <meta property="og:image" content="https://meapp.health/assets/og-card.png">
 <meta name="twitter:image" content="https://meapp.health/assets/og-card.png">
@@ -272,18 +272,29 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
 .next-link .nl-title .arr{color:var(--color-green);transition:transform .2s var(--ease-settle)}
 .next-link:hover .nl-title .arr{transform:translateX(4px)}
 .guide-related{margin-top:8px;margin-bottom:64px}
-/* engineering article: the shared shell carries no code styling, so this
-   page adds it. Tokens only, nothing new invented. */
-.guide-body code{font-family:var(--font-mono);font-size:0.88em;background:var(--color-paper-cool);border:1px solid var(--color-soft-line);border-radius:var(--radius-xs);padding:0.1em 0.36em;white-space:nowrap}
-.guide-body pre{font-family:var(--font-mono);font-size:14px;line-height:1.6;background:var(--color-paper);border:1px solid var(--color-soft-line);border-left:3px solid var(--color-green);border-radius:var(--radius-xs);padding:18px 20px;margin:26px 0;overflow-x:auto}
-.guide-body pre code{background:none;border:0;padding:0;font-size:inherit;white-space:pre}
-.guide-body ul.facts{flex-direction:row;flex-wrap:wrap;gap:10px;margin:26px 0 8px}
-.guide-body ul.facts li{flex:1 1 8rem;background:var(--color-paper);border:1px solid var(--color-soft-line);border-radius:var(--radius-xs);padding:13px 16px;padding-left:16px}
-.guide-body ul.facts li::before{content:none}
-.guide-body ul.facts .f-lab{display:block;font-family:var(--font-mono);font-size:11px;letter-spacing:var(--track-caps);text-transform:uppercase;color:var(--color-muted);margin-bottom:4px;line-height:1.3}
-.guide-body ul.facts .f-val{display:block;font-family:var(--font-mono);font-size:22px;line-height:1.2;font-variant-numeric:tabular-nums;color:var(--color-ink)}
-.guide-body ul.facts .f-val.zero{color:var(--color-green-dark)}
-.facts-note{font-family:var(--font-mono);font-size:12px;color:var(--color-faint);margin:0 0 30px}
+
+
+/* inline capture form (Netlify Forms), replaces the Tally link-out */
+.capture-form{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.capture-input{font:inherit;font-size:15px;padding:10px 16px;border:1px solid var(--color-line);border-radius:var(--radius-pill);background:#fff;color:var(--color-ink);min-width:260px}
+.capture-input:focus{outline:2px solid var(--color-green);outline-offset:1px;border-color:var(--color-green)}
+.capture-cta{border:0;cursor:pointer;font:inherit}
+.foot-capture-form{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;width:100%}
+.foot-capture-input{font:inherit;font-size:14px;padding:9px 14px;border:1px solid var(--color-d-border);border-radius:var(--radius-pill);background:rgba(255,255,255,0.06);color:var(--color-d-text);min-width:200px;flex:1}
+.foot-capture-input::placeholder{color:var(--color-d-faint)}
+.foot-capture-input:focus{outline:2px solid var(--color-green);outline-offset:1px}
+.foot-capture-cta{border:0;cursor:pointer;font:inherit}
+.hp-field{position:absolute;left:-9999px;opacity:0;height:0;overflow:hidden}
+@media(max-width:520px){.capture-input,.foot-capture-input{min-width:0;width:100%}}
+
+/* footer email capture variant (dark, sits inside .foot) */
+.foot-capture{display:flex;flex-direction:column;align-items:center;gap:10px;padding:22px 24px;border:1px solid var(--color-d-border);border-radius:var(--radius-sm);background:rgba(255,255,255,0.03);max-width:420px;width:100%}
+.foot-capture-lab{font-size:15px;color:var(--color-d-text);line-height:1.5}
+.foot-capture-cta{display:inline-flex;align-items:center;gap:7px;background:var(--color-green);color:var(--color-green-text);font-weight:500;font-size:14px;padding:9px 18px;border-radius:var(--radius-pill);text-decoration:none;transition:background .15s var(--ease-settle)}
+.foot-capture-cta:hover,.foot-capture-cta:focus-visible{background:var(--color-green-dark);color:#fff}
+.foot-capture-cta .arr{transition:transform .2s var(--ease-settle)}
+.foot-capture-cta:hover .arr{transform:translateX(3px)}
+.foot-capture-note{font-size:12px;color:var(--color-d-faint);letter-spacing:var(--track-body-tight)}
 </style>
 </head>
 <body>
@@ -298,86 +309,23 @@ h3{font-size:22px;font-weight:600;letter-spacing:var(--track-h3);line-height:1.2
   </div>
 </div></nav>
 <main>
-  <div class="guide-article guide-top">
-    <a class="backlink" href="../index.html">Me.</a>
-  </div>
-  <article class="guide-article">
-    <span class="guide-tag">Engineering</span>
-    <h1>We built a health app with no server<span class="h-stop">.</span></h1>
-    <div class="guide-meta">8 min read &middot; Oi Studios</div>
-    <div class="guide-body">
-
-      <p>Me. brings your health data together, lets you add the context only you know, and turns it into one document you can hand to a GP, a coach or a model. It is 290 Swift files and 58,996 lines.</p>
-
-      <p>There is no HTTP client in any of them.</p>
-
-      <ul class="facts">
-        <li><span class="f-lab">Swift files</span><span class="f-val">290</span></li>
-        <li><span class="f-lab">Lines</span><span class="f-val">58,996</span></li>
-        <li><span class="f-lab">HTTP clients</span><span class="f-val zero">0</span></li>
-      </ul>
-      <p class="facts-note">Read from the app source, 20 August 2026.</p>
-
-      <p>We didn't set out to prove a point about privacy. We set out to avoid running a backend, because there are ten of us and none of us wanted to be woken up by a database. The privacy story turned out to be the easy consequence of that. The rest of it was harder than we expected.</p>
-
-      <h4>The claim, and how to check it in a minute</h4>
-      <p>To do that job the app holds medical history, medications, blood results and symptoms. The most sensitive category of personal data there is.</p>
-      <p>None of it reaches us, because there is nowhere for it to go.</p>
-      <p>You don't have to take that on trust:</p>
-      <pre><code>grep -r "URLSession\|URLRequest\|dataTask" Me/</code></pre>
-      <p>Nothing. No networking library either. The only <code>https://</code> strings anywhere in the codebase are six links that open in Safari: our guides, privacy and terms pages, and App Store links to ChatGPT and Claude for people who want to hand their compiled document to a model.</p>
-      <p>That is the entire network surface. One analytics SDK ships as a dependency, disclosed in the app with an opt-out, and we will come back to it, because it is the part that bit us.</p>
-      <p>Most of what you read about privacy is a promise. This is closer to a fact about the binary, and checking it takes less time than reading our privacy policy would.</p>
-
-      <h4>What you do not build</h4>
-      <p>The list is longer than we expected and it is most of a product:</p>
-      <p>No accounts. No sign-in, no password reset, no session handling, no account deletion flow, no support tickets from people locked out. No user table. No backend to deploy, monitor, patch or pay for. No database to breach. No server-side receipt validation. No region questions about where health data is stored, because it is stored where the person is standing.</p>
-      <p>And no privacy policy paragraph explaining what we do with your health data, because we never receive it. That paragraph is usually the hardest one to write honestly. We do not have to write it.</p>
-
-      <h4>Where the data lives, and the split that matters most</h4>
-      <p>HealthKit is the source. SwiftData on the device is the store. Neither is surprising. The decision worth writing down is that the store is split in two.</p>
-      <p><code>SyncPartition</code> divides every model into two lists: 35 user-created types and 5 local-only ones. They get separate <code>ModelConfiguration</code>s and separate stores. The user-created store flips between local and CloudKit when someone turns sync on. <strong>The local-only store never syncs, whatever the toggle says.</strong></p>
-      <p>What sits in local-only: <code>Baseline</code>, <code>ManualWorkout</code>, <code>HealthContextProfile</code>, <code>CuratedPrompt</code>, <code>ApiPushLog</code>. Anything derived from HealthKit.</p>
-      <p>HealthKit data is already on the device and already covered by Apple's own backup. Copying it into a CloudKit container would duplicate the most sensitive data in the app into a second place, to solve a problem that does not exist. Wipe your phone and your HealthKit history comes back on its own. Your check-ins, your notes and your health profile do not, which is exactly why those are the things that sync.</p>
-      <p>So sync carries what you wrote. It does not carry what your devices measured.</p>
-      <p>If you build on HealthKit, we'd put this near the top of the list. The default instinct is to sync everything, and everything is the wrong amount.</p>
-
-      <h4>iCloud is the user's, not ours</h4>
-      <p>When sync is on, it writes to the private database in the person's own iCloud account. We can't read it. We can't enumerate it, back it up, or restore it for them. It is not our sync service with their data in it, it is their storage with their data in it, and the difference shows up the first time someone asks us to recover something and the honest answer is that we can't.</p>
-      <p>One detail we are glad we built. When someone has opted in but sync cannot actually run, the app says paused rather than on. There is a flag for it, <code>cloudKitFallbackOccurred</code>, and the settings copy changes. A switch that reads on while nothing is syncing is worse than one that admits it is stuck, and health data is the last place to be reassuring about something you have not verified.</p>
-
-      <h4>Two traps, both expensive, both only visible on a real first launch</h4>
-      <p><strong>The directory that is not there yet.</strong> SwiftData's default store URL points into the App Group container, and on a genuinely first launch <code>Library/Application Support</code> does not exist. Core Data quietly recovers from that for a local store. Under CloudKit it does not: you get <code>NSCocoaError(512)</code>, "Failed to create file", raised all the way up through <code>try ModelContainer(...)</code>. Every first launch with sync enabled fell back to local. The fix is three lines, creating the directory synchronously before any container init, and finding it took considerably longer than that.</p>
-      <p><strong>The initialiser that traps instead of throwing.</strong> <code>CKContainer(identifier:)</code> does not return an error when the iCloud container entitlement is missing. It traps, and there is nothing to catch. So the app now checks the user's sync preference and the entitlement's presence before any CloudKit code runs at all. A <code>do/catch</code> around it is not protection, because the thing you are guarding against never becomes an error.</p>
-      <p>Neither of these appears on a simulator, on a second launch, or on a device that has run an earlier build.</p>
-
-      <h4>The hard part: with no server you are close to blind</h4>
-      <p>This is the cost nobody mentions in the local-first pitch.</p>
-      <p>You can't see what people do. No request logs, no session traces, no funnel, no way to ask the database a question you did not think of in advance. When someone reports that something did not work, you have their sentence and nothing else.</p>
-      <p>We use TelemetryDeck, disclosed in-app with an opt-out. It is a deliberately thin instrument, and we treated it as thicker than it was.</p>
-      <blockquote class="pullquote" style="border-left-color:#BE9924">We had an event whose name was a lie, and no second instrument to catch it.</blockquote>
-      <p>The event is called <code>notification_sent_checkin</code>. It doesn't fire when a notification is sent. The app books check-in reminders fourteen days ahead and rewrites that whole window every time the app comes to the foreground, and again on every tick of the time picker while someone drags it. The event fires once per rewrite. It counts scheduling passes.</p>
-      <p>For three months we read it as notifications sent. In August we divided it by the tap count and concluded that our reminders were being ignored 999 times out of 1,000. It went into a written report as the most important thing we had found that week. We came close to redesigning the feature on the strength of it.</p>
-      <p>It was never an open rate. The numerator counted taps on notifications and the denominator counted people opening the app. The two numbers have nothing to do with each other.</p>
-      <p>This is worse without a server than with one. With a backend you have a lot of instruments and the wrong ones get contradicted by the right ones. We have about nine events. Nothing cross-checks anything, so a badly named event isn't a small documentation problem, it's just wrong data that nobody can catch.</p>
-      <p>The rename is queued. We should have named it for where it fires instead of what we meant it to record, which sounds obvious written down.</p>
-
-      <h4>The boundary that shaped the code</h4>
-      <p>Me. does not interpret your data. It does not score you, grade you, or tell you what anything means. It gathers, structures, and hands over.</p>
-      <p>A named model may interpret, including inside the app, on the condition that it is named at the point it answers. You always know whose opinion you are reading.</p>
-      <p>That is a product decision, but it lands in the codebase as a constraint. There is no analysis layer to build, and every time it would be convenient to add a small helpful conclusion, the answer is no. The compile engine gathers. It does not conclude.</p>
-
-      <h4>What we would do differently</h4>
-      <p><strong>Partition the store on day one.</strong> Ours arrived later, as a correction. Deciding what is allowed to leave the device is a much easier conversation before there is a schema to migrate.</p>
-      <p><strong>Treat a clean first launch as a real test case, not a formality.</strong> We found both of the bugs above the way you would expect, which is to say from someone telling us it hadn't worked.</p>
-
-      <h4>Would we do it again</h4>
-      <p>Yes, and not mainly for the privacy story.</p>
-      <p>What we didn't anticipate is how much the constraint clarified the product. With no server there is nowhere to put a feature you haven't thought through. Every question turns into a question about what happens on this one device, in this one person's hands. A lot of ideas don't survive being asked that, and on balance that has been good for us, though it didn't feel like it at the time.</p>
-      <p>Me. is on the App Store. If you build local-first and want to compare notes on the HealthKit side of it, we are easy to find.</p>
-
+  <section class="wrap page-head">
+    <span class="eyebrow">Engineering</span>
+    <h1>How Me<span class="wm-stop">.</span> is built<span class="h-stop">.</span></h1>
+    <p class="intro">Field reports from building an iOS health app with no server and no accounts. Written for other developers, with the specifics left in: the decisions, the failure modes, and the things we got wrong and had to correct.</p>
+  </section>
+  <section class="section" style="padding-top:48px">
+    <div class="wrap">
+      <div class="guides-grid">
+      <a class="guide-card reveal" href="no-server.html">
+        <span class="num">20 August 2026</span>
+        <h3>We built a health app with no server</h3>
+        <p>290 Swift files, 58,996 lines, and no HTTP client in any of them. What that bought, what it cost, and the two CloudKit traps that only appear on a clean first launch.</p>
+        <span class="read">Read it <span class="arr">&rarr;</span></span>
+      </a>
+      </div>
     </div>
-  </article>
+  </section>
 </main>
 <footer class="foot"><div class="foot-in">
   <span class="wm foot-brand">Me<span class="wm-stop">.</span> Health intelligence<span class="h-stop">.</span></span>

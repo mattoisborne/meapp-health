@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Me. engineering</title>
+    <link>https://meapp.health/engineering/</link>
+    <atom:link href="https://meapp.health/engineering/feed.xml" rel="self" type="application/rss+xml" />
+    <description>How Me. is built. Field reports from shipping an iOS health app with no server, by Oi Studios in Hobart, Tasmania.</description>
+    <language>en-au</language>
+    <item>
+      <title>We built a health app with no server</title>
+      <link>https://meapp.health/engineering/no-server.html</link>
+      <guid isPermaLink="true">https://meapp.health/engineering/no-server.html</guid>
+      <pubDate>Wed, 20 Aug 2026 09:00:00 +1000</pubDate>
+      <description>290 Swift files, 58,996 lines, and no HTTP client in any of them. What the decision bought, the SwiftData store split that keeps HealthKit data off iCloud even when sync is on, two CloudKit traps that only appear on a clean first launch, and the metric we misread for three months.</description>
+    </item>
+  </channel>
+</rss>
